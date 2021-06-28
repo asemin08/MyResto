@@ -31,15 +31,13 @@ public class UserDao extends BaseDao implements IUserDao {
     public int update(User user) throws DaoException  {
         try {
             connexion();
-            setPs(BaseDao.getCn().prepareStatement("UPDATE user SET firstname = ?, lastname = ?, address = ?, role = ?, password = ?, salt = ?, image = ? where id = ?"));
+            setPs(BaseDao.getCn().prepareStatement("UPDATE user SET firstname = ?, lastname = ?, address = ?, role = ?, image = ? where id = ?"));
             getPs().setString(1, user.getFirstName());
             getPs().setString(2, user.getLastName());
             getPs().setString(3, user.getAddress());
             getPs().setString(4, user.getRole());
-            getPs().setString(5, user.getPassword());
-            getPs().setString(6, user.getSalt());
-            getPs().setString(7, user.getImage());
-            getPs().setInt(8, user.getId());
+            getPs().setString(5, user.getImage());
+            getPs().setInt(6, user.getId());
             setResult(getPs().executeUpdate());
             disconnect();
             return getResult();

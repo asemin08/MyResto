@@ -48,11 +48,20 @@ public class UserService implements IUserService {
         try {
             return UserMapper.convertDomaineDto(userDao.getById(userId));
         } catch (DaoException e) {
-            throw new ServiceException(UserService.class.getName(), "get", e.getMessage(), "Une erreur s'est produite lors de la récupération de l'utilisateur");
+            throw new ServiceException(UserService.class.getName(), "getById", e.getMessage(), "Une erreur s'est produite lors de la récupération de l'utilisateur");
         }
     }
 
+    @Override
+    public UserDto getByLogin(String login) throws ServiceException {
+        try {
+            return UserMapper.convertDomaineDto(userDao.getByLogin(login));
+        } catch (DaoException e) {
+            throw new ServiceException(UserService.class.getName(), "getByLogin", e.getMessage(), "Une erreur s'est produite lors de la récupération de l'utilisateur");
+        }
+    }
 
+    @Override
     public int validateUser(LoginUserDto loginUserDto) throws ServiceException {
         try {
             User user = userDao.getByLogin(loginUserDto.getLogin());
@@ -64,7 +73,7 @@ public class UserService implements IUserService {
         }
     }
 
-
+    @Override
     public String generateHashPassword(String password, byte[] salt) throws ServiceException {
         MessageDigest digest = null;
         try {
@@ -78,6 +87,7 @@ public class UserService implements IUserService {
 
     }
 
+    @Override
     public byte[] createSalt() {
         byte[] bytes = new byte[20];
         SecureRandom random = new SecureRandom();
