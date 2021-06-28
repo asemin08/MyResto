@@ -30,11 +30,13 @@ public class CategoryDaoTest
     }
 
     @BeforeEach
-    public static void testConnection() throws DaoException {
+    public static void testConnection() throws DaoException
+    {
+        try{
             BaseDao baseDao = new BaseDao();
             baseDao.connexion();
             assertThat(baseDao.getCn(), is(notNullValue()));
-        } catch (DaoException e) {
+        } catch(DaoException e) {
             fail(e.getMessage());
         }
     }
@@ -44,6 +46,7 @@ public class CategoryDaoTest
     @Order(1)
     public void testCreate()
     {
+        try{
             int nbCategoryBeforeCreate = dao.getAll().size();
 
             dao.create(new Category(this.name, this.image));
@@ -62,6 +65,7 @@ public class CategoryDaoTest
     @Order(2)
     public void testGetAll()
     {
+        try{
             List<Category> listCategory = dao.getAll();
             assertThat(listCategory, not(emptyArray());
         }
@@ -75,6 +79,7 @@ public class CategoryDaoTest
     @Order(2)
     public void testGet() //public Course get( int index )  throws ExceptionDao;
     {
+        try{
             Category category = dao.get(id);
             assertThat(category.getName(), equalTo(name));
             assertThat(category.getImage(), equalTo(image));
@@ -89,6 +94,7 @@ public class CategoryDaoTest
 	@Order(4)
 	public void testDelete()
 	{
+        try{
             int nbCategoryBeforeDelete = dao.getAll().size();
 
             dao.delete(id);

@@ -7,6 +7,17 @@ import java.util.List;
 
 public class CategoryDao extends BaseDao implements ICategoryDao
 {
+<<<<<<< HEAD
+=======
+    private BaseDao baseDao;
+
+//    public CategoryDao()
+//    {
+//        this.baseDao = new BaseDao();
+//        this.baseDao.connexion();
+//    }
+
+>>>>>>> 80fcb4116c1bedbf2e5de75ad5981bdb06e7bb03
     @Override
     public List<Category> getAll()
     {
