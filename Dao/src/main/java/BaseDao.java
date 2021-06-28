@@ -1,5 +1,3 @@
-package eu.ensup.myresto.dao;
-
 import exceptions.DaoException;
 
 import java.sql.*;
@@ -27,7 +25,7 @@ public class BaseDao {
         ResourceBundle bundle = ResourceBundle.getBundle("db");
         this.url ="jdbc:mysql://localhost:3306/myresto?serverTimezone=Europe/Berlin" ;//bundle.getString("jdbc:mysql://localhost:3306/myresto?serverTimezone=Europe/Berlin");
         this.login = "root"; //bundle.getString("root");
-        this.password ="root"; //bundle.getString("");
+        this.password =""; //bundle.getString("");
     }
 
     public int connexion() throws DaoException

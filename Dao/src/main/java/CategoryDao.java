@@ -1,5 +1,3 @@
-package eu.ensup.myresto.dao;
-
 import eu.ensup.myresto.domaine.Category;
 import exceptions.DaoException;
 
@@ -43,8 +41,9 @@ public class CategoryDao extends BaseDao implements ICategoryDao
         catch (SQLException e) {
             System.out.println("La transaction SELECT dans la méthode getAll a échouée.");
             System.out.println("Un problème est survenu au niveau de la base de donnée.");
-        }
-        finally{
+        } catch (DaoException e) {
+            e.printStackTrace();
+        } finally{
             try {
                 if( st != null )
                     st.close();

@@ -1,5 +1,3 @@
-package eu.ensup.myresto.dao;
-
 import eu.ensup.myresto.domaine.Product;
 import exceptions.DaoException;
 
@@ -14,16 +12,16 @@ public class ProductDao extends BaseDao implements IProductDao {
         try {
             connexion();
             String sql = "INSERT INTO `product`(name,price, description,image) VALUES (?,?,?,?)";
-            BaseDao.setPs(BaseDao.getCn().prepareStatement(sql));
-            BaseDao.getPs().setString(1, product.getName());
-            BaseDao.getPs().setFloat(2, product.getPrice());
-            BaseDao.getPs().setString(3, product.getDescription());
-            BaseDao.getPs().setString(4, product.getPicture());
-            BaseDao.setResult(BaseDao.getPs().executeUpdate());
+            setPs(getCn().prepareStatement(sql));
+            getPs().setString(1, product.getName());
+            getPs().setFloat(2, product.getPrice());
+            getPs().setString(3, product.getDescription());
+            getPs().setString(4, product.getPicture());
+            setResult(getPs().executeUpdate());
         } catch (SQLException e) {
             throw new DaoException(ProductDao.class.getName(), "createProduct", e.getMessage(), "Une erreur s'est produite lors de la récupération du produit");
         }
-        return BaseDao.getResult();
+        return getResult();
     }
 
     @Override
@@ -32,10 +30,10 @@ public class ProductDao extends BaseDao implements IProductDao {
         try {
             connexion();
             String sql = "SELECT * FROM `product`";
-            BaseDao.setPs(BaseDao.getCn().prepareStatement(sql));
-            BaseDao.setRs(BaseDao.getPs().executeQuery());
-            while (BaseDao.getRs().next()) {
-                products.add(new Product(BaseDao.getRs().getInt("id"), BaseDao.getRs().getString("name"), BaseDao.getRs().getFloat("price"), BaseDao.getRs().getString("description"), BaseDao.getRs().getString("image")));
+            setPs(getCn().prepareStatement(sql));
+            setRs(getPs().executeQuery());
+            while (getRs().next()) {
+                products.add(new Product(getRs().getInt("id"), getRs().getString("name"), getRs().getFloat("price"), getRs().getString("description"), getRs().getString("image")));
             }
         } catch (SQLException e) {
             throw new DaoException(ProductDao.class.getName(), "getAllProducts", e.getMessage(), "Une erreur s'est produite lors de la récupération de tout les produits");
@@ -48,19 +46,19 @@ public class ProductDao extends BaseDao implements IProductDao {
         try {
             connexion();
             String sql = "UPDATE `product` SET `name`= ?,`price`= ?,`description`= ?,`image`= ? WHERE `id`= ?";
-            BaseDao.setPs(BaseDao.getCn().prepareStatement(sql));
-            BaseDao.getPs().setString(1, product.getName());
-            BaseDao.getPs().setFloat(2, product.getPrice());
-            BaseDao.getPs().setString(3, product.getDescription());
-            BaseDao.getPs().setString(4, product.getPicture());
-            BaseDao.getPs().setInt(5, product.getId());
-            BaseDao.setResult(BaseDao.getPs().executeUpdate());
+            setPs(getCn().prepareStatement(sql));
+            getPs().setString(1, product.getName());
+            getPs().setFloat(2, product.getPrice());
+            getPs().setString(3, product.getDescription());
+            getPs().setString(4, product.getPicture());
+            getPs().setInt(5, product.getId());
+            setResult(getPs().executeUpdate());
             disconnect();
 
         } catch (SQLException e) {
             throw new DaoException(ProductDao.class.getName(), "updateProduct", e.getMessage(), "Une erreur s'est produite lors de la mise à jour du produit");
         }
-        return BaseDao.getResult();
+        return getResult();
     }
 
     @Override
@@ -68,13 +66,13 @@ public class ProductDao extends BaseDao implements IProductDao {
         try {
             connexion();
             String sql = "DELETE FROM `product` WHERE id=?";
-            BaseDao.setPs(BaseDao.getCn().prepareStatement(sql));
-            BaseDao.getPs().setInt(1, idProduct);
-            BaseDao.setResult(BaseDao.getPs().executeUpdate());
+            setPs(getCn().prepareStatement(sql));
+            getPs().setInt(1, idProduct);
+            setResult(getPs().executeUpdate());
         } catch (SQLException | DaoException e) {
             throw new DaoException(ProductDao.class.getName(), "deleteProduct", e.getMessage(), "Une erreur s'est produite lors de la suppression du produit");
         }
-        return BaseDao.getResult();
+        return getResult();
     }
 
     @Override
@@ -82,11 +80,11 @@ public class ProductDao extends BaseDao implements IProductDao {
         try {
             connexion();
             String sql = "SELECT * FROM `product` WHERE id=?";
-            BaseDao.setPs(BaseDao.getCn().prepareStatement(sql));
-            BaseDao.getPs().setInt(1, idProduct);
-            BaseDao.setRs(BaseDao.getPs().executeQuery());
+            setPs(getCn().prepareStatement(sql));
+            getPs().setInt(1, idProduct);
+            setRs(getPs().executeQuery());
             while (getRs().next()) {
-                return new Product(BaseDao.getRs().getInt("id"), BaseDao.getRs().getString("name"), BaseDao.getRs().getFloat("price"), BaseDao.getRs().getString("description"), BaseDao.getRs().getString("image"));
+                return new Product(getRs().getInt("id"), getRs().getString("name"), getRs().getFloat("price"), getRs().getString("description"), getRs().getString("image"));
             }
         } catch (SQLException | DaoException e) {
 

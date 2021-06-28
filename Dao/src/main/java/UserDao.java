@@ -1,5 +1,3 @@
-package eu.ensup.myresto.dao;
-
 import eu.ensup.myresto.domaine.User;
 import exceptions.DaoException;
 
@@ -22,7 +20,7 @@ public class UserDao extends BaseDao implements IUserDao {
             getPs().setString(7, user.getImage());
             setResult(getPs().executeUpdate());
             disconnect();
-            return getResult();
+            return BaseDao.getResult();
         } catch (SQLException e) {
             throw new DaoException(UserDao.class.getName(),"create",e.getMessage(),"Une erreur s'est produite lors de la création de l'utilisateur");
         }
@@ -33,7 +31,7 @@ public class UserDao extends BaseDao implements IUserDao {
     public int update(User user) throws DaoException  {
         try {
             connexion();
-            setPs(getCn().prepareStatement("UPDATE user SET firstname = ?, lastname = ?, address = ?, role = ?, password = ?, salt = ?, image = ? where id = ?"));
+            setPs(BaseDao.getCn().prepareStatement("UPDATE user SET firstname = ?, lastname = ?, address = ?, role = ?, password = ?, salt = ?, image = ? where id = ?"));
             getPs().setString(1, user.getFirstName());
             getPs().setString(2, user.getLastName());
             getPs().setString(3, user.getAddress());
@@ -51,7 +49,15 @@ public class UserDao extends BaseDao implements IUserDao {
     }
 
     @Override
+<<<<<<< HEAD
+<<<<<<<< HEAD
     public int delete(int userId) throws DaoException {
+========
+    public int delete(int userId)throws DaoException  {
+>>>>>>>> origin
+=======
+    public int delete(int userId)throws DaoException  {
+>>>>>>> origin
         try {
             connexion();
             setPs(getCn().prepareStatement("delete from user where id = ?"));
@@ -73,7 +79,11 @@ public class UserDao extends BaseDao implements IUserDao {
             setPs(getCn().prepareStatement("SELECT * from user where id = ?"));
             getPs().setInt(1, userId);
             setRs(getPs().executeQuery());
+<<<<<<< HEAD
             while (getRs().next()) {
+=======
+            while (BaseDao.getRs().next()) {
+>>>>>>> origin
                getUser = new User(getRs().getInt("id"),getRs().getString("firstname"),getRs().getString("lastname"),getRs().getString("address"),getRs().getString("role"),getRs().getString("password"),getRs().getString("salt"),getRs().getString("image"));
             }
             disconnect();
@@ -81,9 +91,16 @@ public class UserDao extends BaseDao implements IUserDao {
 
         } catch (SQLException e) {
             throw new DaoException(UserDao.class.getName(),"create",e.getMessage(),"Une erreur s'est produite lors de la récupération de l'utilisateur");
+<<<<<<< HEAD
         } catch (DaoException e) {
             e.printStackTrace();
         }
         return getUser;
     }
+=======
+        }
+    }
+
+
+>>>>>>> origin
 }

@@ -1,7 +1,6 @@
 import eu.ensup.myresto.domaine.Product;
 import exceptions.DaoException;
 import exceptions.ServiceException;
-import exceptions.ServiceException;
 
 import java.util.Set;
 
