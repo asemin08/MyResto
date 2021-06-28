@@ -20,7 +20,7 @@ public class UserDao extends BaseDao implements IUserDao {
             getPs().setString(7, user.getImage());
             setResult(getPs().executeUpdate());
             disconnect();
-            return getResult();
+            return BaseDao.getResult();
         } catch (SQLException e) {
             throw new DaoException(UserDao.class.getName(),"create",e.getMessage(),"Une erreur s'est produite lors de la création de l'utilisateur");
         }
@@ -31,7 +31,7 @@ public class UserDao extends BaseDao implements IUserDao {
     public int update(User user) throws DaoException  {
         try {
             connexion();
-            setPs(getCn().prepareStatement("UPDATE user SET firstname = ?, lastname = ?, address = ?, role = ?, password = ?, salt = ?, image = ? where id = ?"));
+            setPs(BaseDao.getCn().prepareStatement("UPDATE user SET firstname = ?, lastname = ?, address = ?, role = ?, password = ?, salt = ?, image = ? where id = ?"));
             getPs().setString(1, user.getFirstName());
             getPs().setString(2, user.getLastName());
             getPs().setString(3, user.getAddress());
@@ -49,7 +49,7 @@ public class UserDao extends BaseDao implements IUserDao {
     }
 
     @Override
-    public int delete(int userId) {
+    public int delete(int userId)throws DaoException  {
         try {
             connexion();
             setPs(getCn().prepareStatement("delete from user where id = ?"));
@@ -57,14 +57,14 @@ public class UserDao extends BaseDao implements IUserDao {
             setResult(getPs().executeUpdate());
             disconnect();
             return getResult();
-        } catch (SQLException e) {
+        } catch (SQLException | DaoException e) {
             throw new DaoException(UserDao.class.getName(),"create",e.getMessage(),"Une erreur s'est produite lors de la suppression de l'utilisateur");
         }
     }
 
 
     @Override
-    public User getById(int userId) {
+    public User getById(int userId) throws DaoException {
         User getUser = null;
         try {
             connexion();

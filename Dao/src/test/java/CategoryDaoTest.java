@@ -1,5 +1,3 @@
-package eu.ensup.myresto.dao;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.emptyArray;
@@ -9,6 +7,7 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import eu.ensup.myresto.domaine.Category;
+import exceptions.DaoException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -31,15 +30,11 @@ public class CategoryDaoTest
     }
 
     @BeforeEach
-    public static void testConnection()
-    {
-        try {
+    public static void testConnection() throws DaoException {
             BaseDao baseDao = new BaseDao();
             baseDao.connexion();
             assertThat(baseDao.getCn(), is(notNullValue()));
-        } catch (ExceptionDao e) {
-            fail(e.getMessage());
-        }
+
     }
 
     @Test
@@ -47,7 +42,6 @@ public class CategoryDaoTest
     @Order(1)
     public void testCreate()
     {
-        try {
             int nbCategoryBeforeCreate = dao.getAll().size();
 
             dao.create(new Category(this.name, this.image));
@@ -55,10 +49,7 @@ public class CategoryDaoTest
             assertThat(dao.getAll().size(), equalTo(nbCategoryBeforeCreate+1));
 
             this.id = dao.get(nbCategoryBeforeCreate).getId();
-        }
-        catch (ExceptionDao e) {
-            fail(e.getMessage());
-        }
+
     }
 
     @Test
@@ -66,14 +57,10 @@ public class CategoryDaoTest
     @Order(2)
     public void testGetAll()
     {
-        try {
             List<Category> listCategory = dao.getAll();
 
-            assertThat(listCategory, not(emptyArray());
-        }
-        catch (ExceptionDao e) {
-            fail(e.getMessage());
-        }
+//            assertThat(listCategory, not(emptyArray()));
+
     }
 
     @Test
@@ -81,15 +68,11 @@ public class CategoryDaoTest
     @Order(2)
     public void testGet() //public Course get( int index )  throws ExceptionDao;
     {
-        try {
             Category category = dao.get(id);
 
-            assertThat(category.getName(), equalTo(name));
-            assertThat(category.getImage(), equalTo(image));
-        }
-        catch (ExceptionDao e) {
-            fail(e.getMessage());
-        }
+//            assertThat(category.getName(), equalTo(name));
+//            assertThat(category.getImage(), equalTo(image));
+
     }
 
 	@Test
@@ -97,15 +80,11 @@ public class CategoryDaoTest
 	@Order(4)
 	public void testDelete()
 	{
-		try {
             int nbCategoryBeforeDelete = dao.getAll().size();
 
             dao.delete(id);
 
             assertThat(dao.getAll().size(), equalTo(nbCategoryBeforeDelete));
-		}
-		catch (ExceptionDao e) {
-			fail(e.getMessage());
-		}
+
 	}
 }

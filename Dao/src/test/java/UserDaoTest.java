@@ -3,7 +3,6 @@ import exceptions.DaoException;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-
 import static org.hamcrest.Matchers.equalTo;
 
 public class UserDaoTest {
