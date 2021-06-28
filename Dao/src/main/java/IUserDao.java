@@ -1,13 +1,14 @@
 import eu.ensup.myresto.domaine.User;
+import exceptions.DaoException;
 
 import java.sql.SQLException;
 
 public interface IUserDao {
 
-    int create(User user) throws SQLException;
-    int update(User user);
-    int delete(int userId);
-    User getById(int userId);
+    int create(User user) throws SQLException, DaoException;
+    int update(User user) throws DaoException;
+    int delete(int userId) throws DaoException;
+    User getById(int userId) throws DaoException;
 
 
 
