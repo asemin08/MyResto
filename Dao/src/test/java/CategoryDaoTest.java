@@ -16,28 +16,11 @@ import java.util.List;
 
 public class CategoryDaoTest
 {
-    private static CategoryDao dao;
+    private static CategoryDao dao = new CategoryDao();
     private Integer id = null;
     private String name = "Image";
     private String image = null;
 
-    @BeforeAll
-    public static void init()
-    {
-        dao = new CategoryDao();
-    }
-
-    @BeforeEach
-    public static void testConnection() throws DaoException
-    {
-        try{
-            BaseDao baseDao = new BaseDao();
-            baseDao.connexion();
-            assertThat(baseDao.getCn(), is(notNullValue()));
-        } catch(DaoException e) {
-            fail(e.getMessage());
-        }
-    }
 
     @Test
     @DisplayName("Test create")
