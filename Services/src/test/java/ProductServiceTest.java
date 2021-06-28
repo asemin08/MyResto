@@ -22,17 +22,17 @@ public class ProductServiceTest {
     @InjectMocks
     ProductService productService;
 
-//    @Test
-//    public void ProductCreateTest(){
-//        try{
-//            ProductDto productDto = new ProductDto("CocaService", 3.5f, "", "C'est du coca");
-//            when(productService.createProduct(productDto)).thenReturn(0);
-//            MatcherAssert.assertThat(productService.createProduct(productDto), equalTo(0));
-//            verify(productDao).createProduct(productService.convertProductDtoToProduct(productDto));
-//        } catch (ServiceException | DaoException e) {
-//            //TODO
-//        }
-//    }
+    @Test
+    public void ProductCreateTest(){
+        try{
+            ProductDto productDto = new ProductDto("CocaService", 3.5f, "", "C'est du coca");
+            when(productDao.createProduct(any(Product.class))).thenReturn(0);
+            MatcherAssert.assertThat(productService.createProduct(productDto), equalTo(0));
+            verify(productDao).createProduct(any(Product.class));
+        } catch (ServiceException | DaoException e) {
+            //TODO
+        }
+    }
     @Test
     public void ProductgetAllTest(){
         try{
@@ -73,15 +73,15 @@ public class ProductServiceTest {
         }
     }
 
-//    @Test
-//    public void ProductUpdateTest(){
-//        try{
-//            when(productDao.updateProduct(new Product("CocaService", 3.5f, "", "C'est du coca"))).thenReturn(0);
-//            MatcherAssert.assertThat(productService.updateProduct(new Product("CocaService", 3.5f, "", "C'est du coca")), equalTo(0));
-//            verify(productDao).updateProduct(new Product("CocaService", 3.5f, "", "C'est du coca"));
-//        } catch (ServiceException | DaoException e) {
-//            //TODO
-//        }
-//    }
+    @Test
+    public void ProductUpdateTest(){
+        try{
+            when(productDao.updateProduct(any(Product.class))).thenReturn(0);
+            MatcherAssert.assertThat(productService.updateProduct(new Product("CocaService", 3.5f, "", "C'est du coca")), equalTo(0));
+            verify(productDao).updateProduct(any(Product.class));
+        } catch (ServiceException | DaoException e) {
+            //TODO
+        }
+    }
 
 }

@@ -1,5 +1,3 @@
-
-
 <%@include file="header.jsp"%>
 <!-- Start slides -->
 <div id="slides" class="cover-slides">
@@ -18,7 +16,7 @@
             </div>
         </li>
         <li class="text-left">
-            <img src="assets/images/slider-02.jpg" alt="">
+            <img src="src/main/webapp/assets/images/slider-02.jpg" alt="">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
