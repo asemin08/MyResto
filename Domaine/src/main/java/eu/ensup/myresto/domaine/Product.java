@@ -1,6 +1,7 @@
+package eu.ensup.myresto.domaine;
 
-public class Product {
-
+public class Product
+{
     private int id;
     private String name ;
     private float price;
@@ -60,5 +61,16 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", picture='" + picture + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
