@@ -21,18 +21,22 @@ public class BaseDao {
      */
     public BaseDao() {
         ResourceBundle bundle = ResourceBundle.getBundle("db");
-        this.url =bundle.getString("db.url");
-        this.login = bundle.getString("db.username");
-        this.password =bundle.getString("db.password");
+        this.url ="jdbc:mysql://localhost:3306/myresto?serverTimezone=Europe/Berlin" ;//bundle.getString("jdbc:mysql://localhost:3306/myresto?serverTimezone=Europe/Berlin");
+        this.login = "root"; //bundle.getString("root");
+        this.password =""; //bundle.getString("");
     }
 
-    public void connexion()
+    public int connexion()
     {
         try {
             cn = DriverManager.getConnection(url, login, password);
             st = cn.createStatement();
+            System.out.println("Vous êtes connecter");
+            return 0;
         }
-        catch (SQLException e) {}
+        catch (SQLException e) {
+            return 1;
+        }
     }
     public void disconnect()
     {
