@@ -1,44 +1,21 @@
-package eu.ensup.myresto.domaine;
-
-public class Category
+public class CategoryDto
 {
-    private Integer id;
+    private int id;
     private String name;
     private String image;
 
-    public Category(int id, String name, String image)
+    public CategoryDto(int id, String name, String image)
     {
         this.id = id;
         this.name = name;
         this.image = image;
     }
 
-    public Category(int id, String name)
-    {
-        this.id = id;
-        this.name = name;
-        this.image = null;
-    }
-
-    public Category(String name, String image)
-    {
-        this.id = null;
-        this.name = name;
-        this.image = image;
-    }
-
-    public Category(String name)
-    {
-        this.id = null;
-        this.name = name;
-        this.image = null;
-    }
-
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -60,7 +37,7 @@ public class Category
 
     @Override
     public String toString() {
-        return "Category{" +
+        return "CategoryDto{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", image='" + image + '\'' +

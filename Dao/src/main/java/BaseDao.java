@@ -1,3 +1,5 @@
+import exceptions.DaoException;
+
 import java.sql.*;
 import java.util.ResourceBundle;
 
@@ -26,19 +28,18 @@ public class BaseDao {
         this.password =""; //bundle.getString("");
     }
 
-    public int connexion()
+    public int connexion() throws DaoException
     {
         try {
             cn = DriverManager.getConnection(url, login, password);
             st = cn.createStatement();
-            System.out.println("Vous êtes connecter");
             return 0;
         }
         catch (SQLException e) {
             return 1;
         }
     }
-    public void disconnect()
+    public void disconnect() throws DaoException
     {
         try {
             if( rs != null )
