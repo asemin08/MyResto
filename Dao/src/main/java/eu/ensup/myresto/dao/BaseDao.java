@@ -1,3 +1,5 @@
+import exceptions.DaoException;
+
 import java.sql.*;
 import java.util.ResourceBundle;
 
@@ -21,20 +23,23 @@ public class BaseDao {
      */
     public BaseDao() {
         ResourceBundle bundle = ResourceBundle.getBundle("db");
-        this.url =bundle.getString("db.url");
-        this.login = bundle.getString("db.username");
-        this.password =bundle.getString("db.password");
+        this.url ="jdbc:mysql://localhost:3306/myresto?serverTimezone=Europe/Berlin" ;//bundle.getString("jdbc:mysql://localhost:3306/myresto?serverTimezone=Europe/Berlin");
+        this.login = "root"; //bundle.getString("root");
+        this.password ="root"; //bundle.getString("");
     }
 
-    public void connexion()
+    public int connexion() throws DaoException
     {
         try {
             cn = DriverManager.getConnection(url, login, password);
             st = cn.createStatement();
+            return 0;
         }
-        catch (SQLException e) {}
+        catch (SQLException e) {
+            return 1;
+        }
     }
-    public void disconnect()
+    public void disconnect() throws DaoException
     {
         try {
             if( rs != null )
