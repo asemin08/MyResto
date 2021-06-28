@@ -1,11 +1,12 @@
 import eu.ensup.myresto.domaine.User;
+import exceptions.DaoException;
 
 import java.sql.SQLException;
 
 public class UserDao extends BaseDao implements IUserDao {
 
     @Override
-    public int create(User user) {
+    public int create(User user) throws DaoException {
         connexion();
         try {
             setPs(getCn().prepareStatement("INSERT INTO user(firstname,lastname,address,role,password,salt,image) VALUES(?,?,?,?,?,?,?) "));
@@ -19,14 +20,14 @@ public class UserDao extends BaseDao implements IUserDao {
             setResult(getPs().executeUpdate());
             disconnect();
             return getResult();
-        } catch (SQLException throwables) {
-            //TODO NOT IMPLEMENTED YET
-            return -1;
+        } catch (SQLException e) {
+            throw new DaoException(UserDao.class.getName(),"create",e.getMessage(),"Une erreur s'est produite lors de la création de l'utilisateur");
+
         }
     }
 
     @Override
-    public int update(User user) {
+    public int update(User user) throws DaoException  {
         connexion();
         try {
             setPs(getCn().prepareStatement("UPDATE user SET firstname = ?, lastname = ?, address = ?, role = ?, password = ?, salt = ?, image = ? where id = ?"));
@@ -41,14 +42,13 @@ public class UserDao extends BaseDao implements IUserDao {
             setResult(getPs().executeUpdate());
             disconnect();
             return getResult();
-        } catch (SQLException throwables) {
-            //TODO NOT IMPLEMENTED YET
-            return -1;
+        } catch (SQLException e) {
+            throw new DaoException(UserDao.class.getName(),"create",e.getMessage(),"Une erreur s'est produite lors de la mise à jour d'utilisateur");
         }
     }
 
     @Override
-    public int delete(int userId) {
+    public int delete(int userId) throws DaoException  {
         connexion();
         try {
             setPs(getCn().prepareStatement("delete from user where id = ?"));
@@ -56,15 +56,15 @@ public class UserDao extends BaseDao implements IUserDao {
             setResult(getPs().executeUpdate());
             disconnect();
             return getResult();
-        } catch (SQLException throwables) {
-            //TODO NOT IMPLEMENTED YET
-            return -1;
+        } catch (SQLException e) {
+            throw new DaoException(UserDao.class.getName(),"create",e.getMessage(),"Une erreur s'est produite lors de la suppression de l'utilisateur");
+
         }
     }
 
 
     @Override
-    public User getById(int userId) {
+    public User getById(int userId) throws DaoException {
         connexion();
         User getUser = null;
         try {
@@ -76,9 +76,9 @@ public class UserDao extends BaseDao implements IUserDao {
             }
             disconnect();
             return getUser;
-        } catch (SQLException throwables) {
-            //TODO NOT IMPLEMENTED YET
-            return null;
+        } catch (SQLException e) {
+            throw new DaoException(UserDao.class.getName(),"create",e.getMessage(),"Une erreur s'est produite lors de la récupération de l'utilisateur");
+
         }
     }
 
