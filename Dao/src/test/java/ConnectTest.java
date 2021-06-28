@@ -1,3 +1,4 @@
+import eu.ensup.myresto.dao.BaseDao;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
 

@@ -1,3 +1,5 @@
+package eu.ensup.myresto.dao;
+
 import java.sql.*;
 import java.util.ResourceBundle;
 
@@ -68,11 +70,11 @@ public class BaseDao {
         return password;
     }
 
-    public static Connection getCn() {
+    public Connection getCn() {
         return cn;
     }
 
-    public static void setCn(Connection cn) {
+    public void setCn(Connection cn) {
         BaseDao.cn = cn;
     }
 
