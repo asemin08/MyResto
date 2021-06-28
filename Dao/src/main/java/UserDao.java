@@ -72,7 +72,7 @@ public class UserDao extends BaseDao implements IUserDao {
             getPs().setInt(1, userId);
             setRs(getPs().executeQuery());
             while (BaseDao.getRs().next()) {
-               getUser = new User(getRs().getInt("id"),getRs().getString("firstname"),getRs().getString("lastname"),getRs().getString("address"),getRs().getString("role"),getRs().getString("password"),getRs().getString("salt"),getRs().getString("image"));
+                getUser = new User(getRs().getInt("id"),getRs().getString("firstname"),getRs().getString("lastname"),getRs().getString("address"),getRs().getString("role"),getRs().getString("password"),getRs().getString("salt"),getRs().getString("image"));
             }
             disconnect();
             return getUser;
