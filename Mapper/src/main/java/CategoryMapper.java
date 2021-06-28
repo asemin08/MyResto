@@ -1,8 +1,3 @@
-package eu.ensup.myresto.mapper;
-
-import Category;
-import CategoryDto;
-
 public class CategoryMapper
 {
     public static CategoryDto convertDomaineDto(Category category)
