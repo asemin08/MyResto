@@ -1,4 +1,3 @@
-import eu.ensup.myresto.dao.UserDao;
 import eu.ensup.myresto.domaine.User;
 import exceptions.DaoException;
 import org.hamcrest.MatcherAssert;

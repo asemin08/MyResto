@@ -49,15 +49,7 @@ public class UserDao extends BaseDao implements IUserDao {
     }
 
     @Override
-<<<<<<< HEAD
-<<<<<<<< HEAD
-    public int delete(int userId) throws DaoException {
-========
     public int delete(int userId)throws DaoException  {
->>>>>>>> origin
-=======
-    public int delete(int userId)throws DaoException  {
->>>>>>> origin
         try {
             connexion();
             setPs(getCn().prepareStatement("delete from user where id = ?"));
@@ -79,28 +71,16 @@ public class UserDao extends BaseDao implements IUserDao {
             setPs(getCn().prepareStatement("SELECT * from user where id = ?"));
             getPs().setInt(1, userId);
             setRs(getPs().executeQuery());
-<<<<<<< HEAD
-            while (getRs().next()) {
-=======
             while (BaseDao.getRs().next()) {
->>>>>>> origin
-               getUser = new User(getRs().getInt("id"),getRs().getString("firstname"),getRs().getString("lastname"),getRs().getString("address"),getRs().getString("role"),getRs().getString("password"),getRs().getString("salt"),getRs().getString("image"));
+                getUser = new User(getRs().getInt("id"),getRs().getString("firstname"),getRs().getString("lastname"),getRs().getString("address"),getRs().getString("role"),getRs().getString("password"),getRs().getString("salt"),getRs().getString("image"));
             }
             disconnect();
             return getUser;
 
         } catch (SQLException e) {
             throw new DaoException(UserDao.class.getName(),"create",e.getMessage(),"Une erreur s'est produite lors de la récupération de l'utilisateur");
-<<<<<<< HEAD
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-        return getUser;
-    }
-=======
         }
     }
 
 
->>>>>>> origin
 }
