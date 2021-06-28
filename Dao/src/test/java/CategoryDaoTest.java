@@ -67,7 +67,8 @@ public class CategoryDaoTest
     {
         try{
             List<Category> listCategory = dao.getAll();
-            assertThat(listCategory, not(emptyArray());
+
+            assertThat(listCategory, notNullValue());
         }
         catch (DaoException e) {
             fail(e.getMessage());
@@ -77,7 +78,7 @@ public class CategoryDaoTest
     @Test
     @DisplayName("Test get")
     @Order(2)
-    public void testGet() //public Course get( int index )  throws ExceptionDao;
+    public void testGet()
     {
         try{
             Category category = dao.get(id);
