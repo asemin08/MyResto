@@ -1,5 +1,3 @@
-package eu.ensup.myresto.domaine;
-
 public class Product
 {
     private int id;

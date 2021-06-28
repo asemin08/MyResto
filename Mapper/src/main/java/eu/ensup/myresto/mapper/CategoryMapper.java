@@ -1,7 +1,7 @@
 package eu.ensup.myresto.mapper;
 
-import eu.ensup.myresto.domaine.Category;
-import eu.ensup.myresto.dto.CategoryDto;
+import Category;
+import CategoryDto;
 
 public class CategoryMapper
 {

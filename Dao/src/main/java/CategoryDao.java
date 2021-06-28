@@ -1,4 +1,3 @@
-import eu.ensup.myresto.domaine.Category;
 import exceptions.DaoException;
 
 import java.sql.*;

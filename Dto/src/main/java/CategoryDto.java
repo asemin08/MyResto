@@ -1,5 +1,3 @@
-package eu.ensup.myresto.dto;
-
 public class CategoryDto
 {
     private int id;

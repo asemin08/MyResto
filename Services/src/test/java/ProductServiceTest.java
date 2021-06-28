@@ -1,4 +1,3 @@
-import eu.ensup.myresto.domaine.Product;
 import exceptions.DaoException;
 import exceptions.ServiceException;
 import org.hamcrest.MatcherAssert;
@@ -7,8 +6,6 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-
-import java.util.HashSet;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.Mockito.verify;
@@ -34,20 +31,18 @@ public class ProductServiceTest {
             //TODO
         }
     }
-//    @Test
-//    public void ProductgetAllTest(){
-//        try{
-//            var res = productService.getAllProducts();
-//            when(res).thenReturn(new HashSet<>(){
-//                new Product("CocaService", 3.5f, "", "C'est du coca"),
-//            });
-//            MatcherAssert.assertThat(res, equalTo(1));
-//            verify(productDao).createProduct(new Product("CocaService", 3.5f, "", "C'est du coca"));
-//
-//        } catch (ServiceException | DaoException e) {
-//            //TODO
-//        }
-//    }
+    @Test
+    public void ProductgetAllTest(){
+        try{
+            var res = productService.getAllProducts();
+//            when(res).thenReturn(new HashSet<Product>(new Product("CocaService", 3.5f, "", "C'est du coca")));
+            MatcherAssert.assertThat(res, equalTo(1));
+            verify(productDao).createProduct(new Product("CocaService", 3.5f, "", "C'est du coca"));
+
+        } catch (ServiceException | DaoException e) {
+            //TODO
+        }
+    }
 //    @Test
 //    public void ProductDeleteTest(){
 //

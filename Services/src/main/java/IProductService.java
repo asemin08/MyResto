@@ -1,5 +1,4 @@
 import com.google.protobuf.ServiceException;
-import eu.ensup.myresto.domaine.Product;
 
 import java.util.Set;
 
