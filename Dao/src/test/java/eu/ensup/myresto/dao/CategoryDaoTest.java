@@ -9,6 +9,7 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import eu.ensup.myresto.domaine.Category;
+import exceptions.DaoException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -37,7 +38,7 @@ public class CategoryDaoTest
             BaseDao baseDao = new BaseDao();
             baseDao.connexion();
             assertThat(baseDao.getCn(), is(notNullValue()));
-        } catch (ExceptionDao e) {
+        } catch (DaoException e) {
             fail(e.getMessage());
         }
     }
@@ -56,7 +57,7 @@ public class CategoryDaoTest
 
             this.id = dao.get(nbCategoryBeforeCreate).getId();
         }
-        catch (ExceptionDao e) {
+        catch (DaoException e) {
             fail(e.getMessage());
         }
     }
@@ -71,7 +72,7 @@ public class CategoryDaoTest
 
             assertThat(listCategory, not(emptyArray());
         }
-        catch (ExceptionDao e) {
+        catch (DaoException e) {
             fail(e.getMessage());
         }
     }
@@ -87,7 +88,7 @@ public class CategoryDaoTest
             assertThat(category.getName(), equalTo(name));
             assertThat(category.getImage(), equalTo(image));
         }
-        catch (ExceptionDao e) {
+        catch (DaoException e) {
             fail(e.getMessage());
         }
     }
@@ -104,7 +105,7 @@ public class CategoryDaoTest
 
             assertThat(dao.getAll().size(), equalTo(nbCategoryBeforeDelete));
 		}
-		catch (ExceptionDao e) {
+		catch (DaoException e) {
 			fail(e.getMessage());
 		}
 	}

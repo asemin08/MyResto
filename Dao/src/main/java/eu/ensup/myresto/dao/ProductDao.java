@@ -1,3 +1,5 @@
+package eu.ensup.myresto.dao;
+
 import eu.ensup.myresto.domaine.Product;
 import exceptions.DaoException;
 

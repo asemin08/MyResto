@@ -1,31 +1,23 @@
 package eu.ensup.myresto.dao;
 
 import eu.ensup.myresto.domaine.Category;
+import exceptions.DaoException;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryDao implements ICategoryDao
+public class CategoryDao extends BaseDao implements ICategoryDao
 {
-    private BaseDao baseDao;
-
-    public CategoryDao()
-    {
-        this.baseDao = new BaseDao();
-        this.baseDao.connexion();
-    }
-
     @Override
     public List<Category> getAll()
     {
-        Connection cn = this.baseDao.getCn();
         List<Category> allCategory = new ArrayList<Category>();
 
-        Statement st = null;
-        ResultSet res = null;
         try
         {
+            connexion();
+            setPs("SELECT * FROM Category")
             st = cn.createStatement();
             res = st.executeQuery("SELECT * FROM Category");
             if(!res.next()){

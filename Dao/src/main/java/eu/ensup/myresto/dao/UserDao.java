@@ -1,3 +1,5 @@
+package eu.ensup.myresto.dao;
+
 import eu.ensup.myresto.domaine.User;
 import exceptions.DaoException;
 
@@ -49,7 +51,7 @@ public class UserDao extends BaseDao implements IUserDao {
     }
 
     @Override
-    public int delete(int userId) {
+    public int delete(int userId) throws DaoException {
         try {
             connexion();
             setPs(getCn().prepareStatement("delete from user where id = ?"));
@@ -57,21 +59,21 @@ public class UserDao extends BaseDao implements IUserDao {
             setResult(getPs().executeUpdate());
             disconnect();
             return getResult();
-        } catch (SQLException e) {
+        } catch (SQLException | DaoException e) {
             throw new DaoException(UserDao.class.getName(),"create",e.getMessage(),"Une erreur s'est produite lors de la suppression de l'utilisateur");
         }
     }
 
 
     @Override
-    public User getById(int userId) {
+    public User getById(int userId) throws DaoException {
         User getUser = null;
         try {
             connexion();
             setPs(getCn().prepareStatement("SELECT * from user where id = ?"));
             getPs().setInt(1, userId);
             setRs(getPs().executeQuery());
-            while (BaseDao.getRs().next()) {
+            while (getRs().next()) {
                getUser = new User(getRs().getInt("id"),getRs().getString("firstname"),getRs().getString("lastname"),getRs().getString("address"),getRs().getString("role"),getRs().getString("password"),getRs().getString("salt"),getRs().getString("image"));
             }
             disconnect();
@@ -79,8 +81,9 @@ public class UserDao extends BaseDao implements IUserDao {
 
         } catch (SQLException e) {
             throw new DaoException(UserDao.class.getName(),"create",e.getMessage(),"Une erreur s'est produite lors de la récupération de l'utilisateur");
+        } catch (DaoException e) {
+            e.printStackTrace();
         }
+        return getUser;
     }
-
-
 }

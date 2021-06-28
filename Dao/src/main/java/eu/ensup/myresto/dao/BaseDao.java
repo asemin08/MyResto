@@ -1,3 +1,5 @@
+package eu.ensup.myresto.dao;
+
 import exceptions.DaoException;
 
 import java.sql.*;
