@@ -1,3 +1,5 @@
+package eu.ensup.myresto.domaine;
+
 public class User {
 
     private int id;
@@ -8,13 +10,25 @@ public class User {
 
     private String address;
 
-    private String role;
+    private Role role;
 
     private String password;
 
     private String salt;
 
     private String image;
+
+    public User(int id, String firstName, String lastName, String address, Role role, String salt, String image)
+    {
+        this.id = id;
+        this.firstName = lastName;
+        this.lastName = lastName;
+        this.address = address;
+        this.role = role;
+        this.password = password;
+        this.salt = salt;
+        this.image = image;
+    }
 
 
     public int getId() {
@@ -49,11 +63,11 @@ public class User {
         this.address = address;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
