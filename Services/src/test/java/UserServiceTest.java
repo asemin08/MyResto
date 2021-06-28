@@ -1,5 +1,7 @@
 import exceptions.DaoException;
 import exceptions.ServiceException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,6 +20,7 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceTest {
 
+    private static final Logger log = LogManager.getLogger(UserServiceTest.class);
 
     @Mock
     IUserDao userDao;
@@ -33,7 +36,7 @@ public class UserServiceTest {
             MatcherAssert.assertThat(result, equalTo(1));
             verify(userDao).create(any(User.class));
         } catch (DaoException | ServiceException e) {
-            //TODO LOGGER
+            log.error(e.getMessage());
         }
     }
 
@@ -45,7 +48,7 @@ public class UserServiceTest {
             MatcherAssert.assertThat(result, equalTo(1));
             verify(userDao).update(any(User.class));
         } catch (DaoException | ServiceException e) {
-            //TODO LOGGER
+            log.error(e.getMessage());
         }
 
     }
@@ -59,7 +62,7 @@ public class UserServiceTest {
             MatcherAssert.assertThat(userDto.getFirstName(), equalTo("maxime"));
             verify(userDao).getById(100);
         } catch (DaoException | ServiceException e) {
-            //TODO LOGGER
+            log.error(e.getMessage());
         }
     }
 
@@ -72,7 +75,7 @@ public class UserServiceTest {
             MatcherAssert.assertThat(userDto.getFirstName(), equalTo("maxime"));
             verify(userDao).getByLogin("mdazin");
         } catch (DaoException | ServiceException e) {
-            //TODO LOGGER
+            log.error(e.getMessage());
         }
     }
 
@@ -83,7 +86,7 @@ public class UserServiceTest {
             MatcherAssert.assertThat(userService.delete(100),equalTo(1));
             verify(userDao).delete(100);
         } catch (DaoException | ServiceException e) {
-            //TODO LOGGER
+            log.error(e.getMessage());
         }
     }
 
@@ -95,8 +98,7 @@ public class UserServiceTest {
             MatcherAssert.assertThat(result,equalTo(1));
             verify(userDao).getByLogin("mdazin");
         } catch (DaoException | ServiceException e) {
-            //TODO LOGGER
-
+            log.error(e.getMessage());
         }
     }
 

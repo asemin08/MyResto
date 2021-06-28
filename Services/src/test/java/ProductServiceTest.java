@@ -1,5 +1,7 @@
 import exceptions.DaoException;
 import exceptions.ServiceException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +17,7 @@ import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ProductServiceTest {
+    private static final Logger log = LogManager.getLogger(ProductServiceTest.class);
 
     @Mock
     IProductDao productDao;
@@ -30,7 +33,7 @@ public class ProductServiceTest {
             MatcherAssert.assertThat(productService.createProduct(productDto), equalTo(0));
             verify(productDao).createProduct(any(Product.class));
         } catch (ServiceException | DaoException e) {
-            //TODO
+            log.error(e.getMessage());
         }
     }
     @Test
@@ -44,7 +47,7 @@ public class ProductServiceTest {
             MatcherAssert.assertThat(productService.getAllProducts().size(), equalTo(3));
             verify(productDao).getAllProducts();
         } catch (ServiceException | DaoException e) {
-            //TODO
+            log.error(e.getMessage());
         }
     }
     @Test
@@ -55,7 +58,7 @@ public class ProductServiceTest {
             MatcherAssert.assertThat(productService.deleteProduct(1), equalTo(1));
             verify(productDao).deleteProduct(1);
         } catch (ServiceException | DaoException e) {
-            //TODO
+            log.error(e.getMessage());
         }
     }
 
@@ -69,7 +72,7 @@ public class ProductServiceTest {
             MatcherAssert.assertThat(productMock.getName(), equalTo(productNotMock.getName()));
             verify(productDao).getOneProduct(1);
         } catch (ServiceException | DaoException e) {
-            //TODO
+            log.error(e.getMessage());
         }
     }
 
@@ -80,7 +83,7 @@ public class ProductServiceTest {
             MatcherAssert.assertThat(productService.updateProduct(new Product("CocaService", 3.5f, "", "C'est du coca")), equalTo(0));
             verify(productDao).updateProduct(any(Product.class));
         } catch (ServiceException | DaoException e) {
-            //TODO
+            log.error(e.getMessage());
         }
     }
 
