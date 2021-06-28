@@ -14,12 +14,13 @@ public class ProductDao extends BaseDao implements IProductDao {
     public int createProduct(Product product) throws DaoException {
         try {
             connexion();
-            String sql = "INSERT INTO `product`(name,price, description,image) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO `product`(name,price, description,image,id_category) VALUES (?,?,?,?,?)";
             setPs(getCn().prepareStatement(sql));
             getPs().setString(1, product.getName());
             getPs().setFloat(2, product.getPrice());
             getPs().setString(3, product.getDescription());
             getPs().setString(4, product.getPicture());
+            getPs().setInt(5, product.getIdCategory());
             setResult(getPs().executeUpdate());
         } catch (SQLException e) {
             log.error(e.getMessage());
@@ -37,7 +38,7 @@ public class ProductDao extends BaseDao implements IProductDao {
             setPs(getCn().prepareStatement(sql));
             setRs(getPs().executeQuery());
             while (getRs().next()) {
-                products.add(new Product(getRs().getInt("id"), getRs().getString("name"), getRs().getFloat("price"), getRs().getString("description"), getRs().getString("image")));
+                products.add(new Product(getRs().getInt("id"), getRs().getString("name"), getRs().getFloat("price"), getRs().getString("description"), getRs().getString("image"),getRs().getInt("id_category")));
             }
         } catch (SQLException e) {
             log.error(e.getMessage());
@@ -50,13 +51,14 @@ public class ProductDao extends BaseDao implements IProductDao {
     public int updateProduct(Product product) throws DaoException {
         try {
             connexion();
-            String sql = "UPDATE `product` SET `name`= ?,`price`= ?,`description`= ?,`image`= ? WHERE `id`= ?";
+            String sql = "UPDATE `product` SET `name`= ?,`price`= ?,`description`= ?,`image`= ?,`id_category`= ? WHERE `id`= ?";
             setPs(getCn().prepareStatement(sql));
             getPs().setString(1, product.getName());
             getPs().setFloat(2, product.getPrice());
             getPs().setString(3, product.getDescription());
             getPs().setString(4, product.getPicture());
-            getPs().setInt(5, product.getId());
+            getPs().setInt(5, product.getIdCategory());
+            getPs().setInt(6, product.getId());
             setResult(getPs().executeUpdate());
             disconnect();
         } catch (SQLException e) {
@@ -90,7 +92,7 @@ public class ProductDao extends BaseDao implements IProductDao {
             getPs().setInt(1, idProduct);
             setRs(getPs().executeQuery());
             while (getRs().next()) {
-                return new Product(getRs().getInt("id"), getRs().getString("name"), getRs().getFloat("price"), getRs().getString("description"), getRs().getString("image"));
+                return new Product(getRs().getInt("id"), getRs().getString("name"), getRs().getFloat("price"), getRs().getString("description"), getRs().getString("image"),getRs().getInt("id_category"));
             }
         } catch (SQLException | DaoException e) {
             log.error(e.getMessage());
