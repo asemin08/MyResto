@@ -8,11 +8,11 @@ public class CategoryDao implements ICategoryDao
 {
     private BaseDao baseDao;
 
-    public CategoryDao()
-    {
-        this.baseDao = new BaseDao();
-        this.baseDao.connexion();
-    }
+//    public CategoryDao()
+//    {
+//        this.baseDao = new BaseDao();
+//        this.baseDao.connexion();
+//    }
 
     @Override
     public List<Category> getAll()
