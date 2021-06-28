@@ -1,27 +1,38 @@
-import eu.ensup.myresto.domaine.Product;
 import exceptions.DaoException;
 import exceptions.ServiceException;
-import exceptions.ServiceException;
 
+import java.util.HashSet;
 import java.util.Set;
 
-public class ProductService implements IProductService{
+public class ProductService implements IProductService {
 
-    private final IProductDao productDao = new ProductDao();
+    private IProductDao productDao;
+
+    public ProductService(IProductDao productDao) {
+        this.productDao = productDao;
+    }
+
+    public ProductService() {
+        this.productDao = new ProductDao();
+    }
 
     @Override
-    public int createProduct(Product product) throws ServiceException {
+    public int createProduct(ProductDto product) throws ServiceException {
         try {
-            return productDao.createProduct(product);
+            return productDao.createProduct(convertProductDtoToProduct(product));
         } catch (DaoException e) {
             throw new ServiceException(ProductDao.class.getName(), "createProduct", e.getMessage(), "Une erreur s'est produite lors de la récupération du produit");
         }
     }
 
     @Override
-    public Set<Product> getAllProducts() throws ServiceException {
+    public Set<ProductDto> getAllProducts() throws ServiceException {
         try {
-            return productDao.getAllProducts();
+            Set<ProductDto> productDtoSet = new HashSet<>();
+            for (var product:productDao.getAllProducts()) {
+                productDtoSet.add(convertProductToProductDto(product));
+            }
+            return productDtoSet;
         } catch (DaoException e) {
             throw new ServiceException(ProductDao.class.getName(), "getAllProducts", e.getMessage(), "Une erreur s'est produite lors de la récupération de tout les produits");
         }
@@ -46,11 +57,22 @@ public class ProductService implements IProductService{
     }
 
     @Override
-    public Product getOneProduct(int idProduct) throws ServiceException {
+    public ProductDto getOneProduct(int idProduct) throws ServiceException {
         try {
-            return productDao.getOneProduct(idProduct);
+            return convertProductToProductDto(productDao.getOneProduct(idProduct));
         } catch (DaoException e) {
             throw new ServiceException(ProductDao.class.getName(), "getOneProduct", e.getMessage(), "Une erreur s'est produite lors de la récupération du produit");
         }
+    }
+
+    @Override
+    public ProductDto convertProductToProductDto(Product Product) {
+        return new ProductDto(Product.getId(), Product.getName(), Product.getPrice(), Product.getPicture(), Product.getDescription());
+    }
+
+    @Override
+    public Product convertProductDtoToProduct(ProductDto ProductDto) {
+        return new Product(ProductDto.getId(), ProductDto.getName(), ProductDto.getPrice(), ProductDto.getPicture(), ProductDto.getDescription());
+
     }
 }

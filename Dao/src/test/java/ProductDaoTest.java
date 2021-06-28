@@ -1,4 +1,3 @@
-import eu.ensup.myresto.domaine.Product;
 import exceptions.DaoException;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
