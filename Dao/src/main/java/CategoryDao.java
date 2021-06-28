@@ -27,8 +27,6 @@ public class CategoryDao extends BaseDao implements ICategoryDao
             disconnect();
         } catch (SQLException e) {
             throw new DaoException(UserDao.class.getName(),"getAll",e.getMessage(),"Une erreur s'est produite lors de la creation de la liste des categorie");
-        } catch (DaoException e) {
-            throw e;
         }
 
         return allCategory;
@@ -54,8 +52,6 @@ public class CategoryDao extends BaseDao implements ICategoryDao
             disconnect();
         } catch (SQLException e) {
             throw new DaoException(CategoryDao.class.getName(),"get",e.getMessage(),"Une erreur s'est produite lors de la recherche d'une categorie");
-        } catch (DaoException e) {
-            throw e;
         }
 
         return category;
@@ -82,8 +78,6 @@ public class CategoryDao extends BaseDao implements ICategoryDao
             disconnect();
         } catch (SQLException e) {
             throw new DaoException(CategoryDao.class.getName(),"get",e.getMessage(),"Une erreur s'est produite lors de la recherche d'une categorie");
-        } catch (DaoException e) {
-            throw e;
         }
 
         return category;
@@ -112,8 +106,6 @@ public class CategoryDao extends BaseDao implements ICategoryDao
             }
         } catch (SQLException e) {
             throw new DaoException(CategoryDao.class.getName(), "create", e.getMessage(), "Une erreur s'est produite lors de la creation d'une categorie");
-        } catch (DaoException e) {
-            throw e;
         }
     }
 
@@ -148,8 +140,6 @@ public class CategoryDao extends BaseDao implements ICategoryDao
             }
         } catch (SQLException e) {
             throw new DaoException(CategoryDao.class.getName(), "update", e.getMessage(), "Une erreur s'est produite lors de la mise a jour d'une categorie");
-        } catch (DaoException e) {
-            throw e;
         }
     }
 
@@ -176,8 +166,6 @@ public class CategoryDao extends BaseDao implements ICategoryDao
             }
         } catch (SQLException e) {
             throw new DaoException(CategoryDao.class.getName(), "delete", e.getMessage(), "Une erreur s'est produite lors de la suppression d'une categorie");
-        } catch (DaoException e) {
-            throw e;
         }
         return -1;
     }

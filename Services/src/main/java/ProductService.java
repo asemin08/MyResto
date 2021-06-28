@@ -17,9 +17,9 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public int createProduct(Product product) throws ServiceException {
+    public int createProduct(ProductDto product) throws ServiceException {
         try {
-            return productDao.createProduct(product);
+            return productDao.createProduct(convertProductDtoToProduct(product));
         } catch (DaoException e) {
             throw new ServiceException(ProductDao.class.getName(), "createProduct", e.getMessage(), "Une erreur s'est produite lors de la récupération du produit");
         }

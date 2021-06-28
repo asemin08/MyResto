@@ -43,7 +43,7 @@ public class UserDao extends BaseDao implements IUserDao {
             disconnect();
             return getResult();
         } catch (SQLException e) {
-            throw new DaoException(UserDao.class.getName(),"create",e.getMessage(),"Une erreur s'est produite lors de la mise à jour d'utilisateur");
+            throw new DaoException(UserDao.class.getName(),"create",e.getMessage(),"Une erreur s'est produite lors de la mise à jour de l'utilisateur");
         }
     }
 

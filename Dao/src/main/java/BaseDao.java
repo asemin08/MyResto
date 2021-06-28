@@ -16,47 +16,48 @@ public class BaseDao {
 
     private static CallableStatement cs = null;
 
-    private  static int result;
+    private static int result;
 
     /**
      * Instantiates a new Base dao.
      */
     public BaseDao() {
         ResourceBundle bundle = ResourceBundle.getBundle("db");
-        this.url ="jdbc:mysql://localhost:3306/myresto?serverTimezone=Europe/Berlin" ;//bundle.getString("jdbc:mysql://localhost:3306/myresto?serverTimezone=Europe/Berlin");
-        this.login = "root"; //bundle.getString("root");
-        this.password =""; //bundle.getString("");
+//        this.url ="jdbc:mysql://localhost:3306/myresto?serverTimezone=Europe/Berlin" ;//bundle.getString("jdbc:mysql://localhost:3306/myresto?serverTimezone=Europe/Berlin");
+//        this.login = "root"; //bundle.getString("root");
+//        this.password =""; //bundle.getString("");
+        this.url = bundle.getString("db.url");
+        this.login = bundle.getString("db.username");
+        this.password = bundle.getString("db.password");
     }
 
-    public int connexion() throws DaoException
-    {
+    public int connexion() throws DaoException {
         try {
             cn = DriverManager.getConnection(url, login, password);
             st = cn.createStatement();
             return 0;
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             return 1;
         }
     }
-    public void disconnect() throws DaoException
-    {
+
+    public void disconnect() throws DaoException {
         try {
-            if( rs != null )
+            if (rs != null)
                 rs.close();
-            if( cs != null )
+            if (cs != null)
                 cs.close();
-            if( ps != null )
+            if (ps != null)
                 ps.close();
-            if( st != null )
+            if (st != null)
                 st.close();
-            if( cn != null )
+            if (cn != null)
                 cn.close();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
 
         }
     }
+
     public String getUrl() {
         return url;
     }
