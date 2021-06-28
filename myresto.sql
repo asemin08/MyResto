@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 28 juin 2021 à 10:08
+-- Généré le : lun. 28 juin 2021 à 11:01
 -- Version du serveur :  10.4.18-MariaDB
 -- Version de PHP : 8.0.3
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `myresto`
 --
+CREATE DATABASE IF NOT EXISTS `myresto` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `myresto`;
 
 -- --------------------------------------------------------
 
@@ -27,11 +29,16 @@ SET time_zone = "+00:00";
 -- Structure de la table `category`
 --
 
+DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `image` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- RELATIONS POUR LA TABLE `category`:
+--
 
 -- --------------------------------------------------------
 
@@ -39,6 +46,7 @@ CREATE TABLE `category` (
 -- Structure de la table `order_product`
 --
 
+DROP TABLE IF EXISTS `order_product`;
 CREATE TABLE `order_product` (
   `id` int(11) NOT NULL,
   `idUser` int(11) NOT NULL,
@@ -46,12 +54,17 @@ CREATE TABLE `order_product` (
   `date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- RELATIONS POUR LA TABLE `order_product`:
+--
+
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `product`
 --
 
+DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -60,22 +73,31 @@ CREATE TABLE `product` (
   `image` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- RELATIONS POUR LA TABLE `product`:
+--
+
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `user`
 --
 
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
-  `role` int(11) NOT NULL,
+  `role` varchar(255) NOT NULL,
   `passwod` varchar(255) NOT NULL,
   `salt` varchar(255) DEFAULT NULL,
   `image` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- RELATIONS POUR LA TABLE `user`:
+--
 
 --
 -- Index pour les tables déchargées
@@ -106,6 +128,10 @@ ALTER TABLE `product`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
 
 --
 -- AUTO_INCREMENT pour la table `category`
