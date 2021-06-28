@@ -1,12 +1,15 @@
 import exceptions.DaoException;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import static org.hamcrest.Matchers.equalTo;
 
 public class ProductDaoTest {
 
     private ProductDao productDao = new ProductDao();
+    private static final Logger log = LogManager.getLogger(ProductDaoTest.class);
 
     @Test
     public void ProductCreateTest() {
@@ -14,7 +17,7 @@ public class ProductDaoTest {
             var result = productDao.createProduct(new Product("Coca", 3.5f, "", "C'est du coca"));
             MatcherAssert.assertThat(result, equalTo(1));
         } catch (DaoException e) {
-           //TODO
+            log.error(e.getMessage());
         }
     }
 
@@ -24,7 +27,7 @@ public class ProductDaoTest {
             var result = productDao.getAllProducts();
             MatcherAssert.assertThat(result.size(), equalTo(1));
         } catch (DaoException e) {
-           //TODO
+            log.error(e.getMessage());
         }
     }
 
@@ -34,7 +37,7 @@ public class ProductDaoTest {
             var result = productDao.deleteProduct(102);
             MatcherAssert.assertThat(result, equalTo(1));
         } catch (DaoException e) {
-           //TODO
+            log.error(e.getMessage());
         }
     }
 
@@ -46,7 +49,7 @@ public class ProductDaoTest {
             MatcherAssert.assertThat(result.getId(), equalTo(100));
             MatcherAssert.assertThat(result.getName(), equalTo("Coca"));
         } catch (DaoException e) {
-           //TODO
+            log.error(e.getMessage());
         }
     }
 
@@ -56,7 +59,7 @@ public class ProductDaoTest {
             int result = productDao.updateProduct(new Product(100, "Coca", 3.5f, "", "C'est du coca haha"));
             MatcherAssert.assertThat(result, equalTo(1));
         } catch (DaoException e) {
-           //TODO
+            log.error(e.getMessage());
         }
     }
 }

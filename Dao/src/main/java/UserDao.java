@@ -1,8 +1,11 @@
 import exceptions.DaoException;
 
 import java.sql.SQLException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class UserDao extends BaseDao implements IUserDao {
+    private static final Logger log = LogManager.getLogger(UserDao.class);
 
     @Override
     public int create(User user) throws DaoException {
@@ -22,6 +25,7 @@ public class UserDao extends BaseDao implements IUserDao {
             disconnect();
             return BaseDao.getResult();
         } catch (SQLException e) {
+            log.error(e.getMessage());
             throw new DaoException(UserDao.class.getName(),"create",e.getMessage(),"Une erreur s'est produite lors de la création de l'utilisateur");
         }
     }
@@ -42,6 +46,7 @@ public class UserDao extends BaseDao implements IUserDao {
             disconnect();
             return getResult();
         } catch (SQLException e) {
+            log.error(e.getMessage());
             throw new DaoException(UserDao.class.getName(),"update",e.getMessage(),"Une erreur s'est produite lors de la mise à jour d'utilisateur");
         }
     }
@@ -56,6 +61,7 @@ public class UserDao extends BaseDao implements IUserDao {
             disconnect();
             return getResult();
         } catch (SQLException | DaoException e) {
+            log.error(e.getMessage());
             throw new DaoException(UserDao.class.getName(),"delete",e.getMessage(),"Une erreur s'est produite lors de la suppression de l'utilisateur");
         }
     }
@@ -76,6 +82,7 @@ public class UserDao extends BaseDao implements IUserDao {
             return getUser;
 
         } catch (SQLException e) {
+            log.error(e.getMessage());
             throw new DaoException(UserDao.class.getName(),"getById",e.getMessage(),"Une erreur s'est produite lors de la récupération de l'utilisateur");
         }
     }
@@ -94,6 +101,7 @@ public class UserDao extends BaseDao implements IUserDao {
             return getUser;
 
         } catch (SQLException e) {
+            log.error(e.getMessage());
             throw new DaoException(UserDao.class.getName(),"getByLogin",e.getMessage(),"Une erreur s'est produite lors de la récupération de l'utilisateur");
         }
     }

@@ -2,12 +2,15 @@ import exceptions.DaoException;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import static org.hamcrest.Matchers.equalTo;
 
 public class UserDaoTest {
 
     private final UserDao userDao = new UserDao();
+    private static final Logger log = LogManager.getLogger(UserDaoTest.class);
 
     @Test
     @Order(1)
@@ -17,7 +20,7 @@ public class UserDaoTest {
             int result = userDao.create(user);
             MatcherAssert.assertThat(result, equalTo(1));
         } catch (DaoException e) {
-            //TODO exception
+            log.error(e.getMessage());
         }
 
     }
@@ -32,7 +35,7 @@ public class UserDaoTest {
             int result = userDao.update(user);
             MatcherAssert.assertThat(result, equalTo(1));
         } catch (DaoException e) {
-            //TODO LOGGER
+            log.error(e.getMessage());
         }
     }
 
@@ -44,7 +47,7 @@ public class UserDaoTest {
             MatcherAssert.assertThat(user.getLastName(), equalTo("Dazin"));
 
         } catch (DaoException e) {
-            //TODO LOGGER
+            log.error(e.getMessage());
 
         }
     }
@@ -57,7 +60,7 @@ public class UserDaoTest {
             MatcherAssert.assertThat(user.getLastName(), equalTo("Dazin"));
 
         } catch (DaoException e) {
-            //TODO LOGGER
+            log.error(e.getMessage());
         }
     }
 
@@ -70,7 +73,7 @@ public class UserDaoTest {
             MatcherAssert.assertThat(result, equalTo(1));
 
         } catch (DaoException e) {
-            //TODO LOGGER
+            log.error(e.getMessage());
         }
     }
 

@@ -3,8 +3,12 @@ import exceptions.DaoException;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ProductDao extends BaseDao implements IProductDao {
+
+    private static final Logger log = LogManager.getLogger(ProductDao.class);
 
     @Override
     public int createProduct(Product product) throws DaoException {
@@ -18,6 +22,7 @@ public class ProductDao extends BaseDao implements IProductDao {
             getPs().setString(4, product.getPicture());
             setResult(getPs().executeUpdate());
         } catch (SQLException e) {
+            log.error(e.getMessage());
             throw new DaoException(ProductDao.class.getName(), "createProduct", e.getMessage(), "Une erreur s'est produite lors de la récupération du produit");
         }
         return getResult();
@@ -35,6 +40,7 @@ public class ProductDao extends BaseDao implements IProductDao {
                 products.add(new Product(getRs().getInt("id"), getRs().getString("name"), getRs().getFloat("price"), getRs().getString("description"), getRs().getString("image")));
             }
         } catch (SQLException e) {
+            log.error(e.getMessage());
             throw new DaoException(ProductDao.class.getName(), "getAllProducts", e.getMessage(), "Une erreur s'est produite lors de la récupération de tout les produits");
         }
         return products;
@@ -53,8 +59,8 @@ public class ProductDao extends BaseDao implements IProductDao {
             getPs().setInt(5, product.getId());
             setResult(getPs().executeUpdate());
             disconnect();
-
         } catch (SQLException e) {
+            log.error(e.getMessage());
             throw new DaoException(ProductDao.class.getName(), "updateProduct", e.getMessage(), "Une erreur s'est produite lors de la mise à jour du produit");
         }
         return getResult();
@@ -69,6 +75,7 @@ public class ProductDao extends BaseDao implements IProductDao {
             getPs().setInt(1, idProduct);
             setResult(getPs().executeUpdate());
         } catch (SQLException | DaoException e) {
+            log.error(e.getMessage());
             throw new DaoException(ProductDao.class.getName(), "deleteProduct", e.getMessage(), "Une erreur s'est produite lors de la suppression du produit");
         }
         return getResult();
@@ -86,7 +93,7 @@ public class ProductDao extends BaseDao implements IProductDao {
                 return new Product(getRs().getInt("id"), getRs().getString("name"), getRs().getFloat("price"), getRs().getString("description"), getRs().getString("image"));
             }
         } catch (SQLException | DaoException e) {
-
+            log.error(e.getMessage());
             throw new DaoException(ProductDao.class.getName(), "getOneProduct", e.getMessage(), "Une erreur s'est produite lors de la récuperation du produit");
         }
         return null;
