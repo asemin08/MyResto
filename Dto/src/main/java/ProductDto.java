@@ -1,12 +1,12 @@
-public class Product
-{
+public class ProductDto {
+
     private int id;
     private String name ;
     private float price;
     private String picture;
     private String description;
 
-    public Product(int id, String name, float price, String picture, String description) {
+    public ProductDto(int id, String name, float price, String picture, String description) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -14,7 +14,7 @@ public class Product
         this.description = description;
     }
 
-    public Product(String name, float price, String picture, String description) {
+    public ProductDto(String name, float price, String picture, String description) {
         this.name = name;
         this.price = price;
         this.picture = picture;
@@ -71,5 +71,4 @@ public class Product
                 ", description='" + description + '\'' +
                 '}';
     }
-
 }

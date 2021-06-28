@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="WARN">
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{dd-MM-yyyy HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <RollingFile name="MyFile" filePattern="logs/$${date:dd-MM-yyyy}/domaine-%d{dd-MM-yyyy}.log">
+            <PatternLayout>
+                <Pattern>%d{dd-MM-yyyy HH:mm:ss} %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+        </RollingFile>
+
+    </appenders>
+
+    <loggers>
+        <root level="debug">
+            <appender-ref ref="Console" level="info"/>
+            <appender-ref ref="MyFile" level="info"/>
+            <appender-ref ref="MyFile" level="error"/>
+            <appender-ref ref="Console" level="error"/>
+        </root>
+    </loggers>
+</configuration>

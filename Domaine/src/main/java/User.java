@@ -16,6 +16,16 @@ public class User {
 
     private String image;
 
+    public User(int id, String firstName, String lastName, String address, String role, String password, String salt, String image) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.role = role;
+        this.password = password;
+        this.salt = salt;
+        this.image = image;
+    }
 
     public int getId() {
         return id;
