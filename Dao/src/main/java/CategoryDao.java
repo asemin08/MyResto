@@ -90,7 +90,6 @@ public class CategoryDao extends BaseDao implements ICategoryDao
             if (get(category.getName()) == null)
             {
                 connexion();
-
                 setPs(getCn().prepareStatement("INSERT INTO category (name, image) VALUES ( ?, ? )"));
 
                 getPs().setString(1, category.getName());
