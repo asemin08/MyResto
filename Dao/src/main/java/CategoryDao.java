@@ -12,8 +12,8 @@ public class CategoryDao extends BaseDao implements ICategoryDao
 
         try {
             connexion();
-            setPs(getCn().prepareStatement("SELECT * FROM Category"));
-            setResult(getPs().executeUpdate());
+            setPs(getCn().prepareStatement("SELECT * FROM category"));
+            setRs(getPs().executeQuery());
 
             ResultSet res = getRs();
             if(!res.next()){
@@ -37,9 +37,9 @@ public class CategoryDao extends BaseDao implements ICategoryDao
         Category category = null;
         try {
             connexion();
-            setPs(getCn().prepareStatement("SELECT * FROM Category Where id = ?"));
+            setPs(getCn().prepareStatement("SELECT * FROM category Where id = ?"));
             getPs().setInt(1, idCategory);
-            setResult(getPs().executeUpdate());
+            setRs(getPs().executeQuery());
 
             ResultSet res = getRs();
             if(!res.next()){
@@ -63,9 +63,9 @@ public class CategoryDao extends BaseDao implements ICategoryDao
 
         try {
             connexion();
-            setPs(getCn().prepareStatement("SELECT * FROM Category Where name = ?"));
+            setPs(getCn().prepareStatement("SELECT * FROM category Where name = ?"));
             getPs().setString(1, nameCategory);
-            setResult(getPs().executeUpdate());
+            setRs(getPs().executeQuery());
 
             ResultSet res = getRs();
             if(!res.next()){
@@ -86,21 +86,15 @@ public class CategoryDao extends BaseDao implements ICategoryDao
     @Override
     public int create(Category category) throws DaoException {
         try {
-            connexion();
-
             //Vérifie qu'il n'y a pas de double
-            if (get(category.getName()) == null) {
-                if (category.getId() != -1)
-                    setPs(getCn().prepareStatement("INSERT INTO Category (id, name, image) VALUES ( ?, ?, ? )"));
-                else
-                    setPs(getCn().prepareStatement("INSERT INTO Category (name, image) VALUES ( ?, ? )"));
+            if (get(category.getName()) == null)
+            {
+                connexion();
 
-                int index = 1;
-                if (getPs().getParameterMetaData().getParameterCount() == 3)
-                    getPs().setInt(index++, category.getId());
+                setPs(getCn().prepareStatement("INSERT INTO category (name, image) VALUES ( ?, ? )"));
 
-                getPs().setString(index++, category.getName());
-                getPs().setString(index++, category.getImage());
+                getPs().setString(1, category.getName());
+                getPs().setString(2, category.getImage());
 
                 setResult(getPs().executeUpdate());
                 disconnect();
@@ -129,7 +123,7 @@ public class CategoryDao extends BaseDao implements ICategoryDao
             //Vérifie qu'il y a eu des modification
             if( haveUpdate )
             {
-                setPs(getCn().prepareStatement("UPDATE Category SET name = ?, image = ? WHERE id = ?"));
+                setPs(getCn().prepareStatement("UPDATE category SET name = ?, image = ? WHERE id = ?"));
 
                 int index = 1;
                 getPs().setString(index++, category.getName());
@@ -162,7 +156,7 @@ public class CategoryDao extends BaseDao implements ICategoryDao
         try{
             if( idCategory != -1 && get(idCategory) != null )
             {
-                setPs(getCn().prepareStatement("DELETE FROM Category WHERE id = ?"));
+                setPs(getCn().prepareStatement("DELETE FROM category WHERE id = ?"));
 
                 getPs().setInt(1, idCategory);
 
