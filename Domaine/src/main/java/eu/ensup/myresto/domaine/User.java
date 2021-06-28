@@ -10,7 +10,7 @@ public class User {
 
     private String address;
 
-    private Role role;
+    private String role;
 
     private String password;
 
@@ -18,7 +18,7 @@ public class User {
 
     private String image;
 
-    public User(int id, String firstName, String lastName, String address, Role role, String salt, String image)
+    public User(int id, String firstName, String lastName, String address, String role, String salt, String image)
     {
         this.id = id;
         this.firstName = lastName;
@@ -63,11 +63,11 @@ public class User {
         this.address = address;
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
