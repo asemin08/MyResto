@@ -6,7 +6,12 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Base64;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class UserService implements IUserService {
+
+    private static final Logger log = LogManager.getLogger(UserService.class);
 
     private IUserDao userDao;
 
@@ -21,6 +26,7 @@ public class UserService implements IUserService {
             user.setSalt(Base64.getEncoder().encodeToString(salt));
             return userDao.create(user);
         } catch (DaoException e) {
+            log.error(e.getMessage());
             throw new ServiceException(UserService.class.getName(), "create", e.getMessage(), "Une erreur s'est produite lors de la création de l'utilisateur");
         }
     }
@@ -30,6 +36,7 @@ public class UserService implements IUserService {
         try {
             return userDao.update(UserMapper.convertDtoDomaine(userDto));
         } catch (DaoException e) {
+            log.error(e.getMessage());
             throw new ServiceException(UserService.class.getName(), "update", e.getMessage(), "Une erreur s'est produite lors de la modification de l'utilisateur");
         }
     }
@@ -39,6 +46,7 @@ public class UserService implements IUserService {
         try {
             return userDao.delete(userId);
         } catch (DaoException e) {
+            log.error(e.getMessage());
             throw new ServiceException(UserService.class.getName(), "delete", e.getMessage(), "Une erreur s'est produite lors de la suppression de l'utilisateur");
         }
     }
@@ -48,6 +56,7 @@ public class UserService implements IUserService {
         try {
             return UserMapper.convertDomaineDto(userDao.getById(userId));
         } catch (DaoException e) {
+            log.error(e.getMessage());
             throw new ServiceException(UserService.class.getName(), "getById", e.getMessage(), "Une erreur s'est produite lors de la récupération de l'utilisateur");
         }
     }
@@ -57,6 +66,7 @@ public class UserService implements IUserService {
         try {
             return UserMapper.convertDomaineDto(userDao.getByLogin(login));
         } catch (DaoException e) {
+            log.error(e.getMessage());
             throw new ServiceException(UserService.class.getName(), "getByLogin", e.getMessage(), "Une erreur s'est produite lors de la récupération de l'utilisateur");
         }
     }
@@ -69,6 +79,7 @@ public class UserService implements IUserService {
             String hash = generateHashPassword(loginUserDto.getPassword(), salt);
             return hash.equals(user.getPassword()) ? 1 : 0;
         } catch (DaoException e) {
+            log.error(e.getMessage());
             throw new ServiceException(UserService.class.getName(), "validateUser", e.getMessage(), "Une erreur s'est produite lors de la vérification de mot de passe");
         }
     }
@@ -82,6 +93,7 @@ public class UserService implements IUserService {
             digest.update(salt);
             return Base64.getEncoder().encodeToString(digest.digest(password.getBytes()));
         } catch (NoSuchAlgorithmException e) {
+            log.error(e.getMessage());
             throw new ServiceException(UserService.class.getName(), "generateHashPassword", e.getMessage(), "Une erreur s'est produite lors de la génération du mot de passe utilisateur");
         }
 

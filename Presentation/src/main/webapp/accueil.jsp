@@ -16,7 +16,7 @@
             </div>
         </li>
         <li class="text-left">
-            <img src="src/main/webapp/assets/images/slider-02.jpg" alt="">
+            <img src="assets/images/slider-02.jpg" alt="">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -29,7 +29,7 @@
             </div>
         </li>
         <li class="text-left">
-            <img src="assets/assets/images/slider-03.jpg" alt="">
+            <img src="assets/images/slider-03.jpg" alt="">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -63,7 +63,7 @@
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
-                <img src="assets/assets/images/about-img.jpg" alt="" class="img-fluid">
+                <img src="assets/images/about-img.jpg" alt="" class="img-fluid">
             </div>
         </div>
     </div>
