@@ -33,19 +33,35 @@
     <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
 
-    <!-- Bootstrap CSS -->
+    <!-- all CSS -->
+    <link href="assets/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/baguetteBox.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/classic.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/classic.date.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/classic.time.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/custom.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/responsive.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/superslides.css" rel="stylesheet" type="text/css">
 
-    <style><%@include file="assets/css/bootstrap.min.css"%></style>
-    <!-- Site CSS -->
-    <style><%@include file="assets/css/style.css"%></style>
-
-    <!-- Responsive CSS -->
-    <style><%@include file="assets/css/responsive.css"%></style>
-
-    <!-- Custom CSS -->
-    <style><%@include file="assets/css/custom.css"%></style>
-
-
+    <!-- ALL JS FILES -->
+    <script src="assets/js/jquery-3.2.1.min.js" async></script>
+    <script src="assets/js/jquery-3.2.1.min.js" async></script>
+    <script src="assets/js/popper.min.js" async></script>
+    <script src="assets/js/bootstrap.min.js" async></script>
+    <script src="assets/js/jquery.superslides.min.js" async></script>
+    <script src="assets/js/images-loded.min.js" async></script>
+    <script src="assets/js/isotope.min.js" async></script>
+    <script src="assets/js/baguetteBox.min.js" async></script>
+    <script src="assets/js/form-validator.min.js" async></script>
+    <script src="assets/js/contact-form-script.js" async></script>
+    <script src="assets/js/custom.js" async></script>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" async></script>
+    <script src="https://oss.maxcdn.com/libs/respond.assets/js/1.4.2/respond.min.js" async></script>
+    <![endif]-->
 
 </head>
 
@@ -53,25 +69,25 @@
 
 <!-- Start header -->
 <header class="top-navbar">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <img src="assets/images/logo.png" alt="" height="100" width="100"/>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbars-rs-food">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a class="nav-link" href="/">Accueil</a></li>
-                    <li class="nav-item"><a class="nav-link" href="menu.jsp">Menu</a></li>
-                    <li class="nav-item"><a class="nav-link" href="reservation.jsp">Réservation</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Panier</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">Login</a></li>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <img src="assets/images/logo.png" alt="" height="100" width="100"/>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbars-rs-food">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active"><a class="nav-link" href="/">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link" href="menu.jsp">Menu</a></li>
+                <li class="nav-item"><a class="nav-link" href="reservation.jsp">Réservation</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Panier</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">Login</a></li>
 
-                </ul>
-            </div>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 </header>
 <!-- End header -->
