@@ -4,9 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.Matchers.equalTo;
 
+
 class ConnectTest  {
 
     private BaseDao baseDao = new BaseDao();
+
 
     @Test
      void testConnection() {
