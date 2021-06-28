@@ -90,7 +90,7 @@ CREATE TABLE `user` (
   `lastname` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
   `role` varchar(255) NOT NULL,
-  `passwod` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `salt` varchar(255) DEFAULT NULL,
   `image` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
