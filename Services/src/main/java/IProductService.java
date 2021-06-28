@@ -3,7 +3,7 @@ import com.google.protobuf.ServiceException;
 import java.util.Set;
 
 public interface IProductService {
-    int createProduct(Product product) throws ServiceException, exceptions.ServiceException;
+    int createProduct(ProductDto product) throws ServiceException, exceptions.ServiceException;
 
     Set<ProductDto> getAllProducts() throws ServiceException, exceptions.ServiceException;
 

@@ -17,11 +17,11 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public int createProduct(Product product) throws ServiceException {
+    public int createProduct(ProductDto product) throws ServiceException {
         try {
-            return productDao.createProduct(product);
+            return productDao.createProduct(convertProductDtoToProduct(product));
         } catch (DaoException e) {
-            throw new ServiceException(ProductDao.class.getName(), "createProduct", e.getMessage(), "Une erreur s'est produite lors de la récupération du produit");
+            throw new ServiceException(ProductService.class.getName(), "createProduct", e.getMessage(), "Une erreur s'est produite lors de la récupération du produit");
         }
     }
 
@@ -34,7 +34,7 @@ public class ProductService implements IProductService {
             }
             return productDtoSet;
         } catch (DaoException e) {
-            throw new ServiceException(ProductDao.class.getName(), "getAllProducts", e.getMessage(), "Une erreur s'est produite lors de la récupération de tout les produits");
+            throw new ServiceException(ProductService.class.getName(), "getAllProducts", e.getMessage(), "Une erreur s'est produite lors de la récupération de tout les produits");
         }
     }
 
@@ -43,7 +43,7 @@ public class ProductService implements IProductService {
         try {
             return productDao.updateProduct(product);
         } catch (DaoException e) {
-            throw new ServiceException(ProductDao.class.getName(), "updateProduct", e.getMessage(), "Une erreur s'est produite lors de la mise à jour du produit");
+            throw new ServiceException(ProductService.class.getName(), "updateProduct", e.getMessage(), "Une erreur s'est produite lors de la mise à jour du produit");
         }
     }
 
@@ -52,7 +52,7 @@ public class ProductService implements IProductService {
         try {
             return productDao.deleteProduct(idProduct);
         } catch (DaoException e) {
-            throw new ServiceException(ProductDao.class.getName(), "deleteProduct", e.getMessage(), "Une erreur s'est produite lors de la suppression du produit");
+            throw new ServiceException(ProductService.class.getName(), "deleteProduct", e.getMessage(), "Une erreur s'est produite lors de la suppression du produit");
         }
     }
 
@@ -61,7 +61,7 @@ public class ProductService implements IProductService {
         try {
             return convertProductToProductDto(productDao.getOneProduct(idProduct));
         } catch (DaoException e) {
-            throw new ServiceException(ProductDao.class.getName(), "getOneProduct", e.getMessage(), "Une erreur s'est produite lors de la récupération du produit");
+            throw new ServiceException(ProductService.class.getName(), "getOneProduct", e.getMessage(), "Une erreur s'est produite lors de la récupération du produit");
         }
     }
 
