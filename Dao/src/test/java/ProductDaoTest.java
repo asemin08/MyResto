@@ -1,10 +1,11 @@
+import eu.ensup.myresto.domaine.Product;
 import exceptions.DaoException;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.Matchers.equalTo;
 
-public class ProductTests {
+public class ProductDaoTest {
 
     private ProductDao productDao = new ProductDao();
 

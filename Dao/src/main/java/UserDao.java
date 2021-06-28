@@ -1,4 +1,5 @@
 import eu.ensup.myresto.domaine.User;
+import exceptions.DaoException;
 
 import java.sql.SQLException;
 
@@ -6,8 +7,9 @@ public class UserDao extends BaseDao implements IUserDao {
 
     @Override
     public int create(User user) {
-        connexion();
+
         try {
+            connexion();
             setPs(getCn().prepareStatement("INSERT INTO user(firstname,lastname,address,role,password,salt,image) VALUES(?,?,?,?,?,?,?) "));
             getPs().setString(1, user.getFirstName());
             getPs().setString(2, user.getLastName());
@@ -19,7 +21,7 @@ public class UserDao extends BaseDao implements IUserDao {
             setResult(getPs().executeUpdate());
             disconnect();
             return getResult();
-        } catch (SQLException throwables) {
+        } catch (SQLException | DaoException throwables) {
             //TODO NOT IMPLEMENTED YET
             return -1;
         }
@@ -27,8 +29,8 @@ public class UserDao extends BaseDao implements IUserDao {
 
     @Override
     public int update(User user) {
-        connexion();
         try {
+            connexion();
             setPs(getCn().prepareStatement("UPDATE user SET firstname = ?, lastname = ?, address = ?, role = ?, password = ?, salt = ?, image = ? where id = ?"));
             getPs().setString(1, user.getFirstName());
             getPs().setString(2, user.getLastName());
@@ -41,7 +43,7 @@ public class UserDao extends BaseDao implements IUserDao {
             setResult(getPs().executeUpdate());
             disconnect();
             return getResult();
-        } catch (SQLException throwables) {
+        } catch (SQLException | DaoException throwables) {
             //TODO NOT IMPLEMENTED YET
             return -1;
         }
@@ -49,14 +51,14 @@ public class UserDao extends BaseDao implements IUserDao {
 
     @Override
     public int delete(int userId) {
-        connexion();
         try {
+            connexion();
             setPs(getCn().prepareStatement("delete from user where id = ?"));
             getPs().setInt(1, userId);
             setResult(getPs().executeUpdate());
             disconnect();
             return getResult();
-        } catch (SQLException throwables) {
+        } catch (SQLException | DaoException throwables) {
             //TODO NOT IMPLEMENTED YET
             return -1;
         }
@@ -65,9 +67,9 @@ public class UserDao extends BaseDao implements IUserDao {
 
     @Override
     public User getById(int userId) {
-        connexion();
         User getUser = null;
         try {
+            connexion();
             setPs(getCn().prepareStatement("SELECT * from user where id = ?"));
             getPs().setInt(1, userId);
             setRs(getPs().executeQuery());
@@ -76,7 +78,7 @@ public class UserDao extends BaseDao implements IUserDao {
             }
             disconnect();
             return getUser;
-        } catch (SQLException throwables) {
+        } catch (SQLException | DaoException throwables) {
             //TODO NOT IMPLEMENTED YET
             return null;
         }
