@@ -87,6 +87,7 @@ public class ProductDao extends BaseDao implements IProductDao {
                 return new Product(BaseDao.getRs().getInt("id"), BaseDao.getRs().getString("name"), BaseDao.getRs().getFloat("price"), BaseDao.getRs().getString("description"), BaseDao.getRs().getString("image"));
             }
         } catch (SQLException | DaoException e) {
+
             throw new DaoException(ProductDao.class.getName(), "getOneProduct", e.getMessage(), "Une erreur s'est produite lors de la récuperation du produit");
         }
         return null;

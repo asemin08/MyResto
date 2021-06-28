@@ -7,8 +7,9 @@ public class UserDao extends BaseDao implements IUserDao {
 
     @Override
     public int create(User user) throws DaoException {
-        connexion();
+
         try {
+            connexion();
             setPs(getCn().prepareStatement("INSERT INTO user(firstname,lastname,address,role,password,salt,image) VALUES(?,?,?,?,?,?,?) "));
             getPs().setString(1, user.getFirstName());
             getPs().setString(2, user.getLastName());
@@ -22,14 +23,14 @@ public class UserDao extends BaseDao implements IUserDao {
             return getResult();
         } catch (SQLException e) {
             throw new DaoException(UserDao.class.getName(),"create",e.getMessage(),"Une erreur s'est produite lors de la création de l'utilisateur");
-
         }
     }
 
     @Override
+
     public int update(User user) throws DaoException  {
-        connexion();
         try {
+            connexion();
             setPs(getCn().prepareStatement("UPDATE user SET firstname = ?, lastname = ?, address = ?, role = ?, password = ?, salt = ?, image = ? where id = ?"));
             getPs().setString(1, user.getFirstName());
             getPs().setString(2, user.getLastName());
@@ -48,9 +49,9 @@ public class UserDao extends BaseDao implements IUserDao {
     }
 
     @Override
-    public int delete(int userId) throws DaoException  {
-        connexion();
+    public int delete(int userId) {
         try {
+            connexion();
             setPs(getCn().prepareStatement("delete from user where id = ?"));
             getPs().setInt(1, userId);
             setResult(getPs().executeUpdate());
@@ -58,16 +59,15 @@ public class UserDao extends BaseDao implements IUserDao {
             return getResult();
         } catch (SQLException e) {
             throw new DaoException(UserDao.class.getName(),"create",e.getMessage(),"Une erreur s'est produite lors de la suppression de l'utilisateur");
-
         }
     }
 
 
     @Override
-    public User getById(int userId) throws DaoException {
-        connexion();
+    public User getById(int userId) {
         User getUser = null;
         try {
+            connexion();
             setPs(getCn().prepareStatement("SELECT * from user where id = ?"));
             getPs().setInt(1, userId);
             setRs(getPs().executeQuery());
@@ -76,9 +76,9 @@ public class UserDao extends BaseDao implements IUserDao {
             }
             disconnect();
             return getUser;
+
         } catch (SQLException e) {
             throw new DaoException(UserDao.class.getName(),"create",e.getMessage(),"Une erreur s'est produite lors de la récupération de l'utilisateur");
-
         }
     }
 
