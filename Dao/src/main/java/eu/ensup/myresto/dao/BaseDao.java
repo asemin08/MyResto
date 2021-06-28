@@ -1,4 +1,4 @@
-package eu.ensup.myresto.dao;
+import exceptions.DaoException;
 
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -25,22 +25,21 @@ public class BaseDao {
         ResourceBundle bundle = ResourceBundle.getBundle("db");
         this.url ="jdbc:mysql://localhost:3306/myresto?serverTimezone=Europe/Berlin" ;//bundle.getString("jdbc:mysql://localhost:3306/myresto?serverTimezone=Europe/Berlin");
         this.login = "root"; //bundle.getString("root");
-        this.password =""; //bundle.getString("");
+        this.password ="root"; //bundle.getString("");
     }
 
-    public int connexion()
+    public int connexion() throws DaoException
     {
         try {
             cn = DriverManager.getConnection(url, login, password);
             st = cn.createStatement();
-            System.out.println("Vous êtes connecter");
             return 0;
         }
         catch (SQLException e) {
             return 1;
         }
     }
-    public void disconnect()
+    public void disconnect() throws DaoException
     {
         try {
             if( rs != null )
@@ -70,11 +69,11 @@ public class BaseDao {
         return password;
     }
 
-    public Connection getCn() {
+    public static Connection getCn() {
         return cn;
     }
 
-    public void setCn(Connection cn) {
+    public static void setCn(Connection cn) {
         BaseDao.cn = cn;
     }
 
