@@ -33,6 +33,7 @@
     <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
 
     <!-- all CSS -->
+    <link href="assets/css/orders.css" rel="stylesheet" type="text/css">
     <link href="assets/css/animate.css" rel="stylesheet" type="text/css">
     <link href="assets/css/baguetteBox.min.css" rel="stylesheet" type="text/css">
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -53,7 +54,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <a class="navbar-brand" href="accueil">
-            <img src="assets/images/logo.png" alt="" height="100" width="100"/>
+            <img id="logo" src="assets/images/logo.png" alt="" height="100" width="100"/>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -62,7 +63,6 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item "><a class="nav-link" href="accueil">Accueil</a></li>
                 <li class="nav-item "><a class="nav-link" href="menu">Menu</a></li>
-                <li class="nav-item "><a class="nav-link" href="login">Réservation</a></li>
                 <li class="nav-item "><a class="nav-link" href="panier">Panier</a></li>
                 <li class="nav-item "><a class="nav-link" href="login">Login</a></li>
             </ul>

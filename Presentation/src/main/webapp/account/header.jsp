@@ -24,6 +24,7 @@
     <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
 
     <!-- all CSS -->
+
     <link href="../assets/css/animate.css" rel="stylesheet" type="text/css">
     <link href="../assets/css/baguetteBox.min.css" rel="stylesheet" type="text/css">
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
