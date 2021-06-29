@@ -122,11 +122,12 @@ INSERT INTO `product` (`id`, `name`, `price`, `description`, `image`, `id_catego
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
+  `login` varchar(255) NOT NULL,
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
   `role` int(11) NOT NULL,
-  `passwod` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `salt` varchar(255) DEFAULT NULL,
   `image` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -135,8 +136,8 @@ CREATE TABLE `user` (
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `address`, `role`, `passwod`, `salt`, `image`) VALUES
-(1, 'test', 'test', '', 0, '', '', '');
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `address`, `role`, `password`, `salt`, `image`) VALUES
+(100, 'test', 'test', '', 0, '', '', '');
 
 --
 -- Index pour les tables déchargées

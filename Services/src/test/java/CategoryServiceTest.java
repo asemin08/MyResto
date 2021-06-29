@@ -1,5 +1,6 @@
-import exceptions.DaoException;
-import exceptions.ServiceException;
+import eu.ensup.myresto.*;
+import eu.ensup.myresto.exceptions.DaoException;
+import eu.ensup.myresto.exceptions.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hamcrest.MatcherAssert;

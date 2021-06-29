@@ -1,5 +1,7 @@
-import exceptions.DaoException;
-import exceptions.ServiceException;
+import eu.ensup.myresto.*;
+import eu.ensup.myresto.exceptions.DaoException;
+import eu.ensup.myresto.exceptions.ServiceException;
+import eu.ensup.myresto.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hamcrest.MatcherAssert;
@@ -8,8 +10,6 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-
-import java.util.Base64;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.ArgumentMatchers.any;
