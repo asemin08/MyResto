@@ -22,24 +22,24 @@ public class CategoryDaoTest
 {
     private static final Logger log = LogManager.getLogger(CategoryDaoTest.class);
 
-    private static CategoryDao dao;
-    private Integer id = 100;
-    private String name = "Image";
-    private String image = null;
-
-    @BeforeAll
-    public static void init()
-    {
-        dao = new CategoryDao();
-    }
-
-    @BeforeEach
-    public void testConnection()
-    {
-        BaseDao baseDao = new BaseDao();
-        baseDao.connexion();
-        assertThat(baseDao.getCn(), is(notNullValue()));
-    }
+//    private static CategoryDao dao;
+//    private Integer id = 100;
+//    private String name = "Image";
+//    private String image = null;
+//
+//    @BeforeAll
+//    public static void init()
+//    {
+//        dao = new CategoryDao();
+//    }
+//
+//    @BeforeEach
+//    public void testConnection()
+//    {
+//        BaseDao baseDao = new BaseDao();
+//        baseDao.connexion();
+//        assertThat(baseDao.getCn(), is(notNullValue()));
+//    }
 
     /*@Test
     @DisplayName("Test create")

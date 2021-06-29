@@ -16,6 +16,13 @@ public class UserService implements IUserService {
 
     private IUserDao userDao;
 
+    public UserService(IUserDao userDao) {
+        this.userDao = userDao;
+    }
+
+    public UserService() {
+        this.userDao = new UserDao();
+    }
     private static final String algo = "SHA-256";
 
     @Override
@@ -73,12 +80,15 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public int validateUser(LoginUserDto loginUserDto) throws ServiceException {
+    public UserDto validateUser(LoginUserDto loginUserDto) throws ServiceException {
         try {
             User user = userDao.getByLogin(loginUserDto.getLogin());
             byte[] salt = Base64.getDecoder().decode(user.getSalt());
             String hash = generateHashPassword(loginUserDto.getPassword(), salt);
-            return hash.equals(user.getPassword()) ? 1 : 0;
+            if (hash.equals(user.getPassword()))
+                return UserMapper.convertDomaineDto(user);
+            else
+                throw new ServiceException(UserService.class.getName(), "validateUser", "Login ou Mot de passe invalide", "Une erreur s'est produite lors de la vérification de mot de passe");
         } catch (DaoException e) {
             log.error(e.getMessage());
             throw new ServiceException(UserService.class.getName(), "validateUser", e.getMessage(), "Une erreur s'est produite lors de la vérification de mot de passe");
