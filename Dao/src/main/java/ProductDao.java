@@ -33,7 +33,7 @@ public class ProductDao extends BaseDao implements IProductDao {
             setPs(getCn().prepareStatement(sql));
             setRs(getPs().executeQuery());
             while (getRs().next()) {
-                products.add(new Product(getRs().getInt("id"), getRs().getString("name"), getRs().getFloat("price"), getRs().getString("description"), getRs().getString("image"),getRs().getInt("id_category")));
+                products.add(new Product(getRs().getInt("id"), getRs().getString("name"), getRs().getFloat("price"), getRs().getString("description"), getRs().getString("image"), getRs().getInt("id_category")));
             }
         } catch (SQLException e) {
             throw new DaoException(ProductDao.class.getName(), "getAllProducts", e.getMessage(), "Une erreur s'est produite lors de la récupération de tout les produits");
@@ -85,7 +85,7 @@ public class ProductDao extends BaseDao implements IProductDao {
             getPs().setInt(1, idProduct);
             setRs(getPs().executeQuery());
             while (getRs().next()) {
-                return new Product(getRs().getInt("id"), getRs().getString("name"), getRs().getFloat("price"), getRs().getString("description"), getRs().getString("image"),getRs().getInt("id_category"));
+                return new Product(getRs().getInt("id"), getRs().getString("name"), getRs().getFloat("price"), getRs().getString("description"), getRs().getString("image"), getRs().getInt("id_category"));
             }
         } catch (SQLException | DaoException e) {
 

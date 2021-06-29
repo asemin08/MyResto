@@ -1,19 +1,18 @@
-import javax.sql.DataSource;
 import java.sql.Date;
 import java.util.List;
 
-public class OrderProduct
-{
+public class OrderProductDto {
     private Integer id;
     private int idUser;
     private List<Integer> idProduct;
     private String status;
     private Date dateCreated;
 
-    public enum Status{
-        NEW,SEND,CLOSE
+    public enum Status {
+        NEW, SEND, CLOSE
     }
-    public OrderProduct(Integer id, int idUser,  List<Integer> idProduct, Date dateCreated, String status) {
+
+    public OrderProductDto(Integer id, int idUser, List<Integer> idProduct, Date dateCreated, String status) {
         this.id = id;
         this.idUser = idUser;
         this.idProduct = idProduct;
@@ -21,7 +20,7 @@ public class OrderProduct
         this.dateCreated = dateCreated;
     }
 
-    public OrderProduct(int idUser,  List<Integer> idProduct, String status, Date dateCreated) {
+    public OrderProductDto(int idUser, List<Integer> idProduct, String status, Date dateCreated) {
         this.idUser = idUser;
         this.idProduct = idProduct;
         this.status = status;
@@ -29,14 +28,14 @@ public class OrderProduct
     }
 
 
-    public OrderProduct(int idUser,  List<Integer> idProduct, Date dateCreated) {
+    public OrderProductDto(int idUser, List<Integer> idProduct, Date dateCreated) {
         this.idUser = idUser;
         this.idProduct = idProduct;
         this.dateCreated = dateCreated;
         this.status = Status.NEW.toString();
     }
 
-    public OrderProduct(Integer id, int idUser,  List<Integer> idProduct, Date dateCreated) {
+    public OrderProductDto(Integer id, int idUser, List<Integer> idProduct, Date dateCreated) {
         this.id = id;
         this.idUser = idUser;
         this.idProduct = idProduct;
@@ -59,11 +58,11 @@ public class OrderProduct
         this.idUser = idUser;
     }
 
-    public  List<Integer> getIdProduct() {
+    public List<Integer> getIdProduct() {
         return idProduct;
     }
 
-    public void setIdProduct( List<Integer> idProduct) {
+    public void setIdProduct(List<Integer> idProduct) {
         this.idProduct = idProduct;
     }
 
