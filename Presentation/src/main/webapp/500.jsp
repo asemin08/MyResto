@@ -10,7 +10,7 @@
                     <p class="lead ">
                         Il y a eu un problème dans le serveur.
                         Erreur : <%=session.getAttribute("error")%>
-                        <%=session.removeAttribute("error")%>
+                        <% session.removeAttribute("error")%>
                     </p>
                 </div>
             </div>
