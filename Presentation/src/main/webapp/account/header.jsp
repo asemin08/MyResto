@@ -20,34 +20,34 @@
     <meta name="author" content="">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="../assets/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
 
     <!-- all CSS -->
-    <link href="/assets/css/animate.css" rel="stylesheet" type="text/css">
-    <link href="/assets/css/baguetteBox.min.css" rel="stylesheet" type="text/css">
-    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="/assets/css/classic.css" rel="stylesheet" type="text/css">
-    <link href="/assets/css/classic.date.css" rel="stylesheet" type="text/css">
-    <link href="/assets/css/classic.time.css" rel="stylesheet" type="text/css">
-    <link href="/assets/css/custom.css" rel="stylesheet" type="text/css">
-    <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="/assets/css/responsive.css" rel="stylesheet" type="text/css">
-    <link href="/assets/css/style.css" rel="stylesheet" type="text/css">
-    <link href="/assets/css/superslides.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/baguetteBox.min.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/classic.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/classic.date.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/classic.time.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/custom.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/responsive.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/superslides.css" rel="stylesheet" type="text/css">
 
     <!-- ALL JS FILES -->
-    <script src="/assets/js/jquery-3.2.1.min.js" async></script>
-    <script src="/assets/js/jquery-3.2.1.min.js" async></script>
-    <script src="/assets/js/popper.min.js" async></script>
-    <script src="/assets/js/bootstrap.min.js" async></script>
-    <script src="/assets/js/jquery.superslides.min.js" async></script>
-    <script src="/assets/js/images-loded.min.js" async></script>
-    <script src="/assets/js/isotope.min.js" async></script>
-    <script src="/assets/js/baguetteBox.min.js" async></script>
-    <script src="/assets/js/form-validator.min.js" async></script>
-    <script src="/assets/js/contact-form-script.js" async></script>
-    <script src="/assets/js/custom.js" async></script>
+    <script src="../assets/js/jquery-3.2.1.min.js" async></script>
+    <script src="../assets/js/jquery-3.2.1.min.js" async></script>
+    <script src="../assets/js/popper.min.js" async></script>
+    <script src="../assets/js/bootstrap.min.js" async></script>
+    <script src="../assets/js/jquery.superslides.min.js" async></script>
+    <script src="../assets/js/images-loded.min.js" async></script>
+    <script src="../assets/js/isotope.min.js" async></script>
+    <script src="../assets/js/baguetteBox.min.js" async></script>
+    <script src="../assets/js/form-validator.min.js" async></script>
+    <script src="../assets/js/contact-form-script.js" async></script>
+    <script src="../assets/js/custom.js" async></script>
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" async></script>
     <script src="https://oss.maxcdn.com/libs/respond.assets/js/1.4.2/respond.min.js" async></script>
@@ -72,7 +72,7 @@
                     <li class="nav-item"><a class="nav-link" href="menu">Menu</a></li>
                     <li class="nav-item"><a class="nav-link" href="panier">Panier</a></li>
                     <li class="nav-item"><a class="nav-link" href="orders">Commandes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="account">User<c:if test="${ !empty email }"><p><c:out value=" ${ email }" /></p></c:if></a></li>
+                    <li class="nav-item"><a class="nav-link" href="account">User</a></li>
                     <li class="nav-item"><a class="nav-link" href="login">Déconnexion</a></li>
 
                 </ul>

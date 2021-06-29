@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="m-b-20"><strong>Bienvenue à <br> My Resto</strong></h1>
-                        <p class="m-b-40">Commmander vos plats préférées  <br>
+                        <p class="m-b-40">Commander vos plats préférées  <br>
                             Profitez d'une réduction pour votre première commande.</p>
                         <p><a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Reservation</a></p>
                     </div>
@@ -22,7 +22,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="m-b-20"><strong>Bienvenue à <br> My Resto</strong></h1>
-                        <p class="m-b-40">Commmander vos plats préférées  <br>
+                        <p class="m-b-40">Commander vos plats préférées  <br>
                             Profitez d'une réduction pour votre première commande.</p>
                         <p><a class="btn btn-lg btn-circle btn-outline-new-white" href="login">Réserver</a></p>
                     </div>
@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="m-b-20"><strong>Bienvenue à <br> My Resto</strong></h1>
-                        <p class="m-b-40">Commmander vos plats préférées  <br>
+                        <p class="m-b-40">Commander vos plats préférées  <br>
                             Profitez d'une réduction pour votre première commande.</p>
                         <p><a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Reservation</a></p>
                     </div>
@@ -48,20 +48,13 @@
         <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
     </div>
 </div>
-<!-- End slides -->
 
-<!-- Start QT -->
-
-<!-- End QT -->
-
-
-<!-- Start Gallery -->
 <div class="gallery-box">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="heading-title text-center">
-                    <h2>" Découvrez notre Réstaurant "</h2>
+                    <h2>" Découvrez notre Restaurant "</h2>
 
                 </div>
             </div>
