@@ -38,7 +38,7 @@ public class ProductDao extends BaseDao implements IProductDao {
             setPs(getCn().prepareStatement(sql));
             setRs(getPs().executeQuery());
             while (getRs().next()) {
-                products.add(new Product(getRs().getInt("id"), getRs().getString("name"), getRs().getFloat("price"), getRs().getString("description"), getRs().getString("image"),getRs().getInt("id_category")));
+                products.add(new Product(getRs().getInt("id"), getRs().getString("name"), getRs().getFloat("price"), getRs().getString("description"), getRs().getString("image"), getRs().getInt("id_category")));
             }
         } catch (SQLException e) {
             log.error(e.getMessage());
@@ -92,7 +92,7 @@ public class ProductDao extends BaseDao implements IProductDao {
             getPs().setInt(1, idProduct);
             setRs(getPs().executeQuery());
             while (getRs().next()) {
-                return new Product(getRs().getInt("id"), getRs().getString("name"), getRs().getFloat("price"), getRs().getString("description"), getRs().getString("image"),getRs().getInt("id_category"));
+                return new Product(getRs().getInt("id"), getRs().getString("name"), getRs().getFloat("price"), getRs().getString("description"), getRs().getString("image"), getRs().getInt("id_category"));
             }
         } catch (SQLException | DaoException e) {
             log.error(e.getMessage());

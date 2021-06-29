@@ -36,6 +36,7 @@ public class ProductServiceTest {
             log.error(e.getMessage());
         }
     }
+
     @Test
     public void ProductgetAllTest(){
         try{
@@ -54,7 +55,7 @@ public class ProductServiceTest {
     public void ProductDeleteTest(){
 
         try{
-            when(productService.deleteProduct(1)).thenReturn(1);
+            when(productDao.deleteProduct(1)).thenReturn(1);
             MatcherAssert.assertThat(productService.deleteProduct(1), equalTo(1));
             verify(productDao).deleteProduct(1);
         } catch (ServiceException | DaoException e) {

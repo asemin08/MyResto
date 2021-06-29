@@ -7,14 +7,14 @@ import org.apache.logging.log4j.Logger;
 
 import static org.hamcrest.Matchers.equalTo;
 
-public class ProductDaoTest {
+  class ProductDaoTest {
 
     private ProductDao productDao = new ProductDao();
     private static final Logger log = LogManager.getLogger(ProductDaoTest.class);
 
     @Test
     @Order(1)
-    public void ProductCreateTest() {
+      void ProductCreateTest() {
         try {
             var result = productDao.createProduct(new Product("Coca", 3.5f, "", "C'est du coca",0));
             MatcherAssert.assertThat(result, equalTo(1));
@@ -25,7 +25,7 @@ public class ProductDaoTest {
 
     @Test
     @Order(5)
-    public void ProductgetAllTest() {
+      void ProductgetAllTest() {
         try {
             var result = productDao.getAllProducts();
             MatcherAssert.assertThat(result.size(), equalTo(1));
@@ -36,7 +36,7 @@ public class ProductDaoTest {
 
     @Test
     @Order(2)
-    public void ProductDeleteTest() {
+      void ProductDeleteTest() {
         try {
             var result = productDao.deleteProduct(1);
             MatcherAssert.assertThat(result, equalTo(1));
@@ -47,7 +47,7 @@ public class ProductDaoTest {
 
     @Test
     @Order(3)
-    public void ProductGetOneTest() {
+      void ProductGetOneTest() {
         Product result;
         try {
             result = productDao.getOneProduct(1);
@@ -60,7 +60,7 @@ public class ProductDaoTest {
 
     @Test
     @Order(4)
-    public void ProductUpdateTest() {
+      void ProductUpdateTest() {
         try {
             int result = productDao.updateProduct(new Product(1, "Coca", 3.5f, "", "C'est du coca haha",0));
             MatcherAssert.assertThat(result, equalTo(1));
