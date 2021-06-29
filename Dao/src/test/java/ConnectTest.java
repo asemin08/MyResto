@@ -1,4 +1,5 @@
-import exceptions.DaoException;
+import eu.ensup.myresto.BaseDao;
+import eu.ensup.myresto.exceptions.DaoException;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
 import org.apache.logging.log4j.LogManager;
@@ -17,10 +18,6 @@ class ConnectTest  {
 
     @Test
      void testConnection() {
-        try {
-            MatcherAssert.assertThat( baseDao.connexion(), equalTo(0) );
-        } catch (DaoException e) {
-           log.error(e.getMessage());
-        }
+        MatcherAssert.assertThat( baseDao.connexion(), equalTo(0) );
     }
 }

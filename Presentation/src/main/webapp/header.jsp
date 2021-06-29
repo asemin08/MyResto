@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: A
+  eu.ensup.myresto.User: A
   Date: 28/06/2021
   Time: 14:20
   To change this template use File | Settings | File Templates.
@@ -8,12 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--
   Created by IntelliJ IDEA.
-  User: A
+  eu.ensup.myresto.User: A
   Date: 28/06/2021
   Time: 11:38
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en"><!-- Basic -->
 <head>
@@ -80,10 +79,10 @@
         <div class="collapse navbar-collapse" id="navbars-rs-food">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active"><a class="nav-link" href="/">Accueil</a></li>
-                <li class="nav-item"><a class="nav-link" href="menu.jsp">Menu</a></li>
-                <li class="nav-item"><a class="nav-link" href="reservation.jsp">Réservation</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact.html">Panier</a></li>
-                <li class="nav-item"><a class="nav-link" href="about.html">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="menu">Menu</a></li>
+                <li class="nav-item"><a class="nav-link" href="login">Réservation</a></li>
+                <li class="nav-item"><a class="nav-link" href="panier">Panier</a></li>
+                <li class="nav-item"><a class="nav-link" href="login">Login</a></li>
 
             </ul>
         </div>
