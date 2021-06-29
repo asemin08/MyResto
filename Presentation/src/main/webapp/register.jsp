@@ -29,39 +29,38 @@
                                 <h3>Entrez vos Informations</h3>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="Nom" required data-error="Entrer votre nom">
+                                        <input type="text" class="form-control" id="login" name="login" placeholder="Login" required data-error="Login ">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="text" placeholder="Email" id="email" class="form-control" name="email" required data-error="Entrer votre email">
+                                        <input type="text" placeholder="Prenom" id="firstname" class="form-control" name="firstname" required data-error="Prenom ">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="text" placeholder="Numéro de Téléphone" id="phone" class="form-control" name="phone" required data-error="Entrer votre numéro">
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" placeholder="Adresse" id="adresse" class="form-control" name="adresse" required data-error="Entrer votre adresse">
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="password" placeholder="Mot de Passe" id="mdp" class="form-control" name="Mot de Passe" required data-error="Entrer votre mot de Passe">
+                                        <input type="text" placeholder="Nom de famille" id="lastname" class="form-control" name="lastname" required data-error="Nom">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="password" placeholder="Mot de Passe" id="mdp2" class="form-control" name="Mot de Passe2" required data-error="Entrer votre mot de Passe">
+                                        <input type="text" placeholder="Adresse" id="address" class="form-control" name="address" required data-error="Votre adresse ">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="password" placeholder="Mot de Passe" id="password[1]" class="form-control" name="password[1]" required data-error="Votre mot de Passe">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="password" placeholder="Mot de Passe" id="password[2]" class="form-control" name="password[2]" required data-error="Vérif mot de Passe">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
