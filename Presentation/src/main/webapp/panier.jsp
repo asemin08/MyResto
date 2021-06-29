@@ -1,12 +1,13 @@
+
 <%@ page import="eu.ensup.myresto.Product" %>
 <%@ page import="java.util.Set" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: cherif
   Date: 29/06/2021
   Time: 09:50
   To change this template use File | Settings | File Templates.
 --%>
-<%--<%@ page import="Product" %>--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="header.jsp"%>
 <!-- Start Panier -->
@@ -45,4 +46,3 @@
 </div>
 <!-- End Panier -->
 <%@include file="footer.jsp"%>
-

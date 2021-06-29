@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Set;
 
-@WebServlet(name = "ServletPanier", value = "/ServletPanier")
+@WebServlet(name = "ServletPanier", value = "/panier")
 public class ServletPanier extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
