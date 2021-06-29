@@ -27,7 +27,7 @@ public class CategoryServiceTest
     CategoryService categoryService;
 
     @Test
-    public void ProductgetAllTest()
+    public void getAllTest()
     {
         List<CategoryDto> listCategory = new ArrayList<CategoryDto>();
         listCategory.add(new CategoryDto(1, "Entrée", null));

@@ -12,7 +12,7 @@ public class CategoryDao extends BaseDao implements ICategoryDao
 
         try {
             connexion();
-            setPs(getCn().prepareStatement("SELECT * FROM category"));
+            setPs(getCn().prepareStatement("SELECT * FROM Category"));
             setRs(getPs().executeQuery());
 
             ResultSet res = getRs();
@@ -37,20 +37,22 @@ public class CategoryDao extends BaseDao implements ICategoryDao
         Category category = null;
         try {
             connexion();
-            setPs(getCn().prepareStatement("SELECT * FROM category Where id = ?"));
+            setPs(getCn().prepareStatement("SELECT * FROM Category WHERE id = ?"));
             getPs().setInt(1, idCategory);
             setRs(getPs().executeQuery());
 
             ResultSet res = getRs();
-            if(!res.next()){
+
+            if(res.next() == false){
                 System.out.println("Aucune category disponible dans la base de donnée.");
             }
-            while( res.next() ) {
+            else
+            {
                 category = new Category(res.getInt("id"), res.getString("name"), res.getString("image"));
             }
-
             disconnect();
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             throw new DaoException(CategoryDao.class.getName(),"get",e.getMessage(),"Une erreur s'est produite lors de la recherche d'une categorie");
         }
 
@@ -63,15 +65,17 @@ public class CategoryDao extends BaseDao implements ICategoryDao
 
         try {
             connexion();
-            setPs(getCn().prepareStatement("SELECT * FROM category Where name = ?"));
+            setPs(getCn().prepareStatement("SELECT * FROM Category Where name = ?"));
             getPs().setString(1, nameCategory);
             setRs(getPs().executeQuery());
 
             ResultSet res = getRs();
-            if(!res.next()){
+            if(res.next() == false)
+            {
                 System.out.println("Aucune category disponible dans la base de donnée.");
             }
-            while( res.next() ) {
+            else
+            {
                 category = new Category(res.getInt("id"), res.getString("name"), res.getString("image"));
             }
 
@@ -91,7 +95,7 @@ public class CategoryDao extends BaseDao implements ICategoryDao
             {
                 connexion();
 
-                setPs(getCn().prepareStatement("INSERT INTO category (name, image) VALUES ( ?, ? )"));
+                setPs(getCn().prepareStatement("INSERT INTO Category (name, image) VALUES ( ?, ? )"));
 
                 getPs().setString(1, category.getName());
                 getPs().setString(2, category.getImage());
@@ -123,7 +127,7 @@ public class CategoryDao extends BaseDao implements ICategoryDao
             //Vérifie qu'il y a eu des modification
             if( haveUpdate )
             {
-                setPs(getCn().prepareStatement("UPDATE category SET name = ?, image = ? WHERE id = ?"));
+                setPs(getCn().prepareStatement("UPDATE Category SET name = ?, image = ? WHERE id = ?"));
 
                 int index = 1;
                 getPs().setString(index++, category.getName());
@@ -156,8 +160,9 @@ public class CategoryDao extends BaseDao implements ICategoryDao
         try{
             if( idCategory != -1 && get(idCategory) != null )
             {
-                setPs(getCn().prepareStatement("DELETE FROM category WHERE id = ?"));
+                connexion();
 
+                setPs(getCn().prepareStatement("DELETE FROM Category WHERE id = ?"));
                 getPs().setInt(1, idCategory);
 
                 setResult(getPs().executeUpdate());

@@ -1,6 +1,5 @@
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -45,14 +44,8 @@ public class CategoryDaoTest
     public void testCreate()
     {
         try{
-            int nbCategoryBeforeCreate = dao.getAll().size();
-
-            dao.create(new Category(this.name, this.image));
-
-            assertThat(dao.getAll().size(), equalTo(nbCategoryBeforeCreate+1));
-
-            if( dao.get(nbCategoryBeforeCreate) != null )
-                this.id = dao.get(nbCategoryBeforeCreate).getId();
+            int res = dao.create(new Category(0, this.name, this.image));
+            assertThat(res, equalTo(1));
         }
         catch (DaoException e) {
             fail(e.getMessage());
@@ -80,9 +73,7 @@ public class CategoryDaoTest
     public void testGet()
     {
         try{
-            Category category = null;
-            if( id != null )
-                category = dao.get(id);
+            Category category = dao.get(id);
 
             if( category != null ) {
                 assertThat(category.getName(), equalTo(name));
@@ -105,11 +96,9 @@ public class CategoryDaoTest
 	public void testDelete()
 	{
         try{
-            int nbCategoryBeforeDelete = dao.getAll().size();
+            int res = dao.delete(id);
 
-            dao.delete(id);
-
-            assertThat(dao.getAll().size(), equalTo(nbCategoryBeforeDelete));
+            assertThat(res, equalTo(1));
 		}
 		catch (DaoException e) {
 			fail(e.getMessage());
