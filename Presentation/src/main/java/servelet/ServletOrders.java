@@ -14,6 +14,6 @@ public class ServletOrders extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        this.getServletContext().getRequestDispatcher("/account/orders.jsp").forward(request,response);
     }
 }

@@ -44,24 +44,6 @@
     <link href="assets/css/responsive.css" rel="stylesheet" type="text/css">
     <link href="assets/css/style.css" rel="stylesheet" type="text/css">
     <link href="assets/css/superslides.css" rel="stylesheet" type="text/css">
-
-    <!-- ALL JS FILES -->
-    <script src="assets/js/jquery-3.2.1.min.js" async></script>
-    <script src="assets/js/jquery-3.2.1.min.js" async></script>
-    <script src="assets/js/popper.min.js" async></script>
-    <script src="assets/js/bootstrap.min.js" async></script>
-    <script src="assets/js/jquery.superslides.min.js" async></script>
-    <script src="assets/js/images-loded.min.js" async></script>
-    <script src="assets/js/isotope.min.js" async></script>
-    <script src="assets/js/baguetteBox.min.js" async></script>
-    <script src="assets/js/form-validator.min.js" async></script>
-    <script src="assets/js/contact-form-script.js" async></script>
-    <script src="assets/js/custom.js" async></script>
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" async></script>
-    <script src="https://oss.maxcdn.com/libs/respond.assets/js/1.4.2/respond.min.js" async></script>
-    <![endif]-->
-
 </head>
 
 <body>
@@ -83,7 +65,6 @@
                 <li class="nav-item "><a class="nav-link" href="login">Réservation</a></li>
                 <li class="nav-item "><a class="nav-link" href="panier">Panier</a></li>
                 <li class="nav-item "><a class="nav-link" href="login">Login</a></li>
-
             </ul>
         </div>
     </div>
