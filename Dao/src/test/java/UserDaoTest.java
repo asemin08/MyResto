@@ -8,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class UserDaoTest {
 
@@ -22,6 +23,7 @@ public class UserDaoTest {
             int result = userDao.create(user);
             MatcherAssert.assertThat(result, equalTo(1));
         } catch (DaoException e) {
+            fail();
             log.error(e.getMessage());
         }
 
@@ -37,6 +39,7 @@ public class UserDaoTest {
             int result = userDao.update(user);
             MatcherAssert.assertThat(result, equalTo(1));
         } catch (DaoException e) {
+            fail();
             log.error(e.getMessage());
         }
     }
@@ -49,6 +52,7 @@ public class UserDaoTest {
             MatcherAssert.assertThat(user.getLastName(), equalTo("Dazin"));
 
         } catch (DaoException e) {
+            fail();
             log.error(e.getMessage());
 
         }
@@ -58,10 +62,10 @@ public class UserDaoTest {
     @Order(4)
     void getUserByLoginTest() {
         try {
-            User user = userDao.getByLogin("mdazin");
-            MatcherAssert.assertThat(user.getLastName(), equalTo("Dazin"));
-
+            User user = userDao.getByLogin("d");
+            MatcherAssert.assertThat(user.getLastName(), equalTo("test"));
         } catch (DaoException e) {
+            fail();
             log.error(e.getMessage());
         }
     }
@@ -75,6 +79,7 @@ public class UserDaoTest {
             MatcherAssert.assertThat(result, equalTo(1));
 
         } catch (DaoException e) {
+            fail();
             log.error(e.getMessage());
         }
     }

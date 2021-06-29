@@ -5,6 +5,7 @@ import eu.ensup.myresto.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hamcrest.MatcherAssert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -93,9 +94,10 @@ public class UserServiceTest {
     @Test
     public void validateUserTest(){
         try {
-            when(userDao.getByLogin("mdazin")).thenReturn(new User(100, "mdazin", "maxime", "dazin", "14 rue des boustifailles", "admin", "oNqPeGXHfDg6X3ZRO2btnLGAGMfdyENqW+y67B95cKg=", "123456", "///"));
-            int result = userService.validateUser(new LoginUserDto("mdazin","ensup"));
-            MatcherAssert.assertThat(result,equalTo(1));
+            User user = new User(100, "mdazin", "maxime", "dazin", "14 rue des boustifailles", "admin", "oNqPeGXHfDg6X3ZRO2btnLGAGMfdyENqW+y67B95cKg=", "123456", "///");
+            when(userDao.getByLogin("mdazin")).thenReturn(user);
+            UserDto userDto = userService.validateUser(new LoginUserDto("mdazin","ensup"));
+            MatcherAssert.assertThat(userDto.getFirstName(),equalTo(user.getFirstName()));
             verify(userDao).getByLogin("mdazin");
         } catch (DaoException | ServiceException e) {
             log.error(e.getMessage());
