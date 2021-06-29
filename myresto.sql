@@ -21,6 +21,20 @@ SET time_zone = "+00:00";
 -- Base de données : `myresto`
 --
 
+USE myresto;
+
+-- --------------------------------------------------------
+
+--
+-- Drop tables
+--
+
+DROP TABLE IF EXISTS myresto.listproducts;
+DROP TABLE IF EXISTS myresto.order_product;
+DROP TABLE IF EXISTS myresto.product;
+DROP TABLE IF EXISTS myresto.category;
+DROP TABLE IF EXISTS myresto.user;
+
 -- --------------------------------------------------------
 
 --
@@ -38,7 +52,7 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `name`, `image`) VALUES
-(0, 'entree', '');
+(1, 'entree', '');
 
 -- --------------------------------------------------------
 
@@ -56,10 +70,7 @@ CREATE TABLE `listproducts` (
 --
 
 INSERT INTO `listproducts` (`id_product`, `id_order`) VALUES
-(1, 91),
-(1, 91),
-(1, 91),
-(1, 91);
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -79,7 +90,7 @@ CREATE TABLE `order_product` (
 --
 
 INSERT INTO `order_product` (`id`, `idUser`, `date`, `status`) VALUES
-(91, 100, '3921-02-12', 'NEW');
+(1, 1, '3921-02-12', 'NEW');
 
 -- --------------------------------------------------------
 
@@ -125,7 +136,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `firstname`, `lastname`, `address`, `role`, `passwod`, `salt`, `image`) VALUES
-(100, 'test', 'test', '', 0, '', '', '');
+(1, 'test', 'test', '', 0, '', '', '');
 
 --
 -- Index pour les tables déchargées
@@ -172,25 +183,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `order_product`
 --
 ALTER TABLE `order_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Contraintes pour les tables déchargées
@@ -200,20 +211,20 @@ ALTER TABLE `user`
 -- Contraintes pour la table `listproducts`
 --
 ALTER TABLE `listproducts`
-  ADD CONSTRAINT `fk_order` FOREIGN KEY (`id_order`) REFERENCES `order_product` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_product` FOREIGN KEY (`id_product`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
-
+  ADD CONSTRAINT `fk_order` FOREIGN KEY (`id_order`) REFERENCES `order_product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_product` FOREIGN KEY (`id_product`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  
 --
 -- Contraintes pour la table `order_product`
 --
 ALTER TABLE `order_product`
-  ADD CONSTRAINT `fk_user` FOREIGN KEY (`idUser`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_user` FOREIGN KEY (`idUser`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `product`
 --
 ALTER TABLE `product`
-  ADD CONSTRAINT `fkcategory` FOREIGN KEY (`id_category`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_category` FOREIGN KEY (`id_category`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
