@@ -22,7 +22,12 @@
                 <div class="contact-block">
                     <form id="contactForm">
                         <div class="row">
+                            <div class="col-lg-12">
+                                <div class="heading-title text-center">
+                                    <h2>S'authentifier</h2>
 
+                                </div>
+                            </div>
                             <div class="col-md-6">
 
 
@@ -37,7 +42,7 @@
 
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="password" placeholder="Mot de Passe" id="adresse" class="form-control" name="Mot de Passe" required data-error="Entrer votre mot de Passe">
+                                        <input type="password" placeholder="Mot de Passe" id="adresse" class="form-control" name="MotdePasse" required data-error="Entrer votre mot de Passe">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>

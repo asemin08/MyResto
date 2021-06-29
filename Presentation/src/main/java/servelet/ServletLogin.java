@@ -14,6 +14,12 @@ public class ServletLogin extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String email = request.getParameter("email");
+        String MotdePasse = request.getParameter("MotdePasse");
 
+        request.setAttribute("nom", email);
+        request.setAttribute("nom", MotdePasse);
+
+        this.getServletContext().getRequestDispatcher("account/index.jsp").forward(request, response);
     }
 }

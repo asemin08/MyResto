@@ -12,36 +12,20 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-6">
-                <h3>About Us</h3>
-                <p>Integer cursus scelerisque ipsum id efficitur. Donec a dui fringilla, gravida lorem ac, semper magna. Aenean rhoncus ac lectus a interdum. Vivamus semper posuere dui.</p>
+                <h3>A Propos de Nous</h3>
+                <p>Livraison de repas, plusieurs moyens de paiement. Commandez et régalez-vous !</p>
             </div>
+
             <div class="col-lg-3 col-md-6">
-                <h3>Subscribe</h3>
-                <div class="subscribe_form">
-                    <form class="subscribe_form">
-                        <input name="EMAIL" id="subs-email" class="form_input" placeholder="Email Address..." type="email">
-                        <button type="submit" class="submit">S'abonner</button>
-                        <div class="clearfix"></div>
-                    </form>
-                </div>
-                <ul class="list-inline f-social">
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                </ul>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h3>Contact information</h3>
+                <h3>Contact</h3>
                 <p class="lead">17 avenue 18 Juin 1945, 78000</p>
-                <p class="lead"><a href="#">+33 2000 800 9999</a></p>
-                <p><a href="#"> info@admin.com</a></p>
+                <p class="lead">+33 2000 800 9999</p>
+                <p> info@admin.com</p>
             </div>
             <div class="col-lg-3 col-md-6">
-                <h3>Opening hours</h3>
-                <p><span class="text-color">Dimanche: </span>Fermé</p>
-                <p><span class="text-color">Lundi-Samedi :</span> 9:Am - 10PM</p>
+                <h3>Horraire d'ouvertures</h3>
+                <p><span class="text-color">Dimanche : </span>Fermé</p>
+                <p><span class="text-color">Lundi-Samedi :</span> 11:00H - 22:00H</p>
 
             </div>
         </div>
@@ -61,6 +45,3 @@
 <!-- End Footer -->
 
 <a href="#" id="back-to-top" title="Back to top" style="display: none;"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></a>
-
-
-
