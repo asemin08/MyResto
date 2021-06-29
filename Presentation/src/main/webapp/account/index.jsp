@@ -1,18 +1,12 @@
 <%--
   Created by IntelliJ IDEA.
-  eu.ensup.myresto.User: A
-  Date: 28/06/2021
-  Time: 14:20
+  User: A
+  Date: 29/06/2021
+  Time: 10:19
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--
-  Created by IntelliJ IDEA.
-  eu.ensup.myresto.User: A
-  Date: 28/06/2021
-  Time: 11:38
-  To change this template use File | Settings | File Templates.
---%>
+
 <!DOCTYPE html>
 <html lang="en"><!-- Basic -->
 <head>
@@ -68,25 +62,28 @@
 
 <!-- Start header -->
 <header class="top-navbar">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-        <a class="navbar-brand" href="index.html">
-            <img src="assets/images/logo.png" alt="" height="100" width="100"/>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbars-rs-food">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a class="nav-link" href="/">Accueil</a></li>
-                <li class="nav-item"><a class="nav-link" href="menu">Menu</a></li>
-                <li class="nav-item"><a class="nav-link" href="login">Réservation</a></li>
-                <li class="nav-item"><a class="nav-link" href="panier">Panier</a></li>
-                <li class="nav-item"><a class="nav-link" href="login">Login</a></li>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/images/logo.png" alt="" height="100" width="100"/>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbars-rs-food">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a class="nav-link" href="/">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="menu">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login">Réservation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../panier">Panier</a></li>
+                    <li class="nav-item"><a class="nav-link" href="">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login">Déconnexion</a></li>
 
-            </ul>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 </header>
-<!-- End header -->
+
+</body>
+</html>
