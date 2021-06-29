@@ -39,7 +39,24 @@ public class ServletPanier extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            String action = request.getServletPath();
+            switch (action) {
+                case "/delete":
+                    deleteProduct(request, response);
+                    break;
+                case "/ServletPanier":
+                    operations(request, response);
+                    break;
+                default:
+                    break;
+            }
 
+
+        } catch (ServiceException e) {
+            request.getRequestDispatcher("404.jsp").forward(request, response);
+            e.printStackTrace();
+        }
     }
 
     protected void operations(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServiceException {
