@@ -11,18 +11,18 @@
 <footer class="footer-area bg-f">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
                 <h3>A Propos de Nous</h3>
                 <p>Livraison de repas, plusieurs moyens de paiement. Commandez et régalez-vous !</p>
             </div>
 
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
                 <h3>Contact</h3>
                 <p class="lead">17 avenue 18 Juin 1945, 78000</p>
                 <p class="lead">+33 2000 800 9999</p>
                 <p> info@admin.com</p>
             </div>
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
                 <h3>Horraire d'ouvertures</h3>
                 <p><span class="text-color">Dimanche : </span>Fermé</p>
                 <p><span class="text-color">Lundi-Samedi :</span> 11:00H - 22:00H</p>
