@@ -2,6 +2,8 @@ package eu.ensup.myresto;
 
 import eu.ensup.myresto.exceptions.DaoException;
 
+import java.util.Set;
+
 public interface IOrderProductDao {
     int createOrderProduct(OrderProduct orderProduct) throws DaoException;
 

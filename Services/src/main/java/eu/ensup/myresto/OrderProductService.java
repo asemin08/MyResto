@@ -1,12 +1,12 @@
-import eu.ensup.myresto.IOrderProductDao;
-import eu.ensup.myresto.OrderProductDao;
-import exceptions.DaoException;
-import exceptions.ServiceException;
+package eu.ensup.myresto;
+
+import eu.ensup.myresto.exceptions.DaoException;
+import eu.ensup.myresto.exceptions.ServiceException;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class OrderProductService implements IOrderProductService{
+public class OrderProductService implements IOrderProductService {
 
     private IOrderProductDao orderProduct;
 
@@ -17,6 +17,7 @@ public class OrderProductService implements IOrderProductService{
     public OrderProductService() {
         this.orderProduct = new OrderProductDao();
     }
+
     @Override
     public int createOrderProduct(OrderProductDto orderProductDto) throws ServiceException {
         try {
@@ -30,7 +31,7 @@ public class OrderProductService implements IOrderProductService{
     public Set<OrderProductDto> getAllOrderProductsForOneUser(int idUser) throws ServiceException {
         try {
             Set<OrderProductDto> productDtoSet = new HashSet<>();
-            for (var product: orderProduct.getAllOrderProductsForOneUser(idUser)) {
+            for (var product : orderProduct.getAllOrderProductsForOneUser(idUser)) {
                 productDtoSet.add(convertOrderProductToOrderProductDto(product));
             }
             return productDtoSet;

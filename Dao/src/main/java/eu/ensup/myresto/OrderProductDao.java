@@ -1,6 +1,6 @@
 package eu.ensup.myresto;
 
-import exceptions.DaoException;
+import eu.ensup.myresto.exceptions.DaoException;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -89,7 +89,7 @@ public class OrderProductDao extends BaseDao implements IOrderProductDao {
             setPs(getCn().prepareStatement(sql));
             getPs().setInt(1, idOrderProduct);
             setResult(getPs().executeUpdate());
-        } catch (SQLException | DaoException e) {
+        } catch (SQLException e) {
             throw new DaoException(OrderProductDao.class.getName(), "deleteOrderProduct", e.getMessage(), "Une erreur s'est produite lors de la suppression de la commande");
         }
         return getResult();
