@@ -16,6 +16,13 @@ public class UserService implements IUserService {
 
     private IUserDao userDao;
 
+    public UserService(IUserDao userDao) {
+        this.userDao = userDao;
+    }
+
+    public UserService() {
+        this.userDao = new UserDao();
+    }
     private static final String algo = "SHA-256";
 
     @Override
