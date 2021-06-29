@@ -40,7 +40,7 @@
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto text-center">
                     <p class="lead ">
-                        La page que vous avez demandée n'existe pas !
+                        La page que vous avez demand&eacute;e n'existe pas !
                     </p>
                 </div>
             </div>
