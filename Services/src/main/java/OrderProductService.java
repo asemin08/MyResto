@@ -1,3 +1,5 @@
+import eu.ensup.myresto.IOrderProductDao;
+import eu.ensup.myresto.OrderProductDao;
 import exceptions.DaoException;
 import exceptions.ServiceException;
 

@@ -1,4 +1,5 @@
-import exceptions.DaoException;
+import eu.ensup.myresto.BaseDao;
+import eu.ensup.myresto.exceptions.DaoException;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
 import org.apache.logging.log4j.LogManager;
