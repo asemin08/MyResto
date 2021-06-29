@@ -23,6 +23,7 @@
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+
         <dependency>
             <groupId>eu.ensup</groupId>
             <artifactId>Services</artifactId>

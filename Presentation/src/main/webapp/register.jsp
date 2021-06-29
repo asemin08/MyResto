@@ -54,6 +54,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
+
                                         <input type="password" placeholder="Mot de Passe" id="password[1]" class="form-control" name="password[1]" required data-error="Votre mot de Passe">
                                         <div class="help-block with-errors"></div>
                                     </div>
