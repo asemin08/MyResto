@@ -42,9 +42,6 @@ public class ServletLogin extends HttpServlet {
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
 
-        request.setAttribute("nom", email);
-        request.setAttribute("nom", MotdePasse);
-
         this.getServletContext().getRequestDispatcher("account/index.jsp").forward(request, response);
     }
 
