@@ -20,6 +20,7 @@ public class ServletLogin extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         operations(request, response);
     }
 
@@ -41,7 +42,7 @@ public class ServletLogin extends HttpServlet {
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
 
-
+        this.getServletContext().getRequestDispatcher("account/index.jsp").forward(request, response);
     }
 
 }

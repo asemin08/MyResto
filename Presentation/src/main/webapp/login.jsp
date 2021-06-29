@@ -49,6 +49,7 @@
                             <div class="col-md-12">
                                 <div class="submit-button text-center">
                                     <button class="btn btn-common" id="submitd" type="submit">Se Connecter</button>
+
                                     <div class="clearfix"></div>
                                 </div>
 
@@ -57,6 +58,7 @@
                     </form>
                     <div class="col-md-12">
                         <div class="submit-button text-center">
+
                             <a href="register">
                                 <button class="btn " id="submit" type="submit">Créer un compte</button>
                             </a>
@@ -67,4 +69,4 @@
         </div>
     </div>
 </div>
-<%@include file="footer.jsp" %>
+<%@include file="footer.jsp"%>

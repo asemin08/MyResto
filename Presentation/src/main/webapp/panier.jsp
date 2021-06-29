@@ -1,4 +1,3 @@
-
 <%@ page import="eu.ensup.myresto.Product" %>
 <%@ page import="java.util.Set" %><%--
 <%--
@@ -9,6 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%@include file="header.jsp"%>
 <!-- Start Panier -->
 <div class="panel-body table-responsive">
