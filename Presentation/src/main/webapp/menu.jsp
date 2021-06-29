@@ -11,9 +11,11 @@
 
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--- lorsque vous êtes   ---%>
+<%@include file="header.jsp"%>
 
-<%@include file="header.jsp" %>
 
+<%--- lorsque vous êtes   ---%>
 <!-- Start Menu -->
 <div class="menu-box">
     <div class="container">
@@ -29,6 +31,7 @@
         <div class="row inner-menu-box">
             <div class="col-3">
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
                     <a class="nav-link active" id="v-pills-All-tab" data-toggle="pill" href="#v-pills-All" role="tab"
                        aria-controls="v-pills-All" aria-selected="true">Tout</a>
                     <a class="nav-link" id="v-pills-boisson-tab" data-toggle="pill" href="#v-pills-boisson" role="tab"
