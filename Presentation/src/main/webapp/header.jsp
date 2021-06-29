@@ -63,8 +63,13 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item "><a class="nav-link" href="accueil">Accueil</a></li>
                 <li class="nav-item "><a class="nav-link" href="menu">Menu</a></li>
-                <li class="nav-item "><a class="nav-link" href="panier">Panier</a></li>
-                <li class="nav-item "><a class="nav-link" href="login">Login</a></li>
+                <% if (request.getSession().getAttribute("user") != null) {%>
+                    <li class="nav-item"><a class="nav-link" href="panier">Panier</a></li>
+                    <li class="nav-item"><a class="nav-link" href="orders">Commandes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="disconnect">Déconnection</a></li>
+                <% }else { %>
+                    <li class="nav-item "><a class="nav-link" href="login">Login</a></li>
+                <% }  %>
             </ul>
         </div>
     </div>

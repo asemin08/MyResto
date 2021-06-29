@@ -26,6 +26,7 @@ public class ServletLogin extends HttpServlet {
 
     protected void operations(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession userSession = request.getSession();
+
         if (request.getParameter("login") != null) {
             LoginUserDto loginUserDto = new LoginUserDto(request.getParameter("login"), request.getParameter("password"));
             UserService userService = new UserService();
