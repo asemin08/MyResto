@@ -1,5 +1,4 @@
-public class Product
-{
+public class ProductDto {
     private int id;
     private String name ;
     private float price;
@@ -7,7 +6,7 @@ public class Product
     private String description;
     private int idCategory;
 
-    public Product(int id, String name, float price, String picture, String description, int idCategory) {
+    public ProductDto(int id, String name, float price, String picture, String description, int idCategory) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -16,7 +15,7 @@ public class Product
         this.idCategory = idCategory;
     }
 
-    public Product(String name, float price, String picture, String description, int idCategory) {
+    public ProductDto(String name, float price, String picture, String description, int idCategory) {
         this.name = name;
         this.price = price;
         this.picture = picture;

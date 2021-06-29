@@ -1,5 +1,9 @@
+import exceptions.DaoException;
+
 import java.sql.*;
 import java.util.ResourceBundle;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class BaseDao {
 
@@ -14,44 +18,50 @@ public class BaseDao {
 
     private static CallableStatement cs = null;
 
-    private  static int result;
+    private static int result;
+    private static final Logger log = LogManager.getLogger(BaseDao.class);
 
     /**
      * Instantiates a new Base dao.
      */
     public BaseDao() {
         ResourceBundle bundle = ResourceBundle.getBundle("db");
-        this.url =bundle.getString("db.url");
+//        this.url ="jdbc:mysql://localhost:3306/myresto?serverTimezone=Europe/Berlin" ;//bundle.getString("jdbc:mysql://localhost:3306/myresto?serverTimezone=Europe/Berlin");
+//        this.login = "root"; //bundle.getString("root");
+//        this.password =""; //bundle.getString("");
+        this.url = bundle.getString("db.url");
         this.login = bundle.getString("db.username");
-        this.password =bundle.getString("db.password");
+        this.password = bundle.getString("db.password");
     }
 
-    public void connexion()
-    {
+    public int connexion() throws DaoException {
         try {
             cn = DriverManager.getConnection(url, login, password);
             st = cn.createStatement();
+            return 0;
+        } catch (SQLException e) {
+            log.error(e.getMessage());
+            return 1;
         }
-        catch (SQLException e) {}
     }
-    public void disconnect()
-    {
-        try {
-            if( rs != null )
-                rs.close();
-            if( cs != null )
-                cs.close();
-            if( ps != null )
-                ps.close();
-            if( st != null )
-                st.close();
-            if( cn != null )
-                cn.close();
-        }
-        catch (SQLException e) {
 
+    public void disconnect() throws DaoException {
+        try {
+            if (rs != null)
+                rs.close();
+            if (cs != null)
+                cs.close();
+            if (ps != null)
+                ps.close();
+            if (st != null)
+                st.close();
+            if (cn != null)
+                cn.close();
+        } catch (SQLException e) {
+            log.error(e.getMessage());
         }
     }
+
     public String getUrl() {
         return url;
     }
