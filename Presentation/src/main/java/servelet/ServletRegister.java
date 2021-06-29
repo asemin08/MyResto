@@ -51,6 +51,8 @@ public class ServletRegister extends HttpServlet {
                 request.setAttribute("error", "Les mots de passes ne correspondent pas.");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
             }
+        } else {
+            request.getRequestDispatcher("register.jsp").forward(request, response);
         }
     }
 }
