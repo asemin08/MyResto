@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: A
+  eu.ensup.myresto.User: A
   Date: 28/06/2021
   Time: 14:20
   To change this template use File | Settings | File Templates.
@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--
   Created by IntelliJ IDEA.
-  User: A
+  eu.ensup.myresto.User: A
   Date: 28/06/2021
   Time: 11:38
   To change this template use File | Settings | File Templates.
