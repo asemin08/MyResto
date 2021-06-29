@@ -63,7 +63,15 @@
                                         <p><%= p.getDescription()%>
                                         </p>
                                         <h5><%= p.getPrice()%>€</h5>
-                                        <a class="nav-link" href="#">Ajouter</a>
+                                        <form method="post" action="addToOrder">
+                                            <input type="hidden" id="productId" name="productId" value="<%= p.getId() %>">
+                                            <input type="hidden" id="productName" name="productName" value="<%= p.getName() %>">
+                                            <input type="hidden" id="productPicture" name="productPicture" value="<%= p.getPicture() %>">
+                                            <input type="hidden" id="productPrice" name="productPrice" value="<%= p.getPicture() %>">
+                                            <input type="hidden" id="productDesc" name="productDesc" value="<%= p.getDescription() %>">
+                                            <input type="submit" formmethod="post" value="Ajouter">
+                                        </form>
+
                                     </div>
                                 </div>
                             </div>
