@@ -20,13 +20,14 @@ public class CategoryDao extends BaseDao implements ICategoryDao
             setRs(getPs().executeQuery());
 
             ResultSet res = getRs();
-            if(!res.next()){
-                log.info("Aucune category disponible dans la base de donnée.");
-                System.out.println("Aucune category disponible dans la base de donnée.");
-            }
             while( res.next() ) {
                 Category category = new Category(res.getInt("id"), res.getString("name"), res.getString("image"));
                 allCategory.add(category);
+            }
+
+            if(allCategory.isEmpty())
+            {
+                log.info("Aucune category disponible dans la base de donnée.");
             }
 
             disconnect();
@@ -153,8 +154,8 @@ public class CategoryDao extends BaseDao implements ICategoryDao
             }
             else
             {
-                log.error("Cette categorie n'as pas été modifier" + category.getName());
-                throw new DaoException(CategoryDao.class.getName(), "update", null, "Cette categorie n'as pas été modifier");
+                log.error("La categorie "+category.getName()+" n'as pas été modifier !");
+                return 1;
             }
         } catch (SQLException e) {
             log.error(e.getMessage());
@@ -184,10 +185,14 @@ public class CategoryDao extends BaseDao implements ICategoryDao
                 disconnect();
                 return getResult();
             }
+            else
+            {
+                log.info("La categorie "+idCategory+" n'existe pas !");
+                throw new DaoException(CategoryDao.class.getName(), "delete", "La categorie "+idCategory+" n'existe pas !", "Cette categorie n'existe pas");
+            }
         } catch (SQLException e) {
             log.error(e.getMessage());
             throw new DaoException(CategoryDao.class.getName(), "delete", e.getMessage(), "Une erreur s'est produite lors de la suppression d'une categorie");
         }
-        return -1;
     }
 }
