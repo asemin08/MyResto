@@ -17,6 +17,12 @@ pipeline {
                 }
             }
 		}
+		stage('Verif variable profil') {
+        			steps {
+        				echo 'profil'
+        				sh("cat Dao/target/classes/db.properties")
+        			}
+        		}
 
 		stage('Test') {
 			steps {
