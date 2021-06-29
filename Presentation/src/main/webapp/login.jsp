@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-lg-12 col-sm-12 col-xs-12 ">
                 <div class="contact-block">
-                    <form id="contactForm" action="login">
+                    <form id="contactForm" method="post" action="login">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="col-md-12">
@@ -48,7 +48,7 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="submit-button text-center">
-                                    <button class="btn btn-common" id="submitd" type="submit">Se Connecter</button>
+                                    <button class="btn btn-common" id="submitd" formmethod="post" type="submit">Se Connecter</button>
 
                                     <div class="clearfix"></div>
                                 </div>
