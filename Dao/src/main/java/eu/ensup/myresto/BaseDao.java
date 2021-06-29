@@ -3,6 +3,8 @@ package eu.ensup.myresto;
 import java.sql.*;
 import java.util.ResourceBundle;
 
+import com.google.protobuf.ServiceException;
+import eu.ensup.myresto.exceptions.DaoException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -32,14 +34,14 @@ public class BaseDao {
         this.password = bundle.getString("db.password");
     }
 
-    public int connexion() {
+    public int connexion() throws DaoException {
         try {
             cn = DriverManager.getConnection(this.url, login, password);
             st = cn.createStatement();
             return 0;
         } catch (SQLException e) {
             log.error(e.getMessage());
-            return 1;
+            throw new DaoException(BaseDao.class.getName(), "connexion", e.getMessage(), "Une erreur s'est produite lors de connection à la base de données");
         }
     }
 
