@@ -2,6 +2,8 @@ import exceptions.DaoException;
 
 import java.sql.*;
 import java.util.ResourceBundle;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class BaseDao {
 
@@ -17,6 +19,7 @@ public class BaseDao {
     private static CallableStatement cs = null;
 
     private static int result;
+    private static final Logger log = LogManager.getLogger(BaseDao.class);
 
     /**
      * Instantiates a new Base dao.
@@ -37,6 +40,7 @@ public class BaseDao {
             st = cn.createStatement();
             return 0;
         } catch (SQLException e) {
+            log.error(e.getMessage());
             return 1;
         }
     }
@@ -54,7 +58,7 @@ public class BaseDao {
             if (cn != null)
                 cn.close();
         } catch (SQLException e) {
-
+            log.error(e.getMessage());
         }
     }
 

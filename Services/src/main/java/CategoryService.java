@@ -5,9 +5,14 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class CategoryService implements ICategoryService
 {
+
+    private static final Logger log = LogManager.getLogger(CategoryService.class);
+
     private ICategoryDao dao;
 
     public CategoryService(ICategoryDao dao)
@@ -32,6 +37,7 @@ public class CategoryService implements ICategoryService
             return listCategory;
         }
         catch (DaoException e) {
+            log.error(e.getMessage());
             throw new ServiceException(ProductDao.class.getName(), "getAll", e.getMessage(), "Une erreur s'est produite lors de la récupération de tout les categories");
         }
     }
@@ -43,6 +49,7 @@ public class CategoryService implements ICategoryService
             return CategoryMapper.convertDomaineDto(dao.get(idCategory));
         }
         catch (DaoException e) {
+            log.error(e.getMessage());
             throw new ServiceException(ProductDao.class.getName(), "get", e.getMessage(), "Une erreur s'est produite lors de la récupération d'une categorie");
         }
     }
@@ -54,6 +61,7 @@ public class CategoryService implements ICategoryService
             return CategoryMapper.convertDomaineDto(dao.get(nameCategory));
         }
         catch (DaoException e) {
+            log.error(e.getMessage());
             throw new ServiceException(ProductDao.class.getName(), "get", e.getMessage(), "Une erreur s'est produite lors de la récupération d'une categorie");
         }
     }
@@ -65,6 +73,7 @@ public class CategoryService implements ICategoryService
             return dao.create(CategoryMapper.convertDtoDomaine(category));
         }
         catch (DaoException e) {
+            log.error(e.getMessage());
             throw new ServiceException(ProductDao.class.getName(), "create", e.getMessage(), "Une erreur s'est produite lors de la creation d'une categorie");
         }
     }
@@ -76,6 +85,7 @@ public class CategoryService implements ICategoryService
             return dao.update(CategoryMapper.convertDtoDomaine(category));
         }
         catch (DaoException e) {
+            log.error(e.getMessage());
             throw new ServiceException(ProductDao.class.getName(), "update", e.getMessage(), "Une erreur s'est produite lors de la mise a jour d'une categorie");
         }
     }
@@ -87,6 +97,7 @@ public class CategoryService implements ICategoryService
             return dao.delete(CategoryMapper.convertDtoDomaine(category));
         }
         catch (DaoException e) {
+            log.error(e.getMessage());
             throw new ServiceException(ProductDao.class.getName(), "delete", e.getMessage(), "Une erreur s'est produite lors de la suppression d'une categorie");
         }
     }
@@ -98,6 +109,7 @@ public class CategoryService implements ICategoryService
             return dao.delete(idCategory);
         }
         catch (DaoException e) {
+            log.error(e.getMessage());
             throw new ServiceException(ProductDao.class.getName(), "delete", e.getMessage(), "Une erreur s'est produite lors de la suppression d'une categorie");
         }
     }

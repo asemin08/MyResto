@@ -3,9 +3,13 @@ import exceptions.DaoException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class CategoryDao extends BaseDao implements ICategoryDao
 {
+    private static final Logger log = LogManager.getLogger(CategoryDao.class);
+
     @Override
     public List<Category> getAll() throws DaoException {
         List<Category> allCategory = new ArrayList<Category>();
@@ -17,6 +21,7 @@ public class CategoryDao extends BaseDao implements ICategoryDao
 
             ResultSet res = getRs();
             if(!res.next()){
+                log.info("Aucune category disponible dans la base de donnée.");
                 System.out.println("Aucune category disponible dans la base de donnée.");
             }
             while( res.next() ) {
@@ -26,6 +31,7 @@ public class CategoryDao extends BaseDao implements ICategoryDao
 
             disconnect();
         } catch (SQLException e) {
+            log.error(e.getMessage());
             throw new DaoException(UserDao.class.getName(),"getAll",e.getMessage(),"Une erreur s'est produite lors de la creation de la liste des categorie");
         }
 
@@ -42,9 +48,10 @@ public class CategoryDao extends BaseDao implements ICategoryDao
             setRs(getPs().executeQuery());
 
             ResultSet res = getRs();
-
-            if(res.next() == false){
-                System.out.println("Aucune category disponible dans la base de donnée.");
+            
+            if(res.next() == false)
+            {
+                log.info("La category " + idCategory + " n'est pas disponible dans la base de donnée.");
             }
             else
             {
@@ -52,7 +59,9 @@ public class CategoryDao extends BaseDao implements ICategoryDao
             }
             disconnect();
         }
-        catch (SQLException e) {
+        catch (SQLException e)
+        {
+            log.error(e.getMessage());
             throw new DaoException(CategoryDao.class.getName(),"get",e.getMessage(),"Une erreur s'est produite lors de la recherche d'une categorie");
         }
 
@@ -70,9 +79,10 @@ public class CategoryDao extends BaseDao implements ICategoryDao
             setRs(getPs().executeQuery());
 
             ResultSet res = getRs();
+
             if(res.next() == false)
             {
-                System.out.println("Aucune category disponible dans la base de donnée.");
+                log.info("La category " + nameCategory + " n'est pas disponible dans la base de donnée.");
             }
             else
             {
@@ -81,6 +91,7 @@ public class CategoryDao extends BaseDao implements ICategoryDao
 
             disconnect();
         } catch (SQLException e) {
+            log.error(e.getMessage());
             throw new DaoException(CategoryDao.class.getName(),"get",e.getMessage(),"Une erreur s'est produite lors de la recherche d'une categorie");
         }
 
@@ -106,9 +117,11 @@ public class CategoryDao extends BaseDao implements ICategoryDao
             }
             else
             {
+                log.error("La categorie" + category.getName() + "existe déjà");
                 throw new DaoException(CategoryDao.class.getName(), "create", null, "Cette categorie existe déjà");
             }
         } catch (SQLException e) {
+            log.error(e.getMessage());
             throw new DaoException(CategoryDao.class.getName(), "create", e.getMessage(), "Une erreur s'est produite lors de la creation d'une categorie");
         }
     }
@@ -140,9 +153,11 @@ public class CategoryDao extends BaseDao implements ICategoryDao
             }
             else
             {
+                log.error("Cette categorie n'as pas été modifier" + category.getName());
                 throw new DaoException(CategoryDao.class.getName(), "update", null, "Cette categorie n'as pas été modifier");
             }
         } catch (SQLException e) {
+            log.error(e.getMessage());
             throw new DaoException(CategoryDao.class.getName(), "update", e.getMessage(), "Une erreur s'est produite lors de la mise a jour d'une categorie");
         }
     }
@@ -170,6 +185,7 @@ public class CategoryDao extends BaseDao implements ICategoryDao
                 return getResult();
             }
         } catch (SQLException e) {
+            log.error(e.getMessage());
             throw new DaoException(CategoryDao.class.getName(), "delete", e.getMessage(), "Une erreur s'est produite lors de la suppression d'une categorie");
         }
         return -1;

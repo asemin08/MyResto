@@ -4,7 +4,13 @@ import exceptions.ServiceException;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class ProductService implements IProductService {
+
+    private static final Logger log = LogManager.getLogger(ProductService.class);
+
 
     private IProductDao productDao;
 
@@ -21,7 +27,8 @@ public class ProductService implements IProductService {
         try {
             return productDao.createProduct(convertProductDtoToProduct(product));
         } catch (DaoException e) {
-            throw new ServiceException(ProductDao.class.getName(), "createProduct", e.getMessage(), "Une erreur s'est produite lors de la récupération du produit");
+            log.error(e.getMessage());
+            throw new ServiceException(ProductService.class.getName(), "createProduct", e.getMessage(), "Une erreur s'est produite lors de la récupération du produit");
         }
     }
 
@@ -34,7 +41,8 @@ public class ProductService implements IProductService {
             }
             return productDtoSet;
         } catch (DaoException e) {
-            throw new ServiceException(ProductDao.class.getName(), "getAllProducts", e.getMessage(), "Une erreur s'est produite lors de la récupération de tout les produits");
+            log.error(e.getMessage());
+            throw new ServiceException(ProductService.class.getName(), "getAllProducts", e.getMessage(), "Une erreur s'est produite lors de la récupération de tout les produits");
         }
     }
 
@@ -43,7 +51,8 @@ public class ProductService implements IProductService {
         try {
             return productDao.updateProduct(product);
         } catch (DaoException e) {
-            throw new ServiceException(ProductDao.class.getName(), "updateProduct", e.getMessage(), "Une erreur s'est produite lors de la mise à jour du produit");
+            log.error(e.getMessage());
+            throw new ServiceException(ProductService.class.getName(), "updateProduct", e.getMessage(), "Une erreur s'est produite lors de la mise à jour du produit");
         }
     }
 
@@ -52,7 +61,8 @@ public class ProductService implements IProductService {
         try {
             return productDao.deleteProduct(idProduct);
         } catch (DaoException e) {
-            throw new ServiceException(ProductDao.class.getName(), "deleteProduct", e.getMessage(), "Une erreur s'est produite lors de la suppression du produit");
+            log.error(e.getMessage());
+            throw new ServiceException(ProductService.class.getName(), "deleteProduct", e.getMessage(), "Une erreur s'est produite lors de la suppression du produit");
         }
     }
 
@@ -61,18 +71,19 @@ public class ProductService implements IProductService {
         try {
             return convertProductToProductDto(productDao.getOneProduct(idProduct));
         } catch (DaoException e) {
-            throw new ServiceException(ProductDao.class.getName(), "getOneProduct", e.getMessage(), "Une erreur s'est produite lors de la récupération du produit");
+            log.error(e.getMessage());
+            throw new ServiceException(ProductService.class.getName(), "getOneProduct", e.getMessage(), "Une erreur s'est produite lors de la récupération du produit");
         }
     }
 
     @Override
     public ProductDto convertProductToProductDto(Product Product) {
-        return new ProductDto(Product.getId(), Product.getName(), Product.getPrice(), Product.getPicture(), Product.getDescription());
+        return new ProductDto(Product.getId(), Product.getName(), Product.getPrice(), Product.getPicture(), Product.getDescription(),Product.getIdCategory());
     }
 
     @Override
     public Product convertProductDtoToProduct(ProductDto ProductDto) {
-        return new Product(ProductDto.getId(), ProductDto.getName(), ProductDto.getPrice(), ProductDto.getPicture(), ProductDto.getDescription());
+        return new Product(ProductDto.getId(), ProductDto.getName(), ProductDto.getPrice(), ProductDto.getPicture(), ProductDto.getDescription(),ProductDto.getIdCategory());
 
     }
 }
