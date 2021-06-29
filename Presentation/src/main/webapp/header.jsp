@@ -23,7 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Site Metas -->
-    <title>Live Dinner Restaurant - Responsive HTML5 Template</title>
+    <title>My Resto</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -52,7 +52,7 @@
 <header class="top-navbar">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="accueil">
             <img src="assets/images/logo.png" alt="" height="100" width="100"/>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,12 +60,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbars-rs-food">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a class="nav-link" href="/">Accueil</a></li>
-                <li class="nav-item"><a class="nav-link" href="menu">Menu</a></li>
-                <li class="nav-item"><a class="nav-link" href="login">Réservation</a></li>
-                <li class="nav-item"><a class="nav-link" href="panier">Panier</a></li>
-                <li class="nav-item"><a class="nav-link" href="login">Login</a></li>
-
+                <li class="nav-item "><a class="nav-link" href="accueil">Accueil</a></li>
+                <li class="nav-item "><a class="nav-link" href="menu">Menu</a></li>
+                <li class="nav-item "><a class="nav-link" href="login">Réservation</a></li>
+                <li class="nav-item "><a class="nav-link" href="panier">Panier</a></li>
+                <li class="nav-item "><a class="nav-link" href="login">Login</a></li>
             </ul>
         </div>
     </div>
