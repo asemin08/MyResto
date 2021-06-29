@@ -54,7 +54,14 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="password" placeholder="Mot de Passe" id="adresse" class="form-control" name="Mot de Passe" required data-error="Entrer votre mot de Passe">
+                                        <input type="password" placeholder="Mot de Passe" id="mdp" class="form-control" name="Mot de Passe" required data-error="Entrer votre mot de Passe">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="password" placeholder="Mot de Passe" id="mdp2" class="form-control" name="Mot de Passe2" required data-error="Entrer votre mot de Passe">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
