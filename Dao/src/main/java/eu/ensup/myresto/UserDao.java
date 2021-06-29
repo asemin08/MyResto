@@ -62,7 +62,7 @@ public class UserDao extends BaseDao implements IUserDao {
             setResult(getPs().executeUpdate());
             disconnect();
             return getResult();
-        } catch (SQLException | DaoException e) {
+        } catch (SQLException e) {
             log.error(e.getMessage());
             throw new DaoException(UserDao.class.getName(),"delete",e.getMessage(),"Une erreur s'est produite lors de la suppression de l'utilisateur");
         }

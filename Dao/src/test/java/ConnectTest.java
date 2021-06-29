@@ -18,10 +18,6 @@ class ConnectTest  {
 
     @Test
      void testConnection() {
-        try {
-            MatcherAssert.assertThat( baseDao.connexion(), equalTo(0) );
-        } catch (DaoException e) {
-           log.error(e.getMessage());
-        }
+        MatcherAssert.assertThat( baseDao.connexion(), equalTo(0) );
     }
 }

@@ -36,13 +36,9 @@ public class CategoryDaoTest
     @BeforeEach
     public void testConnection()
     {
-        try{
-            BaseDao baseDao = new BaseDao();
-            baseDao.connexion();
-            assertThat(baseDao.getCn(), is(notNullValue()));
-        } catch(DaoException e) {
-            log.info(e.getMessage());
-        }
+        BaseDao baseDao = new BaseDao();
+        baseDao.connexion();
+        assertThat(baseDao.getCn(), is(notNullValue()));
     }
 
     /*@Test
