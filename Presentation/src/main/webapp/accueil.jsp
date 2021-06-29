@@ -8,7 +8,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 class="m-b-20"><strong>Bienvenue à <br> My Resto</strong></h1>
+                        <h1 class="m-b-20"><strong>Bienvenue chez <br> My Resto</strong></h1>
                         <p class="m-b-40">Commander vos plats préférées  <br>
                             Profitez d'une réduction pour votre première commande.</p>
 
