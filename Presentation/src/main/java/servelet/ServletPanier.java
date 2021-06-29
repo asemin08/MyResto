@@ -23,14 +23,12 @@ public class ServletPanier extends HttpServlet {
                 case "/delete":
                     deleteProduct(request, response);
                     break;
-                case "/ServletPanier":
+                case "/panier":
                     operations(request, response);
                     break;
                 default:
                     break;
             }
-
-
         } catch (ServiceException e) {
             request.getRequestDispatcher("404.jsp").forward(request, response);
             e.printStackTrace();
@@ -45,7 +43,7 @@ public class ServletPanier extends HttpServlet {
                 case "/delete":
                     deleteProduct(request, response);
                     break;
-                case "/ServletPanier":
+                case "/panier":
                     operations(request, response);
                     break;
                 default:
