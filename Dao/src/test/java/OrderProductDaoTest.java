@@ -1,4 +1,6 @@
-import exceptions.DaoException;
+import eu.ensup.myresto.OrderProduct;
+import eu.ensup.myresto.OrderProductDao;
+import eu.ensup.myresto.exceptions.DaoException;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
 

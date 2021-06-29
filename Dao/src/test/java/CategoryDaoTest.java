@@ -4,7 +4,10 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import exceptions.DaoException;
+import eu.ensup.myresto.BaseDao;
+import eu.ensup.myresto.Category;
+import eu.ensup.myresto.CategoryDao;
+import eu.ensup.myresto.exceptions.DaoException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeAll;
@@ -33,13 +36,9 @@ public class CategoryDaoTest
     @BeforeEach
     public void testConnection()
     {
-        try{
-            BaseDao baseDao = new BaseDao();
-            baseDao.connexion();
-            assertThat(baseDao.getCn(), is(notNullValue()));
-        } catch(DaoException e) {
-            log.info(e.getMessage());
-        }
+        BaseDao baseDao = new BaseDao();
+        baseDao.connexion();
+        assertThat(baseDao.getCn(), is(notNullValue()));
     }
 
     /*@Test
@@ -48,14 +47,14 @@ public class CategoryDaoTest
     public void testCreate()
     {
         try{
-            int res = dao.create(new Category(0, this.name, this.image));
+            int res = dao.create(new eu.ensup.myresto.Category(0, this.name, this.image));
             assertThat(res, equalTo(1));
         }
         catch (DaoException e) {
             log.info(e.getMessage());
         }
     }*/
-
+    /*
     @Test
     @DisplayName("Test getAll")
     @Order(2)
@@ -92,7 +91,7 @@ public class CategoryDaoTest
         catch (DaoException e) {
             log.info(e.getMessage());
         }
-    }
+    }*/
 
 	/*@Test
 	@DisplayName("Test delete")

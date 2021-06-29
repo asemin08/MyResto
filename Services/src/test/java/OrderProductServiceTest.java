@@ -1,5 +1,9 @@
-import exceptions.DaoException;
-import exceptions.ServiceException;
+import eu.ensup.myresto.IOrderProductDao;
+import eu.ensup.myresto.OrderProduct;
+import eu.ensup.myresto.OrderProductDto;
+import eu.ensup.myresto.OrderProductService;
+import eu.ensup.myresto.exceptions.DaoException;
+import eu.ensup.myresto.exceptions.ServiceException;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
