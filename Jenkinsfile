@@ -9,6 +9,8 @@ pipeline {
 		stage('Build') {
 			steps {
 				echo 'Building..'
+				sh("whoami")
+				sh("pwd")
 				sh("mvn clean package")
 			}
 			post {
