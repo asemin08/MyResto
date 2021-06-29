@@ -22,7 +22,7 @@
         </thead>
         <tbody>
         <%
-            for(Product p : (Set<Product>) session.getAttribute("listEtudiants")){
+            for(Product p : (Set<Product>) session.getAttribute("listProduct")){
         %>
         <tr>
             <td><%= p.getId()%></td>
