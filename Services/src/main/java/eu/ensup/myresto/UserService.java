@@ -26,11 +26,11 @@ public class UserService implements IUserService {
     private static final String algo = "SHA-256";
 
     @Override
-    public int create(UserDto userDto) throws ServiceException {
+    public int create(RegisterUserDto userDto) throws ServiceException {
         try {
             User user = UserMapper.convertDtoDomaine(userDto);
             byte[] salt = createSalt();
-            user.setPassword(generateHashPassword(user.getPassword(), salt));
+            user.setPassword(generateHashPassword(userDto.getPassword(), salt));
             user.setSalt(Base64.getEncoder().encodeToString(salt));
             return userDao.create(user);
         } catch (DaoException e) {
