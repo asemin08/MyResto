@@ -42,7 +42,6 @@ public class ServletLogin extends HttpServlet {
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
 
-        this.getServletContext().getRequestDispatcher("account/index.jsp").forward(request, response);
     }
 
 }
