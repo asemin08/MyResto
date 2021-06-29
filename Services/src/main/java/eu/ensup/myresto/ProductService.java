@@ -79,12 +79,12 @@ public class ProductService implements IProductService {
 
     @Override
     public ProductDto convertProductToProductDto(Product Product) {
-        return new ProductDto(Product.getId(), Product.getName(), Product.getPrice(), Product.getPicture(), Product.getDescription(),Product.getIdCategory());
+        return new ProductDto(Product.getId(), Product.getName(), Product.getPrice(),  Product.getDescription(),Product.getPicture(),Product.getIdCategory());
     }
 
     @Override
     public Product convertProductDtoToProduct(ProductDto ProductDto) {
-        return new Product(ProductDto.getId(), ProductDto.getName(), ProductDto.getPrice(), ProductDto.getPicture(), ProductDto.getDescription(),ProductDto.getIdCategory());
+        return new Product(ProductDto.getId(), ProductDto.getName(), ProductDto.getPrice(),  ProductDto.getDescription(),ProductDto.getPicture(),ProductDto.getIdCategory());
 
     }
 }
