@@ -17,10 +17,11 @@ class OrderProductDaoTest {
     void createOrderProductTest() {
         try {
             List<Integer> tabIdsProducts = new ArrayList<>();
-            tabIdsProducts.add(1);
-            tabIdsProducts.add(1);
+            tabIdsProducts.add(2);
+            tabIdsProducts.add(3);
+            tabIdsProducts.add(4);
 //            tabIdsProducts.add(1);
-            var result = orderProductDao.createOrderProduct(new OrderProduct(100, tabIdsProducts, OrderProduct.Status.NEW.toString(), null));
+            var result = orderProductDao.createOrderProduct(new OrderProduct(2, tabIdsProducts, OrderProduct.Status.NEW.toString(), null));
             MatcherAssert.assertThat(result, equalTo(1));
         } catch (DaoException e) {
             //TODO

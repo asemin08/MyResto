@@ -13,7 +13,7 @@ public class OrderProductDao extends BaseDao implements IOrderProductDao {
         try {
             connexion();
             var idOrder = new Random().nextInt(100000);
-            String sql = "INSERT INTO `order_product`(`id`, `idUser`, `date`, `status`) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO `order_product`(`id`, `id_User`, `date`, `status`) VALUES (?,?,?,?)";
             setPs(getCn().prepareStatement(sql));
             getPs().setLong(1, idOrder);
             getPs().setInt(2,orderProduct.getIdUser());
@@ -40,7 +40,7 @@ public class OrderProductDao extends BaseDao implements IOrderProductDao {
         Set<OrderProduct> OrderProducts = new HashSet<>();
         try {
             connexion();
-            String sql = "SELECT * FROM `order_product` where idUser = ?";
+            String sql = "SELECT * FROM `order_product` where id_User = ?";
             setPs(getCn().prepareStatement(sql));
             getPs().setInt(1, idUser);
             setRs(getPs().executeQuery());
@@ -54,7 +54,7 @@ public class OrderProductDao extends BaseDao implements IOrderProductDao {
                 while (getRs().next()) {
                     tabIdsProducts.add(getRs().getInt("id_product"));
                 }
-               OrderProducts.add(new OrderProduct(result.getInt("id"), result.getInt("idUser") ,tabIdsProducts,result.getDate("date"), result.getString("status")));
+               OrderProducts.add(new OrderProduct(result.getInt("id"), result.getInt("id_User") ,tabIdsProducts,result.getDate("date"), result.getString("status")));
             }
         } catch (SQLException e) {
             throw new DaoException(OrderProductDao.class.getName(), "getAllOrderProducts", e.getMessage(), "Une erreur s'est produite lors de la récupération de tout les commande");
@@ -66,7 +66,7 @@ public class OrderProductDao extends BaseDao implements IOrderProductDao {
     public int updateOrderProduct(OrderProduct orderProduct) throws DaoException {
         try {
             connexion();
-            String sql = "UPDATE `order_product` SET `idUser`=?,`idProduct`=?,`date`=?,`status`=?, WHERE `id`= ?";
+            String sql = "UPDATE `order_product` SET `id_User`=?,`idProduct`=?,`date`=?,`status`=?, WHERE `id`= ?";
             setPs(getCn().prepareStatement(sql));
             getPs().setInt(1, orderProduct.getIdUser());
 //            getPs().setArray(2, getCn().createArrayOf("integer", orderProduct.getIdProduct()));
@@ -113,7 +113,7 @@ public class OrderProductDao extends BaseDao implements IOrderProductDao {
                 while (getRs().next()) {
                     tabIdsProducts.add(getRs().getInt("id_product"));
                 }
-                return new OrderProduct(result.getInt("id"), result.getInt("idUser") ,tabIdsProducts,result.getDate("date"), result.getString("status"));
+                return new OrderProduct(result.getInt("id"), result.getInt("id_User") ,tabIdsProducts,result.getDate("date"), result.getString("status"));
             }
         } catch (SQLException e) {
             throw new DaoException(OrderProductDao.class.getName(), "getAllOrderProducts", e.getMessage(), "Une erreur s'est produite lors de la récupération de tout les commande");
