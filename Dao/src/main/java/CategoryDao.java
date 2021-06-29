@@ -48,7 +48,7 @@ public class CategoryDao extends BaseDao implements ICategoryDao
             setRs(getPs().executeQuery());
 
             ResultSet res = getRs();
-            
+
             if(res.next() == false)
             {
                 log.info("La category " + idCategory + " n'est pas disponible dans la base de donnée.");
