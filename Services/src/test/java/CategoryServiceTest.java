@@ -1,46 +1,88 @@
-//import exceptions.DaoException;
-//import exceptions.ServiceException;
-//import org.hamcrest.MatcherAssert;
-//import org.junit.Test;
-//import org.junit.jupiter.api.extension.ExtendWith;
-//import org.junit.runner.RunWith;
-//import org.mockito.InjectMocks;
-//import org.mockito.Mock;
-//import org.mockito.junit.jupiter.MockitoExtension;
-//import org.mockito.runners.MockitoJUnitRunner;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//import static org.hamcrest.Matchers.equalTo;
-//import static org.junit.jupiter.api.Assertions.fail;
-//import static org.mockito.Mockito.verify;
-//import static org.mockito.Mockito.when;
-//
-//@RunWith(MockitoJUnitRunner.class)
-//public class CategoryServiceTest
-//{
-//    @Mock
-//    ICategoryDao categoryDao;
-//
-//    @InjectMocks
-//    CategoryService categoryService;
-//
-//    @Test
-//    public void ProductgetAllTest()
-//    {
-//        List<CategoryDto> listCategory = new ArrayList<CategoryDto>();
-//        listCategory.add(new CategoryDto(1, "Entrée", null));
-//        listCategory.add(new CategoryDto(2, "Plat", null));
-//        listCategory.add(new CategoryDto(3, "Dessert", null));
-//
-//        try{
-//            when(categoryDao.getAll().size()).thenReturn(3);
-//            MatcherAssert.assertThat(categoryService.getAll().size(), equalTo(3));
-//            verify(categoryDao).getAll();
-//        }
-//        catch (ServiceException | DaoException e) {
-//            fail(e.getMessage());
-//        }
-//    }
-//}
+import exceptions.DaoException;
+import exceptions.ServiceException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.hamcrest.MatcherAssert;
+import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+
+import static org.hamcrest.Matchers.equalTo;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+@RunWith(MockitoJUnitRunner.class)
+public class CategoryServiceTest
+{
+    private static final Logger log = LogManager.getLogger(CategoryServiceTest.class);
+
+    @Mock
+    ICategoryDao categoryDao;
+
+    @InjectMocks
+    CategoryService categoryService;
+
+    @Test
+    @DisplayName("Test get")
+    public void getTest()
+    {
+        CategoryDto category = new CategoryDto(1, "Entrée", null);
+        try{
+            when(categoryDao.get(1)).thenReturn(CategoryMapper.convertDtoDomaine(category));
+            MatcherAssert.assertThat(categoryService.get(1).toString(), equalTo(category.toString()));
+            verify(categoryDao).get(1);
+        }
+        catch (ServiceException | DaoException e) {
+            log.info(e.getMessage());
+        }
+    }
+
+    @Test
+    @DisplayName("Test create")
+    public void createTest()
+    {
+        CategoryDto categoryDto = new CategoryDto(1, "Entrée", null);
+        try{
+            when(categoryDao.create(any(Category.class))).thenReturn(1);
+            MatcherAssert.assertThat(categoryService.create(categoryDto), equalTo(1));
+            verify(categoryDao).create(any(Category.class));
+        }
+        catch (ServiceException | DaoException e) {
+            log.info(e.getMessage());
+        }
+    }
+
+    @Test
+    @DisplayName("Test update")
+    public void updateTest()
+    {
+        CategoryDto categoryDto = new CategoryDto(1, "Entrée", "image.png");
+        try{
+            when(categoryDao.update(any(Category.class))).thenReturn(1);
+            MatcherAssert.assertThat(categoryService.update(categoryDto), equalTo(1));
+            verify(categoryDao).update(any(Category.class));
+        }
+        catch (ServiceException | DaoException e) {
+            log.info(e.getMessage());
+        }
+    }
+
+    @Test
+    @DisplayName("Test delete")
+    public void deleteTest()
+    {
+        CategoryDto categoryDto = new CategoryDto(1, "Entrée", "image.png");
+        try{
+            when(categoryDao.delete(any(Category.class))).thenReturn(1);
+            MatcherAssert.assertThat(categoryService.delete(categoryDto), equalTo(1));
+            verify(categoryDao).delete(any(Category.class));
+        }
+        catch (ServiceException | DaoException e) {
+            log.info(e.getMessage());
+        }
+    }
+}
