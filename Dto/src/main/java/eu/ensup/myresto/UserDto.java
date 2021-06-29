@@ -26,6 +26,16 @@ public class UserDto {
         this.image = image;
     }
 
+    public UserDto(String login, String firstName, String lastName, String address, String role, String image) {
+        this.id = 0;
+        this.login = login;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.role = role;
+        this.image = image;
+    }
+
     public UserDto() {
 
     }

@@ -37,7 +37,7 @@ public class CategoryServiceTest
             MatcherAssert.assertThat(categoryService.get(1).toString(), equalTo(category.toString()));
             verify(categoryDao).get(1);
         }
-        catch (ServiceException | DaoException e) {
+        catch (DaoException | ServiceException e) {
             log.info(e.getMessage());
         }
     }
