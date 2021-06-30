@@ -27,7 +27,6 @@ public class ServletAddProductToCart extends HttpServlet {
     }
 
     protected void addProductToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProductService productService = new ProductService();
         HttpSession userSession = request.getSession();
         Map<Integer, Integer> productsOrder = (Map<Integer, Integer>) userSession.getAttribute("order");
         int productId = Integer.parseInt(request.getParameter("id"));

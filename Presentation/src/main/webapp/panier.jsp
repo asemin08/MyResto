@@ -33,11 +33,10 @@
                 for(ProductDto p : (Set<ProductDto>) session.getAttribute("productSet")){
             %>
             <tr>
-                <td><%= p.getId()%></td>
                 <td><%= p.getPicture()%></td>
                 <td><%= p.getName()%></td>
                 <td><%= p.getDescription()%></td>
-                <td><%=p.getPrice()%></td>
+                <td><%=p.getPrice() %> €</td>
                 <td><%= productIds.get(p.getId()) %></td>
                 <td>
                     <ul class="action-list">
@@ -48,6 +47,14 @@
             <%
                 }
             %>
+            <tr>
+                <td>TOTAL</td>
+                <td colspan="3" >${totalPrice} €</td>
+                <td colspan="2" ><a href="ordercart">Commander</a></td>
+            </tr>
+            <% if(request.getParameter("error") != null) { %>
+                <td colspan="6">${error}</td>
+            <% } %>
             </tbody>
         </table>
     </div>

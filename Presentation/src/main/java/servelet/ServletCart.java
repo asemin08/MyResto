@@ -36,15 +36,20 @@ public class ServletCart extends HttpServlet {
         ProductService productService = new ProductService();
         HttpSession userSession = request.getSession();
         Map<Integer, Integer> productsIds = (Map<Integer, Integer>) userSession.getAttribute("order");
+        float total = 0.0f;
         Set<ProductDto> productDtos = new HashSet<>();
-            for(Map.Entry<Integer,Integer> entry : productsIds.entrySet()){
+        if (productsIds != null)
+            for (Map.Entry<Integer, Integer> entry : productsIds.entrySet()) {
                 try {
-                    productDtos.add(productService.getOneProduct(entry.getKey()));
+                    ProductDto productDto = productService.getOneProduct(entry.getKey());
+                    total += productDto.getPrice() * entry.getValue();
+                    productDtos.add(productDto);
                 } catch (ServiceException e) {
                     log.error(e.getMessage());
                 }
             }
-        userSession.setAttribute("productSet",productDtos);
+        request.setAttribute("totalPrice", total);
+        userSession.setAttribute("productSet", productDtos);
         request.getRequestDispatcher("panier.jsp").forward(request, response);
 
     }
