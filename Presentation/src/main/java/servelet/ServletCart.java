@@ -1,65 +1,76 @@
 package servelet;
 
-import eu.ensup.myresto.Product;
 import eu.ensup.myresto.ProductDto;
 import eu.ensup.myresto.ProductService;
 import eu.ensup.myresto.exceptions.ServiceException;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 @WebServlet(name = "ServletPanier", value = "/panier")
 public class ServletCart extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession userSession = request.getSession();
 
         try {
-            String action = request.getServletPath();
-            switch (action) {
-                case "/delete":
-                    deleteProduct(request, response);
-                    break;
-                case "/panier":
-                    operations(request, response);
-                    break;
-                default:
-                    break;
+            try {
+                String action = request.getServletPath();
+                switch (action) {
+                    case "/delete":
+                        deleteProduct(request, response);
+
+                        break;
+                    case "/panier":
+                        operations(request, response,userSession);
+                        break;
+                    default:
+                        break;
+                }
+            } catch (ServiceException e) {
+                request.getRequestDispatcher("404.jsp").forward(request, response);
+                e.printStackTrace();
             }
-        } catch (ServiceException e) {
-            request.getRequestDispatcher("404.jsp").forward(request, response);
-            e.printStackTrace();
+        } catch (ServletException | IOException e) {
+            userSession.setAttribute("error", e.getMessage());
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession userSession = request.getSession();
+
         try {
-            String action = request.getServletPath();
-            switch (action) {
-                case "/delete":
-                    deleteProduct(request, response);
-                    break;
-                case "/panier":
-                    operations(request, response);
-                    break;
-                default:
-                    break;
+            try {
+                String action = request.getServletPath();
+                switch (action) {
+                    case "/delete":
+                        deleteProduct(request, response);
+
+                        break;
+                    case "/panier":
+                        operations(request, response,userSession);
+                        break;
+                    default:
+                        break;
+                }
+            } catch (ServiceException e) {
+                request.getRequestDispatcher("404.jsp").forward(request, response);
+                e.printStackTrace();
             }
-
-
-        } catch (ServiceException e) {
-            request.getRequestDispatcher("404.jsp").forward(request, response);
-            e.printStackTrace();
+        } catch (ServletException | IOException e) {
+            userSession.setAttribute("error", e.getMessage());
         }
     }
 
-    protected void operations(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServiceException {
+    protected void operations(HttpServletRequest request, HttpServletResponse response,HttpSession userSession) throws ServletException, IOException, ServiceException {
         ProductService productService = new ProductService();
-        HttpSession userSession = request.getSession();
         Map<Integer, Integer> productCount = new HashMap<>();
         List<Integer> productsOrder = (List<Integer>) userSession.getAttribute("order");
         Set<ProductDto> productDtos = new HashSet<>();

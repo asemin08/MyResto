@@ -20,18 +20,27 @@ public class ServletMenu extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        operations(request, response);
+        HttpSession userSession = request.getSession();
+        try {
+            operations(request, response,userSession);
+        } catch (ServletException | IOException e) {
+            userSession.setAttribute("error", e.getMessage());
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        operations(request, response);
+        HttpSession userSession = request.getSession();
+        try {
+            operations(request, response,userSession);
+        } catch (ServletException | IOException e) {
+            userSession.setAttribute("error", e.getMessage());
+        }
     }
 
-    protected void operations(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void operations(HttpServletRequest request, HttpServletResponse response,HttpSession userSession) throws ServletException, IOException {
 
         ProductService productService = new ProductService();
-        HttpSession userSession = request.getSession();
         try {
             List<ProductDto> listBoisson = new LinkedList<>();
             List<ProductDto> listEntree = new LinkedList<>();
@@ -63,7 +72,7 @@ public class ServletMenu extends HttpServlet {
             this.getServletContext().getRequestDispatcher("/menu.jsp").forward(request, response);
         } catch (ServiceException e) {
             userSession.setAttribute("error", e.getMessageViewForUser());
-            this.getServletContext().getRequestDispatcher("/500.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/menu.jsp").forward(request, response);
         }
     }
 }
