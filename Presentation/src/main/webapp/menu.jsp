@@ -1,22 +1,16 @@
 <%@ page import="eu.ensup.myresto.Product" %>
 <%@ page import="java.util.Set" %>
 <%@ page import="eu.ensup.myresto.ProductDto" %>
-<%@ page import="eu.ensup.myresto.CategoryService" %><%--
+<%@ page import="eu.ensup.myresto.CategoryService" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   eu.ensup.myresto.User: A
   Date: 28/06/2021
   Time: 14:47
   To change this template use File | Settings | File Templates.
 --%>
-
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--- lorsque vous êtes   ---%>
-<%@include file="header.jsp"%>
-
-
-<%--- lorsque vous êtes   ---%>
-<!-- Start Menu -->
+<%@include file="header.jsp" %>
 <div class="menu-box">
     <div class="container">
         <div class="row">
@@ -51,123 +45,40 @@
                          aria-labelledby="v-pills-All-tab">
                         <div class="row">
                             <%
-                                for (ProductDto p : (Set<ProductDto>) session.getAttribute("listProducts")) {
+                                for (ProductDto p : (List<ProductDto>) session.getAttribute("listProducts")) {
 
                             %>
                             <div class="col-lg-4 col-md-6 special-grid " <%=new CategoryService().get(p.getIdCategory()).getName()%>>
-                                <div class="gallery-single fix">
-                                    <img src="assets/images/<%=p.getPicture()%>" class="img-fluid" alt="Image">
+                                <div class="gallery-single fix img-container">
+                                    <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
+                                         alt="<%= p.getName()%>" height="200">
                                     <div class="why-text">
                                         <h4><%= p.getName()%>
                                         </h4>
                                         <p><%= p.getDescription()%>
                                         </p>
-                                        <h5><%= p.getPrice()%>€</h5>
-                                        <a class="nav-link" href="#">Ajouter</a>
+                                        <h5>
+                                            <div class="float-left"><%= p.getPrice()%>€</div>
+                                            <% if (request.getSession().getAttribute("user") != null) {%>
+                                                <div class="float-right">
+                                                    <form method="post" action="addToOrder">
+                                                        <input type="hidden" id="productId" name="productId"
+                                                               value="<%= p.getId() %>">
+                                                        <button class="badge badge-info badge-md p-2" type="submit"
+                                                                formmethod="post">
+                                                            <span class="fa fa-shopping-cart"></span> Ajouter
+                                                        </button>
+
+                                                    </form>
+                                                </div>
+                                            <% }%>
+                                        </h5>
                                     </div>
                                 </div>
                             </div>
                             <%
                                 }
                             %>
-<%--                            <div class="col-lg-4 col-md-6 special-grid drinks">--%>
-<%--                                <div class="gallery-single fix">--%>
-<%--                                    <img src="assets/images/img-01.jpg" class="img-fluid" alt="Image">--%>
-<%--                                    <div class="why-text">--%>
-<%--                                        <h4>Special Drinks 1</h4>--%>
-<%--                                        <p>Sed id magna vitae eros sagittis euismod.</p>--%>
-<%--                                        <h5> $7.79</h5>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-
-<%--                            <div class="col-lg-4 col-md-6 special-grid drinks">--%>
-<%--                                <div class="gallery-single fix">--%>
-<%--                                    <img src="assets/images/img-02.jpg" class="img-fluid" alt="Image">--%>
-<%--                                    <div class="why-text">--%>
-<%--                                        <h4>Special Drinks 2</h4>--%>
-<%--                                        <p>Sed id magna vitae eros sagittis euismod.</p>--%>
-<%--                                        <h5> $9.79</h5>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-
-<%--                            <div class="col-lg-4 col-md-6 special-grid drinks">--%>
-<%--                                <div class="gallery-single fix">--%>
-<%--                                    <img src="assets/images/img-03.jpg" class="img-fluid" alt="Image">--%>
-<%--                                    <div class="why-text">--%>
-<%--                                        <h4>Special Drinks 3</h4>--%>
-<%--                                        <p>Sed id magna vitae eros sagittis euismod.</p>--%>
-<%--                                        <h5> $10.79</h5>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-
-<%--                            <div class="col-lg-4 col-md-6 special-grid lunch">--%>
-<%--                                <div class="gallery-single fix">--%>
-<%--                                    <img src="assets/images/img-04.jpg" class="img-fluid" alt="Image">--%>
-<%--                                    <div class="why-text">--%>
-<%--                                        <h4>Special Lunch 1</h4>--%>
-<%--                                        <p>Sed id magna vitae eros sagittis euismod.</p>--%>
-<%--                                        <h5> $15.79</h5>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-
-<%--                            <div class="col-lg-4 col-md-6 special-grid lunch">--%>
-<%--                                <div class="gallery-single fix">--%>
-<%--                                    <img src="assets/images/img-05.jpg" class="img-fluid" alt="Image">--%>
-<%--                                    <div class="why-text">--%>
-<%--                                        <h4>Special Lunch 2</h4>--%>
-<%--                                        <p>Sed id magna vitae eros sagittis euismod.</p>--%>
-<%--                                        <h5> $18.79</h5>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-
-<%--                            <div class="col-lg-4 col-md-6 special-grid lunch">--%>
-<%--                                <div class="gallery-single fix">--%>
-<%--                                    <img src="assets/images/img-06.jpg" class="img-fluid" alt="Image">--%>
-<%--                                    <div class="why-text">--%>
-<%--                                        <h4>Special Lunch 3</h4>--%>
-<%--                                        <p>Sed id magna vitae eros sagittis euismod.</p>--%>
-<%--                                        <h5> $20.79</h5>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-
-<%--                            <div class="col-lg-4 col-md-6 special-grid dinner">--%>
-<%--                                <div class="gallery-single fix">--%>
-<%--                                    <img src="assets/images/img-07.jpg" class="img-fluid" alt="Image">--%>
-<%--                                    <div class="why-text">--%>
-<%--                                        <h4>Special Dinner 1</h4>--%>
-<%--                                        <p>Sed id magna vitae eros sagittis euismod.</p>--%>
-<%--                                        <h5> $25.79</h5>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-
-<%--                            <div class="col-lg-4 col-md-6 special-grid dinner">--%>
-<%--                                <div class="gallery-single fix">--%>
-<%--                                    <img src="assets/images/img-08.jpg" class="img-fluid" alt="Image">--%>
-<%--                                    <div class="why-text">--%>
-<%--                                        <h4>Special Dinner 2</h4>--%>
-<%--                                        <p>Sed id magna vitae eros sagittis euismod.</p>--%>
-<%--                                        <h5> $22.79</h5>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-
-<%--                            <div class="col-lg-4 col-md-6 special-grid dinner">--%>
-<%--                                <div class="gallery-single fix">--%>
-<%--                                    <img src="assets/images/img-09.jpg" class="img-fluid" alt="Image">--%>
-<%--                                    <div class="why-text">--%>
-<%--                                        <h4>Special Dinner 3</h4>--%>
-<%--                                        <p>Sed id magna vitae eros sagittis euismod.</p>--%>
-<%--                                        <h5> $24.79</h5>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
                         </div>
 
                     </div>
@@ -175,54 +86,37 @@
                          aria-labelledby="v-pills-boisson-tab">
                         <div class="row">
                             <%
-                                for (ProductDto p : (Set<ProductDto>) session.getAttribute("listBoisson")) {
+                                for (ProductDto p : (List<ProductDto>) session.getAttribute("listBoisson")) {
                             %>
-                                        <div class="col-lg-4 col-md-6 special-grid <%=new CategoryService().get(p.getIdCategory()).getName()%>">
-                                            <div class="gallery-single fix">
-                                                <img src="assets/images/img-01.jpg" class="img-fluid" alt="Image">
-                                                <div class="why-text">
-                                                    <h4><%= p.getName()%></h4>
-                                                    <p><%= p.getDescription()%></p>
-                                                    <h5><%= p.getPrice()%>€</h5>
-                                                    <a class="nav-link" href="#">Ajouter</a>
-                                                </div>
+                            <div class="col-lg-4 col-md-6 special-grid <%=new CategoryService().get(p.getIdCategory()).getName()%>">
+                                <div class="gallery-single fix img-container">
+                                    <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
+                                         alt="<%=p.getName()%>" height="200">
+                                    <div class="why-text">
+                                        <h4><%= p.getName()%>
+                                        </h4>
+                                        <p><%= p.getDescription()%>
+                                        </p>
+                                        <h5>
+                                            <div class="float-left"><%= p.getPrice()%>€</div>
+                                            <div class="float-right">
+                                                <form method="post" action="addToOrder">
+                                                    <input type="hidden" id="productId" name="productId"
+                                                           value="<%= p.getId() %>">
+                                                    <div class="badge badge-info badge-md p-2">
+                                                        <span class="fa fa-shopping-cart"></span>
+                                                        <input type="submit" formmethod="post" value="Ajouter">
+                                                    </div>
+                                                </form>
                                             </div>
-                                        </div>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
                             <%
                                 }
                             %>
-<%--                            <div class="col-lg-4 col-md-6 special-grid gggg">--%>
-<%--                                <div class="gallery-single fix">--%>
-<%--                                    <img src="assets/images/img-01.jpg" class="img-fluid" alt="Image">--%>
-<%--                                    <div class="why-text">--%>
-<%--                                        <h4>Special Drinks 1</h4>--%>
-<%--                                        <p>Sed id magna vitae eros sagittis euismod.</p>--%>
-<%--                                        <h5> $7.79</h5>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
 
-<%--                            <div class="col-lg-4 col-md-6 special-grid drinks">--%>
-<%--                                <div class="gallery-single fix">--%>
-<%--                                    <img src="assets/images/img-02.jpg" class="img-fluid" alt="Image">--%>
-<%--                                    <div class="why-text">--%>
-<%--                                        <h4>Special Drinks 2</h4>--%>
-<%--                                        <p>Sed id magna vitae eros sagittis euismod.</p>--%>
-<%--                                        <h5> $9.79</h5>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-
-<%--                            <div class="col-lg-4 col-md-6 special-grid drinks">--%>
-<%--                                <div class="gallery-single fix">--%>
-<%--                                    <img src="assets/images/img-03.jpg" class="img-fluid" alt="Image">--%>
-<%--                                    <div class="why-text">--%>
-<%--                                        <h4>Special Drinks 3</h4>--%>
-<%--                                        <p>Sed id magna vitae eros sagittis euismod.</p>--%>
-<%--                                        <h5> $10.79</h5>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
                         </div>
 
                     </div>
@@ -230,168 +124,98 @@
                          aria-labelledby="v-pills-entrees-tab">
                         <div class="row">
                             <%
-                                for (ProductDto p : (Set<ProductDto>) session.getAttribute("listEntree")) {
+                                for (ProductDto p : (List<ProductDto>) session.getAttribute("listEntree")) {
                             %>
                             <div class="col-lg-4 col-md-6 special-grid "<%=new CategoryService().get(p.getIdCategory()).getName()%>>
-                                <div class="gallery-single fix">
-                                    <img src="assets/images/img-01.jpg" class="img-fluid" alt="Image">
+                                <div class="gallery-single fix img-container">
+                                    <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
+                                         alt="<%= p.getName()%>" height="200">
                                     <div class="why-text">
                                         <h4><%= p.getName()%>
                                         </h4>
                                         <p><%= p.getDescription()%>
                                         </p>
-                                        <h5><%= p.getPrice()%>€</h5>
-                                        <a class="nav-link" href="#">Ajouter</a>
+                                        <h5>
+                                            <div class="float-left"><%= p.getPrice()%>€</div>
+                                            <div class="float-right">
+                                                <a href="#" class="badge badge-info badge-md p-2 ">
+                                                    <span class="fa fa-shopping-cart"></span>
+                                                    <b> Ajouter </b>
+                                                </a>
+                                            </div>
+                                        </h5>
                                     </div>
                                 </div>
                             </div>
                             <%
                                 }
                             %>
-<%--                            <div class="col-lg-4 col-md-6 special-grid lunch">--%>
-<%--                                <div class="gallery-single fix">--%>
-<%--                                    <img src="assets/images/img-04.jpg" class="img-fluid" alt="Image">--%>
-<%--                                    <div class="why-text">--%>
-<%--                                        <h4>Special Lunch 1</h4>--%>
-<%--                                        <p>Sed id magna vitae eros sagittis euismod.</p>--%>
-<%--                                        <h5> $15.79</h5>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
 
-<%--                            <div class="col-lg-4 col-md-6 special-grid lunch">--%>
-<%--                                <div class="gallery-single fix">--%>
-<%--                                    <img src="assets/images/img-05.jpg" class="img-fluid" alt="Image">--%>
-<%--                                    <div class="why-text">--%>
-<%--                                        <h4>Special Lunch 2</h4>--%>
-<%--                                        <p>Sed id magna vitae eros sagittis euismod.</p>--%>
-<%--                                        <h5> $18.79</h5>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-
-<%--                            <div class="col-lg-4 col-md-6 special-grid lunch">--%>
-<%--                                <div class="gallery-single fix">--%>
-<%--                                    <img src="assets/images/img-06.jpg" class="img-fluid" alt="Image">--%>
-<%--                                    <div class="why-text">--%>
-<%--                                        <h4>Special Lunch 3</h4>--%>
-<%--                                        <p>Sed id magna vitae eros sagittis euismod.</p>--%>
-<%--                                        <h5> $20.79</h5>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="v-pills-plats" role="tabpanel"
                          aria-labelledby="v-pills-plats-tab">
                         <div class="row">
                             <%
-                                for (ProductDto p : (Set<ProductDto>) session.getAttribute("listPlat")) {
+                                for (ProductDto p : (List<ProductDto>) session.getAttribute("listPlat")) {
                             %>
-                            <div class="col-lg-4 col-md-6 special-grid "<%=new CategoryService().get(p.getIdCategory()).getName()%>>
+                            <div class="col-lg-4 col-md-6 special-grid img-container"<%=new CategoryService().get(p.getIdCategory()).getName()%>>
                                 <div class="gallery-single fix">
-                                    <img src="assets/images/img-01.jpg" class="img-fluid" alt="Image">
+                                    <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
+                                         alt="<%= p.getName()%>" height="200">
                                     <div class="why-text">
                                         <h4><%= p.getName()%>
                                         </h4>
                                         <p><%= p.getDescription()%>
                                         </p>
-                                        <h5><%= p.getPrice()%>€</h5>
-                                        <a class="nav-link" href="#">Ajouter</a>
+                                        <h5>
+                                            <div class="float-left"><%= p.getPrice()%>€</div>
+                                            <div class="float-right">
+                                                <a href="#" class="badge badge-info badge-md p-2 ">
+                                                    <span class="fa fa-shopping-cart"></span>
+                                                    <b> Ajouter </b>
+                                                </a>
+                                            </div>
+                                        </h5>
                                     </div>
                                 </div>
                             </div>
                             <%
                                 }
                             %>
-<%--                            <div class="col-lg-4 col-md-6 special-grid dinner">--%>
-<%--                                <div class="gallery-single fix">--%>
-<%--                                    <img src="assets/images/img-07.jpg" class="img-fluid" alt="Image">--%>
-<%--                                    <div class="why-text">--%>
-<%--                                        <h4>Special Dinner 1</h4>--%>
-<%--                                        <p>Sed id magna vitae eros sagittis euismod.</p>--%>
-<%--                                        <h5> $25.79</h5>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
 
-<%--                            <div class="col-lg-4 col-md-6 special-grid dinner">--%>
-<%--                                <div class="gallery-single fix">--%>
-<%--                                    <img src="assets/images/img-08.jpg" class="img-fluid" alt="Image">--%>
-<%--                                    <div class="why-text">--%>
-<%--                                        <h4>Special Dinner 2</h4>--%>
-<%--                                        <p>Sed id magna vitae eros sagittis euismod.</p>--%>
-<%--                                        <h5> $22.79</h5>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-
-<%--                            <div class="col-lg-4 col-md-6 special-grid dinner">--%>
-<%--                                <div class="gallery-single fix">--%>
-<%--                                    <img src="assets/images/img-09.jpg" class="img-fluid" alt="Image">--%>
-<%--                                    <div class="why-text">--%>
-<%--                                        <h4>Special Dinner 3</h4>--%>
-<%--                                        <p>Sed id magna vitae eros sagittis euismod.</p>--%>
-<%--                                        <h5> $24.79</h5>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="v-pills-desserts" role="tabpanel"
                          aria-labelledby="v-pills-desserts-tab">
                         <div class="row">
                             <%
-                                for (ProductDto p : (Set<ProductDto>) session.getAttribute("listDessert")) {
+                                for (ProductDto p : (List<ProductDto>) session.getAttribute("listDessert")) {
                             %>
                             <div class="col-lg-4 col-md-6 special-grid "<%=new CategoryService().get(p.getIdCategory()).getName()%>>
-                                <div class="gallery-single fix">
-                                    <img src="assets/images/img-01.jpg" class="img-fluid" alt="Image">
+                                <div class="gallery-single fix img-container">
+                                    <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
+                                         alt="<%= p.getName()%>" height="200">
                                     <div class="why-text">
                                         <h4><%= p.getName()%>
                                         </h4>
                                         <p><%= p.getDescription()%>
                                         </p>
-                                        <h5><%= p.getPrice()%>€</h5>
-                                        <a class="nav-link" href="#">Ajouter</a>
+                                        <h5>
+                                            <div class="float-left"><%= p.getPrice()%>€</div>
+                                            <div class="float-right">
+                                                <a href="#" class="badge badge-info badge-md p-2 ">
+                                                    <span class="fa fa-shopping-cart"></span>
+                                                    <b> Ajouter </b>
+                                                </a>
+                                            </div>
+                                        </h5>
                                     </div>
                                 </div>
                             </div>
                             <%
                                 }
                             %>
-<%--                            <div class="col-lg-4 col-md-6 special-grid dinner">--%>
-<%--                                <div class="gallery-single fix">--%>
-<%--                                    <img src="assets/images/img-07.jpg" class="img-fluid" alt="Image">--%>
-<%--                                    <div class="why-text">--%>
-<%--                                        <h4>Special Dinner 1</h4>--%>
-<%--                                        <p>Sed id magna vitae eros sagittis euismod.</p>--%>
-<%--                                        <h5> $25.79</h5>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-
-<%--                            <div class="col-lg-4 col-md-6 special-grid dinner">--%>
-<%--                                <div class="gallery-single fix">--%>
-<%--                                    <img src="assets/images/img-08.jpg" class="img-fluid" alt="Image">--%>
-<%--                                    <div class="why-text">--%>
-<%--                                        <h4>Special Dinner 2</h4>--%>
-<%--                                        <p>Sed id magna vitae eros sagittis euismod.</p>--%>
-<%--                                        <h5> $22.79</h5>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-
-<%--                            <div class="col-lg-4 col-md-6 special-grid dinner">--%>
-<%--                                <div class="gallery-single fix">--%>
-<%--                                    <img src="assets/images/img-09.jpg" class="img-fluid" alt="Image">--%>
-<%--                                    <div class="why-text">--%>
-<%--                                        <h4>Special Dinner 3</h4>--%>
-<%--                                        <p>Sed id magna vitae eros sagittis euismod.</p>--%>
-<%--                                        <h5> $24.79</h5>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
                         </div>
                     </div>
                 </div>

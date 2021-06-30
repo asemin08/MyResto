@@ -18,17 +18,26 @@ public class ServletRegister extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        register(request, response);
+        HttpSession userSession = request.getSession();
+        try {
+            operations(request, response,userSession);
+        } catch (ServletException | IOException e) {
+            userSession.setAttribute("error", e.getMessage());
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        register(request, response);
+        HttpSession userSession = request.getSession();
+        try {
+            operations(request, response,userSession);
+        } catch (ServletException | IOException e) {
+            userSession.setAttribute("error", e.getMessage());
+        }
 
     }
 
-    public void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
+    public void operations(HttpServletRequest request, HttpServletResponse response,HttpSession userSession) throws ServletException, IOException {
         UserService userService = new UserService();
         if (request.getParameter("login") != null) {
             RegisterUserDto user = new RegisterUserDto(0, request.getParameter("login"), request.getParameter("firstname"), request.getParameter("lastname"), request.getParameter("address"), null, null, "Client", null);

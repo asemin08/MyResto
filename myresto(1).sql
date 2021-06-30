@@ -26,6 +26,8 @@ SET time_zone = "+00:00";
 --
 -- Structure de la table `category`
 --
+drop DATABASE myresto;
+CREATE DATABASE myresto;
 
 CREATE TABLE `category` (
   `id` int(11) NOT NULL,
@@ -63,8 +65,8 @@ CREATE TABLE `listproducts` (
 CREATE TABLE `order_product` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp(),
-  `status` text NOT NULL DEFAULT 'New'
+  `date` date NOT NULL,
+  `status` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

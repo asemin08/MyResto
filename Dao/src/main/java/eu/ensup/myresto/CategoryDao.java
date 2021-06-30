@@ -21,7 +21,7 @@ public class CategoryDao extends BaseDao implements ICategoryDao
 
         try {
             connexion();
-            setPs(getCn().prepareStatement("SELECT * FROM Category"));
+            setPs(getCn().prepareStatement("SELECT * FROM category"));
             setRs(getPs().executeQuery());
 
             ResultSet res = getRs();
@@ -49,7 +49,7 @@ public class CategoryDao extends BaseDao implements ICategoryDao
         Category category = null;
         try {
             connexion();
-            setPs(getCn().prepareStatement("SELECT * FROM Category WHERE id = ?"));
+            setPs(getCn().prepareStatement("SELECT * FROM category WHERE id = ?"));
             getPs().setInt(1, idCategory);
             setRs(getPs().executeQuery());
 
@@ -80,7 +80,7 @@ public class CategoryDao extends BaseDao implements ICategoryDao
 
         try {
             connexion();
-            setPs(getCn().prepareStatement("SELECT * FROM Category Where name = ?"));
+            setPs(getCn().prepareStatement("SELECT * FROM category Where name = ?"));
             getPs().setString(1, nameCategory);
             setRs(getPs().executeQuery());
 
@@ -112,7 +112,7 @@ public class CategoryDao extends BaseDao implements ICategoryDao
             {
                 connexion();
 
-                setPs(getCn().prepareStatement("INSERT INTO Category (name, image) VALUES ( ?, ? )"));
+                setPs(getCn().prepareStatement("INSERT INTO category (name, image) VALUES ( ?, ? )"));
 
                 getPs().setString(1, category.getName());
                 getPs().setString(2, category.getImage());
@@ -146,7 +146,7 @@ public class CategoryDao extends BaseDao implements ICategoryDao
             //Vérifie qu'il y a eu des modification
             if( haveUpdate )
             {
-                setPs(getCn().prepareStatement("UPDATE Category SET name = ?, image = ? WHERE id = ?"));
+                setPs(getCn().prepareStatement("UPDATE category SET name = ?, image = ? WHERE id = ?"));
 
                 int index = 1;
                 getPs().setString(index++, category.getName());
@@ -183,7 +183,7 @@ public class CategoryDao extends BaseDao implements ICategoryDao
             {
                 connexion();
 
-                setPs(getCn().prepareStatement("DELETE FROM Category WHERE id = ?"));
+                setPs(getCn().prepareStatement("DELETE FROM category WHERE id = ?"));
                 getPs().setInt(1, idCategory);
 
                 setResult(getPs().executeUpdate());
