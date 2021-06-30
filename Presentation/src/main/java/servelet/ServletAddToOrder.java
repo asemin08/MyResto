@@ -34,9 +34,8 @@ public class ServletAddToOrder extends HttpServlet {
         }
     }
 
-    protected void operations(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void operations(HttpServletRequest request, HttpServletResponse response,HttpSession userSession) throws ServletException, IOException {
 
-        HttpSession userSession = request.getSession();
         HashMap<Integer,Integer> productMap = new HashMap<>();
         int productId = Integer.parseInt(request.getParameter("productId"));
 
