@@ -29,7 +29,7 @@
             </thead>
             <tbody>
             <%
-                Map<Integer,Integer> productCount = (Map<Integer, Integer>) session.getAttribute("productCount");
+                Map<Integer,Integer> productIds = (Map<Integer, Integer>) session.getAttribute("order");
                 for(ProductDto p : (Set<ProductDto>) session.getAttribute("productSet")){
             %>
             <tr>
@@ -38,18 +38,16 @@
                 <td><%= p.getName()%></td>
                 <td><%= p.getDescription()%></td>
                 <td><%=p.getPrice()%></td>
-                <td><%= productCount.get(p.getId()) %></td>
+                <td><%= productIds.get(p.getId()) %></td>
                 <td>
                     <ul class="action-list">
-                        <li><a href="remove?id=<%=p.getId()%>"><i class="fas fa-minus"></i></a></li>
-                        <li><a href="add?id=<%=p.getId()%>"><i class="fas fa-plus"></i></a></li>
+                        <li><a href="removeproductcart?id=<%=p.getId()%>"><i class="fa fa-minus"></i></a> <a href="addproductcart?id=<%=p.getId()%>"><i class="fa fa-plus"></i></a></li>
                     </ul>
                 </td>
             </tr>
             <%
                 }
             %>
-
             </tbody>
         </table>
     </div>

@@ -11,8 +11,10 @@ Création d'une application web permettant :
 * Aux visiteurs de voir la carte
 * Aux clients de commander en ligne
 
-## Voire l'application
-Allez sur http://allan-semin.ovh:8081/MyResto/accueil
+
+## Application héberger
+CLiquer sur [MyResto - Acceuil](http://vps-0c0ccce5.vps.ovh.net:8081/MyResto/)
+
 
 <hr>
 
@@ -26,7 +28,7 @@ Container web Tomcat : version 9.0
 
 1. **Récupéré le projet**
     * avec zip
-        * Aller dans le projet Github : https://github.com/Flav1-ann/MyResto.
+        * Aller dans le projet [Github](https://github.com/Flav1-ann/MyResto).
         * Cliquer sur le bouton vert "code" puis télécharger le fichier zip.
         * Dans Windows extraire le fichier zip.
     * avec git
@@ -54,6 +56,8 @@ Container web Tomcat : version 9.0
 Pour lancer les tests unitaires
 > mvn test
 
+
 ## Les logs
 Vous pouvez retrouver les logs dans les différents sous-dossers de MyResto dans un dossier nommer logs. <br>
 Les logs sont ranger dans des dossiers en fonction du jour ou ils ont été générer.
+
