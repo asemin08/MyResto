@@ -14,11 +14,14 @@
 <%@include file="header.jsp" %>
 <div class="reservation-box">
     <div class="panel-body table-responsive" id="panelcart">
+        <%
+            Map<Integer,Integer> productIds = (Map<Integer, Integer>) session.getAttribute("order");
+            if(productIds != null && !productIds.isEmpty()){
+        %>
         <table class="table" id="tablecart" aria-label="tableau des commandes">
 
             <tbody>
             <%
-                Map<Integer,Integer> productIds = (Map<Integer, Integer>) session.getAttribute("order");
                 for(ProductDto p : (Set<ProductDto>) session.getAttribute("productSet")){
             %>
             <tr><th scope="col" class="tdifno"><%= p.getName()%></th></tr>
@@ -47,6 +50,10 @@
             <% } %>
             </tbody>
         </table>
+        <% }else{ %>
+                <h3> Aucun éléments dans le panier </h3>
+        <% } %>
+
     </div>
 </div>
 
