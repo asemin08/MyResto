@@ -19,7 +19,8 @@ CLiquer sur [MyResto - Acceuil](http://vps-0c0ccce5.vps.ovh.net:8081/MyResto/)
 <hr>
 
 ## Pré-requis
-Version java : 11.0.0 <br>
+Java : version 11.0.0 <br>
+Maven : version 3.6.3 <br>
 Système de gestion de Base de donnée: MySQL <br>
 Container web Tomcat : version 9.0
 
@@ -44,7 +45,7 @@ Container web Tomcat : version 9.0
 ## Utiliser l'application
 
 **Generer le war:** <br>
-`mvn tomcat:run`
+> mvn tomcat:run
 
 **Lancer l'application:**
 * Allez dans le dossier MyResto/Presentation/target
