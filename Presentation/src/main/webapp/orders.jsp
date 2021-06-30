@@ -34,8 +34,9 @@
             <ul class="list-group shadow">
                 <%
                     int i = 1;
-                    float price = 0.0f;
                     for (OrderProductDto o : (Set<OrderProductDto>) session.getAttribute("listOrders")) {
+                        float price = 0.0f;
+
                 %>
                 <!-- list group item-->
                 <li class="list-group-item">
