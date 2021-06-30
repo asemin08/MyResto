@@ -7,12 +7,9 @@ import eu.ensup.myresto.exceptions.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.*;
 
@@ -47,17 +44,20 @@ public class ServletCart extends HttpServlet {
         Map<Integer, Integer> productsIds = (Map<Integer, Integer>) userSession.getAttribute("order");
         float total = 0.0f;
         Set<ProductDto> productDtos = new HashSet<>();
-        for(Map.Entry<Integer,Integer> entry : productsIds.entrySet()){
-            try {
-                ProductDto productDto = productService.getOneProduct(entry.getKey());
-                total += productDto.getPrice() * entry.getValue();
-                productDtos.add(productDto);
-            } catch (ServiceException e) {
-                log.error(e.getMessage());
-            }
-        }
         request.setAttribute("totalPrice",total);
         userSession.setAttribute("productSet",productDtos);
+        if (productsIds != null)
+            for (Map.Entry<Integer, Integer> entry : productsIds.entrySet()) {
+                try {
+                    ProductDto productDto = productService.getOneProduct(entry.getKey());
+                    total += productDto.getPrice() * entry.getValue();
+                    productDtos.add(productDto);
+                } catch (ServiceException e) {
+                    log.error(e.getMessage());
+                }
+            }
+        request.setAttribute("totalPrice", total);
+        userSession.setAttribute("productSet", productDtos);
         request.getRequestDispatcher("panier.jsp").forward(request, response);
 
     }
