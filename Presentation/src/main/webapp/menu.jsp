@@ -88,6 +88,7 @@
                             <%
                                 for (ProductDto p : (List<ProductDto>) session.getAttribute("listBoisson")) {
                             %>
+
                             <div class="col-lg-4 col-md-6 special-grid <%=new CategoryService().get(p.getIdCategory()).getName()%>">
                                 <div class="gallery-single fix img-container">
                                     <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
@@ -140,7 +141,7 @@
                                             <div class="float-right">
                                                 <a href="#" class="badge badge-info badge-md p-2 ">
                                                     <span class="fa fa-shopping-cart"></span>
-                                                    <b> Ajouter </b>
+                                                    <strong> Ajouter </strong>
                                                 </a>
                                             </div>
                                         </h5>
@@ -173,7 +174,7 @@
                                             <div class="float-right">
                                                 <a href="#" class="badge badge-info badge-md p-2 ">
                                                     <span class="fa fa-shopping-cart"></span>
-                                                    <b> Ajouter </b>
+                                                    <strong> Ajouter </strong>
                                                 </a>
                                             </div>
                                         </h5>
@@ -206,7 +207,7 @@
                                             <div class="float-right">
                                                 <a href="#" class="badge badge-info badge-md p-2 ">
                                                     <span class="fa fa-shopping-cart"></span>
-                                                    <b> Ajouter </b>
+                                                    <strong> Ajouter </strong>
                                                 </a>
                                             </div>
                                         </h5>
