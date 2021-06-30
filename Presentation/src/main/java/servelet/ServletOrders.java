@@ -30,8 +30,12 @@ public class ServletOrders extends HttpServlet {
         HttpSession userSession = request.getSession();
 
         try {
-            var orders = orderProductService.getAllOrderProductsForOneUser(((UserDto)request.getSession().getAttribute("user")).getId());
-            userSession.setAttribute("listOrders", orders);
+            if (request.getSession().getAttribute("user") != null)
+            {
+                var orders = orderProductService.getAllOrderProductsForOneUser(((UserDto)request.getSession().getAttribute("user")).getId());
+                userSession.setAttribute("listOrders", orders);
+            }else
+                this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
 
         } catch (ServiceException e) {
             userSession.setAttribute("error", e.getMessageViewForUser());
