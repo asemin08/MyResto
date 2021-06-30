@@ -1,9 +1,10 @@
 package eu.ensup.myresto;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
-public class OrderProductDto {
+public class OrderProductDto implements Serializable {
     private Integer id;
     private int idUser;
     private List<Integer> idProduct;
