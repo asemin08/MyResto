@@ -1,10 +1,13 @@
 <%@ page import="eu.ensup.myresto.ProductDto" %>
-<%@ page import="java.util.Set" %>
 <%@ page import="eu.ensup.myresto.OrderProductDto" %>
+<%@ page import="eu.ensup.myresto.ProductService" %>
+<%@ page import="java.util.*" %>
+<%@ page import="eu.ensup.myresto.Product" %>
 <%@ page import="java.util.List" %>
 <%@ page import="eu.ensup.myresto.ProductService" %>
 <%@ page import="java.text.DateFormat" %>
 <%@ page import="java.time.format.DateTimeFormatter" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: A
   Date: 29/06/2021
@@ -36,7 +39,7 @@
             <ul class="list-group shadow">
                 <%
                     int i = 1;
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                     for (OrderProductDto o : (List<OrderProductDto>) session.getAttribute("listOrders")) {
                         float price = 0.0f;
 
@@ -51,22 +54,44 @@
                             <h6 class="mt-0 font-weight-bold mb-2">Date de la commande  : <%= o.getDateCreated().toLocalDate().format(formatter)%>
                             </h6>
                             <%
+                              List<ProductDto> productDtos = new ArrayList<ProductDto>();
+                            Map<Integer,Integer> productList = new HashMap<Integer,Integer>();
                                 for (Integer p : (List<Integer>) o.getIdProduct()) {
                                     ProductDto productDto = new ProductService().getOneProduct(p);
-                            %>
-                            <h5> - <%= productDto.getName() %></h5>
-                            <p class="font-italic text-muted  small"> <%= productDto.getDescription() %></p>
+                                    int currId = productDto.getId();
+                                    if(productList.get(currId) == null){
+                                        productList.put(currId,1);
+                                    } else {
+                                        productList.put(productDto.getId(),productList.get(currId)+1);
+                                    }
+                                  productDtos.add(productDto);
+                                }
+                                 for(Map.Entry<Integer,Integer> entry : productList.entrySet()){
 
-                            <%
-                                    price += productDto.getPrice();
+                                     ProductDto productDto = new ProductDto();
+
+                                     for(ProductDto productDto1 : productDtos){
+                                         if( productDto1.getId() == entry.getKey()) {
+                                             productDto = productDto1;
+                                         }
+                                     }
+
+                                          price += productDto.getPrice() * entry.getValue();
+                            %>
+                                    <h5><%= entry.getValue() %>x - <%= productDto.getName() %>
+                                    </h5>
+                                    <p class="font-italic text-muted  small"><%= productDto.getDescription() %>
+                                    </p>
+
+                                        <%
                                 }
                             %>
-                            <div class="d-flex align-items-center justify-content-between mt-1">
-                                <h6 class="font-weight-bold my-2">Prix de la commande: <%= price%>€</h6>
-                            </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-1">
+                                        <h6 class="font-weight-bold my-2">Prix de la commande: <%= price%>€</h6>
+                                    </div>
                         </div>
-<%--                        <img src="assets/images/slider-02.jpg" alt="Generic placeholder image" width="200"--%>
-<%--                             class="ml-lg-5 order-1 order-lg-2">--%>
+                        <%--                        <img src="assets/images/slider-02.jpg" alt="Generic placeholder image" width="200"--%>
+                        <%--                             class="ml-lg-5 order-1 order-lg-2">--%>
                     </div>
                     <!-- End -->
                 </li>
