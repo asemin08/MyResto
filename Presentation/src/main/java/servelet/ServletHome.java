@@ -9,13 +9,22 @@ import java.io.PrintWriter;
 @WebServlet(name = "ServletHome", value = "/accueil")
 public class ServletHome extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request,response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)  {
+        HttpSession userSession = request.getSession();
+        try {
+            this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request,response);
+        } catch (ServletException | IOException e) {
+            userSession.setAttribute("error", e.getMessage());
+        }
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession userSession = request.getSession();
+        try {
+            this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request,response);
+        } catch (ServletException | IOException e) {
+            userSession.setAttribute("error", e.getMessage());
+        }
     }
 }

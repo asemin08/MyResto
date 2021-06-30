@@ -88,6 +88,7 @@
                             <%
                                 for (ProductDto p : (List<ProductDto>) session.getAttribute("listBoisson")) {
                             %>
+
                             <div class="col-lg-4 col-md-6 special-grid <%=new CategoryService().get(p.getIdCategory()).getName()%>">
                                 <div class="gallery-single fix img-container">
                                     <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
@@ -99,16 +100,19 @@
                                         </p>
                                         <h5>
                                             <div class="float-left"><%= p.getPrice()%>€</div>
+                                            <% if (request.getSession().getAttribute("user") != null) {%>
                                             <div class="float-right">
                                                 <form method="post" action="addToOrder">
                                                     <input type="hidden" id="productId" name="productId"
                                                            value="<%= p.getId() %>">
-                                                    <div class="badge badge-info badge-md p-2">
-                                                        <span class="fa fa-shopping-cart"></span>
-                                                        <input type="submit" formmethod="post" value="Ajouter">
-                                                    </div>
+                                                    <button class="badge badge-info badge-md p-2" type="submit"
+                                                            formmethod="post">
+                                                        <span class="fa fa-shopping-cart"></span> Ajouter
+                                                    </button>
+
                                                 </form>
                                             </div>
+                                            <% }%>
                                         </h5>
                                     </div>
                                 </div>
@@ -137,12 +141,19 @@
                                         </p>
                                         <h5>
                                             <div class="float-left"><%= p.getPrice()%>€</div>
+                                            <% if (request.getSession().getAttribute("user") != null) {%>
                                             <div class="float-right">
-                                                <a href="#" class="badge badge-info badge-md p-2 ">
-                                                    <span class="fa fa-shopping-cart"></span>
-                                                    <b> Ajouter </b>
-                                                </a>
+                                                <form method="post" action="addToOrder">
+                                                    <input type="hidden" id="productId" name="productId"
+                                                           value="<%= p.getId() %>">
+                                                    <button class="badge badge-info badge-md p-2" type="submit"
+                                                            formmethod="post">
+                                                        <span class="fa fa-shopping-cart"></span> Ajouter
+                                                    </button>
+
+                                                </form>
                                             </div>
+                                            <% }%>
                                         </h5>
                                     </div>
                                 </div>
@@ -170,12 +181,19 @@
                                         </p>
                                         <h5>
                                             <div class="float-left"><%= p.getPrice()%>€</div>
+                                            <% if (request.getSession().getAttribute("user") != null) {%>
                                             <div class="float-right">
-                                                <a href="#" class="badge badge-info badge-md p-2 ">
-                                                    <span class="fa fa-shopping-cart"></span>
-                                                    <b> Ajouter </b>
-                                                </a>
+                                                <form method="post" action="addToOrder">
+                                                    <input type="hidden" id="productId" name="productId"
+                                                           value="<%= p.getId() %>">
+                                                    <button class="badge badge-info badge-md p-2" type="submit"
+                                                            formmethod="post">
+                                                        <span class="fa fa-shopping-cart"></span> Ajouter
+                                                    </button>
+
+                                                </form>
                                             </div>
+                                            <% }%>
                                         </h5>
                                     </div>
                                 </div>
@@ -203,12 +221,19 @@
                                         </p>
                                         <h5>
                                             <div class="float-left"><%= p.getPrice()%>€</div>
+                                            <% if (request.getSession().getAttribute("user") != null) {%>
                                             <div class="float-right">
-                                                <a href="#" class="badge badge-info badge-md p-2 ">
-                                                    <span class="fa fa-shopping-cart"></span>
-                                                    <b> Ajouter </b>
-                                                </a>
+                                                <form method="post" action="addToOrder">
+                                                    <input type="hidden" id="productId" name="productId"
+                                                           value="<%= p.getId() %>">
+                                                    <button class="badge badge-info badge-md p-2" type="submit"
+                                                            formmethod="post">
+                                                        <span class="fa fa-shopping-cart"></span> Ajouter
+                                                    </button>
+
+                                                </form>
                                             </div>
+                                            <% }%>
                                         </h5>
                                     </div>
                                 </div>

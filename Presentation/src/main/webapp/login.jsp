@@ -21,7 +21,7 @@
             <div class="col-lg-12 col-sm-12 col-xs-12 ">
                 <div class="contact-block">
                     <form id="contactForm" method="post" action="login">
-                        <div class="row">
+                        <div class="row justify-content-center">
                             <div class="col-md-6">
                                 <div class="col-md-12">
                                     <div class="form-group">

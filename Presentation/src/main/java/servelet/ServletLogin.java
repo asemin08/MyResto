@@ -15,18 +15,26 @@ import java.io.IOException;
 public class ServletLogin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        operations(request, response);
+        HttpSession userSession = request.getSession();
+        try {
+            operations(request, response,userSession);
+        } catch (ServletException | IOException e) {
+            userSession.setAttribute("error", e.getMessage());
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        operations(request, response);
+        HttpSession userSession = request.getSession();
+        try {
+            operations(request, response,userSession);
+        } catch (ServletException | IOException e) {
+            userSession.setAttribute("error", e.getMessage());
+        }
     }
 
-    protected void operations(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession userSession = request.getSession();
-
+    protected void operations(HttpServletRequest request, HttpServletResponse response,HttpSession userSession) throws ServletException, IOException {
         if (request.getParameter("login") != null) {
             LoginUserDto loginUserDto = new LoginUserDto(request.getParameter("login"), request.getParameter("password"));
             UserService userService = new UserService();
@@ -36,7 +44,7 @@ public class ServletLogin extends HttpServlet {
                 userSession.setAttribute("user", user);
                 request.getRequestDispatcher("accueil.jsp").forward(request, response);
             } catch (ServiceException e) {
-                request.setAttribute("error", e.getMessage());
+                request.setAttribute("error", e.getMessageViewForUser());
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
         } else {
