@@ -49,3 +49,6 @@ Container web Tomcat : version 9.0
 ## Tests unitaires
 Pour lancer les tests unitaires
 > mvn test
+
+## Application héberger
+* Ce rendre sur cette page  [MyResto](http://vps-0c0ccce5.vps.ovh.net:8081/MyResto/)
