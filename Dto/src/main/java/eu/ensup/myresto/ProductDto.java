@@ -1,6 +1,7 @@
 package eu.ensup.myresto;
 
-public class ProductDto {
+
+public class ProductDto  {
     private int id;
     private String name ;
     private float price;
