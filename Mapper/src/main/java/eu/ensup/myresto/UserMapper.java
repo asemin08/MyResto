@@ -1,13 +1,13 @@
 package eu.ensup.myresto;
 
-import eu.ensup.myresto.RegisterUserDto;
-import eu.ensup.myresto.User;
-import eu.ensup.myresto.UserDto;
-
 public class UserMapper {
 
+    UserMapper() {
+        throw new IllegalStateException("Mapper Class");
+    }
+
     public static UserDto convertDomaineDto(User user) {
-        return new UserDto(user.getId(), user.getLogin(),user.getFirstName(), user.getLastName(), user.getAddress(), user.getRole(), user.getImage());
+        return new UserDto(user.getId(), user.getLogin(), user.getFirstName(), user.getLastName(), user.getAddress(), user.getRole(), user.getImage());
     }
 
     public static User convertDtoDomaine(UserDto userDto) {

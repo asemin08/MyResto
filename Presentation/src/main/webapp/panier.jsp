@@ -14,20 +14,21 @@
 <%@include file="header.jsp" %>
 <div class="reservation-box">
     <div class="panel-body table-responsive" id="panelcart">
-        <table class="table" id="tablecart">
+        <table class="table" id="tablecart" aria-label="tableau des commandes">
+
             <tbody>
             <%
                 Map<Integer,Integer> productIds = (Map<Integer, Integer>) session.getAttribute("order");
                 for(ProductDto p : (Set<ProductDto>) session.getAttribute("productSet")){
             %>
-            <tr><td class="tdifno"><%= p.getName()%></td></tr>
+            <tr><th scope="col" class="tdifno"><%= p.getName()%></th></tr>
             <tr>
                 <td><img src="assets/images/<%= p.getPicture()%>" alt="image du produit"/></td>
                 <td><%= p.getDescription()%></td>
                 <td><%= productIds.get(p.getId()) %></td>
                 <td>
                     <ul class="action-list">
-                        <li><a href="removeproductcart?id=<%=p.getId()%>"><i class="fa fa-minus"></i></a> <a href="addproductcart?id=<%=p.getId()%>"><i class="fa fa-plus"></i></a></li>
+                        <li><a href="removeproductcart?id=<%=p.getId()%>"><i class="fa fa-minus" aria-hidden="true"></i></a> <a href="addproductcart?id=<%=p.getId()%>"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
                     </ul>
                 </td>
             </tr>

@@ -20,37 +20,43 @@ import java.util.Map;
 @WebServlet(name = "ServletOrderCart", value = "/ordercart")
 
 public class ServletOrderCart extends HttpServlet {
-    private static final Logger log = LogManager.getLogger(UserService.class);
+    private static final Logger log = LogManager.getLogger(ServletOrderCart.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        orderCart(request, response);
+        doPost(request, response);
 
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        orderCart(request, response);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession userSession = request.getSession();
+
+        try {
+            orderCart(request, response);
+        } catch (ServletException | IOException e) {
+            userSession.setAttribute("error", e.getMessage());
+        }
     }
 
     protected void orderCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        OrderProductService orderProductService = new OrderProductService();
+        var orderProductService = new OrderProductService();
         HttpSession userSession = request.getSession();
         Map<Integer, Integer> productsIds = (Map<Integer, Integer>) userSession.getAttribute("order");
         List<Integer> idList = new ArrayList<>();
-        for(Map.Entry<Integer,Integer> entry : productsIds.entrySet()){
-            for (var i = 0; i < entry.getValue(); i++){
+        for (Map.Entry<Integer, Integer> entry : productsIds.entrySet()) {
+            for (var i = 0; i < entry.getValue(); i++) {
                 idList.add(entry.getKey());
             }
         }
-        UserDto userDto = (UserDto) userSession.getAttribute("user");
-        OrderProductDto orderProductDto = new OrderProductDto(userDto.getId(),idList, new Date(System.currentTimeMillis()));
+        var userDto = (UserDto) userSession.getAttribute("user");
+        var orderProductDto = new OrderProductDto(userDto.getId(), idList, new Date(System.currentTimeMillis()));
         try {
             orderProductService.createOrderProduct(orderProductDto);
             userSession.removeAttribute("order");
             response.sendRedirect(request.getContextPath() + "/orders");
         } catch (ServiceException e) {
-            request.setAttribute("error",e.getMessageViewForUser());
+            request.setAttribute("error", e.getMessageViewForUser());
             log.error(e.getMessage());
             request.getRequestDispatcher("panier.jsp").forward(request, response);
         }

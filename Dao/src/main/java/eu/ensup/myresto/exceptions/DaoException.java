@@ -1,11 +1,11 @@
 package eu.ensup.myresto.exceptions;
 
-public class DaoException extends Exception{
+public class DaoException extends Exception {
 
-    private String classWhereError;
-    private String methodeWhereError;
-    private String messageError;
-    private String messageViewForUser;
+    private final String classWhereError;
+    private final String methodeWhereError;
+    private final String messageError;
+    private final String messageViewForUser;
 
     public DaoException(String classWhereError, String methodeWhereError, String messageError, String messageViewForUser) {
         super(messageError);
@@ -13,5 +13,21 @@ public class DaoException extends Exception{
         this.methodeWhereError = methodeWhereError;
         this.messageError = messageError;
         this.messageViewForUser = messageViewForUser;
+    }
+
+    public String getClassWhereError() {
+        return classWhereError;
+    }
+
+    public String getMethodeWhereError() {
+        return methodeWhereError;
+    }
+
+    public String getMessageError() {
+        return messageError;
+    }
+
+    public String getMessageViewForUser() {
+        return messageViewForUser;
     }
 }

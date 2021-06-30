@@ -1,8 +1,6 @@
 package eu.ensup.myresto;
 
 import com.google.protobuf.ServiceException;
-import eu.ensup.myresto.Product;
-import eu.ensup.myresto.ProductDto;
 
 import java.util.Set;
 
@@ -17,7 +15,7 @@ public interface IProductService {
 
     ProductDto getOneProduct(int idProduct) throws ServiceException, eu.ensup.myresto.exceptions.ServiceException;
 
-    Product convertProductDtoToProduct(ProductDto ProductDto);
+    Product convertProductDtoToProduct(ProductDto productDto);
 
-    ProductDto convertProductToProductDto(Product Product);
+    ProductDto convertProductToProductDto(Product product);
 }

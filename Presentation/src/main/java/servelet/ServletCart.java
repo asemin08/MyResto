@@ -19,27 +19,27 @@ public class ServletCart extends HttpServlet {
     private static final Logger log = LogManager.getLogger(ServletCart.class);
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)  {
-       doPost(request,response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+        doPost(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)  {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         HttpSession userSession = request.getSession();
         try {
-            operations(request, response,userSession);
+            operations(request, response, userSession);
         } catch (ServletException | IOException e) {
             userSession.setAttribute("error", e.getMessage());
         }
     }
 
-    protected void operations(HttpServletRequest request, HttpServletResponse response,HttpSession userSession) throws ServletException, IOException {
+    protected void operations(HttpServletRequest request, HttpServletResponse response, HttpSession userSession) throws ServletException, IOException {
         var productService = new ProductService();
         Map<Integer, Integer> productsIds = (Map<Integer, Integer>) userSession.getAttribute("order");
         var total = 0.0f;
         Set<ProductDto> productDtos = new HashSet<>();
-        request.setAttribute("totalPrice",total);
-        userSession.setAttribute("productSet",productDtos);
+        request.setAttribute("totalPrice", total);
+        userSession.setAttribute("productSet", productDtos);
         if (productsIds != null)
             for (Map.Entry<Integer, Integer> entry : productsIds.entrySet()) {
                 try {

@@ -15,8 +15,8 @@ public interface IOrderProductService {
 
     OrderProductDto getOneOrderProduct(int idOrderProductDto) throws ServiceException;
 
-    OrderProductDto convertOrderProductToOrderProductDto(OrderProduct Product);
+    OrderProductDto convertOrderProductToOrderProductDto(OrderProduct product);
 
-    OrderProduct convertOrderProductDtoToOrderProduct(OrderProductDto ProductDto);
+    OrderProduct convertOrderProductDtoToOrderProduct(OrderProductDto productDto);
 
 }

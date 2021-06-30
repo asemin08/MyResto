@@ -9,8 +9,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class CategoryDao extends BaseDao implements ICategoryDao
-{
+public class CategoryDao extends BaseDao implements ICategoryDao {
     private static final Logger log = LogManager.getLogger(CategoryDao.class);
 
     private static final String IMAGE = "image";
@@ -25,20 +24,19 @@ public class CategoryDao extends BaseDao implements ICategoryDao
             setRs(getPs().executeQuery());
 
             ResultSet res = getRs();
-            while( res.next() ) {
-                Category category = new Category(res.getInt("id"), res.getString("name"), res.getString("image"));
+            while (res.next()) {
+                var category = new Category(res.getInt("id"), res.getString("name"), res.getString(IMAGE));
                 allCategory.add(category);
             }
 
-            if(allCategory.isEmpty())
-            {
+            if (allCategory.isEmpty()) {
                 log.info("Aucune category disponible dans la base de donnée.");
             }
 
             disconnect();
         } catch (SQLException e) {
             log.error(e.getMessage());
-            throw new DaoException(UserDao.class.getName(),"getAll",e.getMessage(),"Une erreur s'est produite lors de la creation de la liste des categorie");
+            throw new DaoException(UserDao.class.getName(), "getAll", e.getMessage(), "Une erreur s'est produite lors de la creation de la liste des categorie");
         }
 
         return allCategory;
@@ -54,21 +52,16 @@ public class CategoryDao extends BaseDao implements ICategoryDao
             setRs(getPs().executeQuery());
 
             ResultSet res = getRs();
-
-            if(res.next() == false)
-            {
-                log.info("La category " + idCategory + " n'est pas disponible dans la base de donnée.");
-            }
-            else
-            {
-                category = new Category(res.getInt("id"), res.getString("name"), res.getString("image"));
+            var logInfo = String.format("La category %d n'est pas disponible dans la base de donnée.", idCategory);
+            if (!res.next()) {
+                log.info(logInfo);
+            } else {
+                category = new Category(res.getInt("id"), res.getString("name"), res.getString(IMAGE));
             }
             disconnect();
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             log.error(e.getMessage());
-            throw new DaoException(CategoryDao.class.getName(),"get",e.getMessage(),"Une erreur s'est produite lors de la recherche d'une categorie");
+            throw new DaoException(CategoryDao.class.getName(), "get", e.getMessage(), "Une erreur s'est produite lors de la recherche d'une categorie");
         }
 
         return category;
@@ -85,20 +78,17 @@ public class CategoryDao extends BaseDao implements ICategoryDao
             setRs(getPs().executeQuery());
 
             ResultSet res = getRs();
-
-            if(res.next() == false)
-            {
-                log.info("La category " + nameCategory + " n'est pas disponible dans la base de donnée.");
-            }
-            else
-            {
-                category = new Category(res.getInt("id"), res.getString("name"), res.getString("image"));
+            var logInfo = String.format("La category %s n'est pas disponible dans la base de donnée.", nameCategory);
+            if (!res.next()) {
+                log.info(logInfo);
+            } else {
+                category = new Category(res.getInt("id"), res.getString("name"), res.getString(IMAGE));
             }
 
             disconnect();
         } catch (SQLException e) {
             log.error(e.getMessage());
-            throw new DaoException(CategoryDao.class.getName(),"get",e.getMessage(),"Une erreur s'est produite lors de la recherche d'une categorie");
+            throw new DaoException(CategoryDao.class.getName(), "get", e.getMessage(), "Une erreur s'est produite lors de la recherche d'une categorie");
         }
 
         return category;
@@ -108,8 +98,8 @@ public class CategoryDao extends BaseDao implements ICategoryDao
     public int create(Category category) throws DaoException {
         try {
             //Vérifie qu'il n'y a pas de double
-            if (get(category.getName()) == null)
-            {
+            var logInfo = String.format("La categorie %s existe déjà", category.getName());
+            if (get(category.getName()) == null) {
                 connexion();
 
                 setPs(getCn().prepareStatement("INSERT INTO category (name, image) VALUES ( ?, ? )"));
@@ -120,10 +110,8 @@ public class CategoryDao extends BaseDao implements ICategoryDao
                 setResult(getPs().executeUpdate());
                 disconnect();
                 return getResult();
-            }
-            else
-            {
-                log.error("La categorie" + category.getName() + "existe déjà");
+            } else {
+                log.error(logInfo);
                 throw new DaoException(CategoryDao.class.getName(), "create", null, "Cette categorie existe déjà");
             }
         } catch (SQLException e) {
@@ -137,29 +125,24 @@ public class CategoryDao extends BaseDao implements ICategoryDao
         try {
             connexion();
 
-            Category preCategory = get(category.getId());
-            String update = "";
+            var preCategory = get(category.getId());
 
-            boolean haveUpdate = category.getName() != null && ! category.getName().equals(preCategory.getName());
+            boolean haveUpdate = category.getName() != null && !category.getName().equals(preCategory.getName());
             haveUpdate = haveUpdate || category.getImage() != null && category.getImage().equals(preCategory.getImage());
             var logInfo = String.format("Cette categorie n'as pas été modifier %s", category.getName());
             //Vérifie qu'il y a eu des modification
-            if( haveUpdate )
-            {
+            if (haveUpdate) {
                 setPs(getCn().prepareStatement("UPDATE category SET name = ?, image = ? WHERE id = ?"));
 
-                int index = 1;
-                getPs().setString(index++, category.getName());
-                getPs().setString(index++, category.getImage());
-                getPs().setInt(index++, category.getId());
+                getPs().setString(1, category.getName());
+                getPs().setString(2, category.getImage());
+                getPs().setInt(3, category.getId());
 
                 setResult(getPs().executeUpdate());
                 disconnect();
                 return getResult();
-            }
-            else
-            {
-                log.error("La categorie "+category.getName()+" n'as pas été modifier !");
+            } else {
+                log.error(logInfo);
                 return 1;
             }
         } catch (SQLException e) {
@@ -170,17 +153,16 @@ public class CategoryDao extends BaseDao implements ICategoryDao
 
     @Override
     public int delete(Category category) throws DaoException {
-        if( category.getId() == null )
+        if (category.getId() == null)
             return delete(get(category.getName()).getId());
         return delete(category.getId());
     }
 
     @Override
-    public int delete(int idCategory) throws DaoException
-    {
-        try{
-            if( idCategory != -1 && get(idCategory) != null )
-            {
+    public int delete(int idCategory) throws DaoException {
+        try {
+            var logInfo = String.format("La categorie %d n'existe pas !", idCategory);
+            if (idCategory != -1 && get(idCategory) != null) {
                 connexion();
 
                 setPs(getCn().prepareStatement("DELETE FROM category WHERE id = ?"));
@@ -189,11 +171,9 @@ public class CategoryDao extends BaseDao implements ICategoryDao
                 setResult(getPs().executeUpdate());
                 disconnect();
                 return getResult();
-            }
-            else
-            {
-                log.info("La categorie "+idCategory+" n'existe pas !");
-                throw new DaoException(CategoryDao.class.getName(), "delete", "La categorie "+idCategory+" n'existe pas !", "Cette categorie n'existe pas");
+            } else {
+                log.info(logInfo);
+                throw new DaoException(CategoryDao.class.getName(), "delete", "La categorie " + idCategory + " n'existe pas !", "Cette categorie n'existe pas");
             }
         } catch (SQLException e) {
             log.error(e.getMessage());

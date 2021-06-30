@@ -1,46 +1,42 @@
 package servelet;
 
 import eu.ensup.myresto.RegisterUserDto;
-import eu.ensup.myresto.UserDto;
 import eu.ensup.myresto.UserService;
 import eu.ensup.myresto.exceptions.ServiceException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "ServletRegister", value = "/register")
 public class ServletRegister extends HttpServlet {
-    private static final Logger log = LogManager.getLogger(ServletRegister.class);
+    private static final String ERROR_ARG = "error";
+    private static final String PATH_REGISTER_ARG = "register.jsp";
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession userSession = request.getSession();
-        try {
-            operations(request, response,userSession);
-        } catch (ServletException | IOException e) {
-            userSession.setAttribute("error", e.getMessage());
-        }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+        doPost(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         HttpSession userSession = request.getSession();
         try {
-            operations(request, response,userSession);
+            operations(request, response);
         } catch (ServletException | IOException e) {
-            userSession.setAttribute("error", e.getMessage());
+            userSession.setAttribute(ERROR_ARG, e.getMessage());
         }
 
     }
 
-    public void operations(HttpServletRequest request, HttpServletResponse response,HttpSession userSession) throws ServletException, IOException {
-        UserService userService = new UserService();
+    public void operations(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        var userService = new UserService();
         if (request.getParameter("login") != null) {
-            RegisterUserDto user = new RegisterUserDto(0, request.getParameter("login"), request.getParameter("firstname"), request.getParameter("lastname"), request.getParameter("address"), null, null, "Client", null);
+            var user = new RegisterUserDto(0, request.getParameter("login"), request.getParameter("firstname"), request.getParameter("lastname"), request.getParameter("address"), null, null, "Client", null);
             String password1 = request.getParameter("password[1]");
             String password2 = request.getParameter("password[2]");
             if (password1.equals(password2)) {
@@ -49,19 +45,19 @@ public class ServletRegister extends HttpServlet {
                     if (userService.create(user) == 1) {
                         request.getRequestDispatcher("login.jsp").forward(request, response);
                     } else {
-                        request.setAttribute("error", "L'inscription n'a pas été réalisée");
-                        request.getRequestDispatcher("register.jsp").forward(request, response);
+                        request.setAttribute(ERROR_ARG, "L'inscription n'a pas été réalisée");
+                        request.getRequestDispatcher(PATH_REGISTER_ARG).forward(request, response);
                     }
                 } catch (ServiceException e) {
-                    request.setAttribute("error", e.getMessage());
-                    request.getRequestDispatcher("register.jsp").forward(request, response);
+                    request.setAttribute(ERROR_ARG, e.getMessage());
+                    request.getRequestDispatcher(PATH_REGISTER_ARG).forward(request, response);
                 }
             } else {
-                request.setAttribute("error", "Les mots de passes ne correspondent pas.");
-                request.getRequestDispatcher("register.jsp").forward(request, response);
+                request.setAttribute(ERROR_ARG, "Les mots de passes ne correspondent pas.");
+                request.getRequestDispatcher(PATH_REGISTER_ARG).forward(request, response);
             }
         } else {
-            request.getRequestDispatcher("register.jsp").forward(request, response);
+            request.getRequestDispatcher(PATH_REGISTER_ARG).forward(request, response);
         }
     }
 }

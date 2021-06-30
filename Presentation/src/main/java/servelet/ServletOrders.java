@@ -17,35 +17,29 @@ import java.util.stream.Collectors;
 @WebServlet(name = "ServletOrder", value = "/orders")
 public class ServletOrders extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)  {
-        HttpSession userSession = request.getSession();
-        try {
-            operations(request, response,userSession);
-        } catch (ServletException | IOException e) {
-            userSession.setAttribute("error", e.getMessage());
-        }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+        doPost(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         HttpSession userSession = request.getSession();
         try {
-            operations(request, response,userSession);
+            operations(request, response, userSession);
         } catch (ServletException | IOException e) {
             userSession.setAttribute("error", e.getMessage());
         }
     }
 
-    protected void operations(HttpServletRequest request, HttpServletResponse response,HttpSession userSession) throws ServletException, IOException {
-        OrderProductService orderProductService = new OrderProductService();
+    protected void operations(HttpServletRequest request, HttpServletResponse response, HttpSession userSession) throws ServletException, IOException {
+        var orderProductService = new OrderProductService();
         try {
-            if (request.getSession().getAttribute("user") != null)
-            {
-                var orders = orderProductService.getAllOrderProductsForOneUser(((UserDto)request.getSession().getAttribute("user")).getId()).stream().collect(Collectors.toList());;
+            if (request.getSession().getAttribute("user") != null) {
+                var orders = orderProductService.getAllOrderProductsForOneUser(((UserDto) request.getSession().getAttribute("user")).getId()).stream().collect(Collectors.toList());
                 Collections.sort(orders, Comparator.comparing(OrderProductDto::getId));
                 userSession.setAttribute("listOrders", orders);
                 this.getServletContext().getRequestDispatcher("/orders.jsp").forward(request, response);
-            }else
+            } else
                 this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
 
         } catch (ServiceException e) {

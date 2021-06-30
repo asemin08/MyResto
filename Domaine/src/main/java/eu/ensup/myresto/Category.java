@@ -11,24 +11,6 @@ public class Category {
         this.image = image;
     }
 
-    public Category(int id, String name) {
-        this.id = id;
-        this.name = name;
-        this.image = null;
-    }
-
-    public Category(String name, String image) {
-        this.id = null;
-        this.name = name;
-        this.image = image;
-    }
-
-    public Category(String name) {
-        this.id = null;
-        this.name = name;
-        this.image = null;
-    }
-
     public Integer getId() {
         return id;
     }

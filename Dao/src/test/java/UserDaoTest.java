@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class UserDaoTest {
+ class UserDaoTest {
 
     private final UserDao userDao = new UserDao();
     private static final Logger log = LogManager.getLogger(UserDaoTest.class);

@@ -19,28 +19,22 @@ import java.util.stream.Collectors;
 public class ServletMenu extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        HttpSession userSession = request.getSession();
-        try {
-            operations(request, response,userSession);
-        } catch (ServletException | IOException e) {
-            userSession.setAttribute("error", e.getMessage());
-        }
+        doPost(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         HttpSession userSession = request.getSession();
         try {
-            operations(request, response,userSession);
+            operations(request, response, userSession);
         } catch (ServletException | IOException e) {
             userSession.setAttribute("error", e.getMessage());
         }
     }
 
-    protected void operations(HttpServletRequest request, HttpServletResponse response,HttpSession userSession) throws ServletException, IOException {
+    protected void operations(HttpServletRequest request, HttpServletResponse response, HttpSession userSession) throws ServletException, IOException {
 
-        ProductService productService = new ProductService();
+        var productService = new ProductService();
         try {
             List<ProductDto> listBoisson = new LinkedList<>();
             List<ProductDto> listEntree = new LinkedList<>();
@@ -61,6 +55,8 @@ public class ServletMenu extends HttpServlet {
                         break;
                     case ("dessert"):
                         listDessert.add(produc);
+                        break;
+                    default:
                         break;
                 }
             }

@@ -46,7 +46,6 @@ h6 {
     font-weight: normal;
     position: relative;
     padding: 0 0 10px 0;
-    font-weight: normal;
     line-height: 120% !important;
     color: #1f1f1f;
     margin: 0
@@ -675,7 +674,7 @@ button:focus{
 }
 .arrow-right::before {
     content: "\f101";
-	font-family: 'FontAwesome';	
+	font-family: 'FontAwesome',sans-serif;
 	position: absolute;
 	right: 0px;
 	top: 0;
