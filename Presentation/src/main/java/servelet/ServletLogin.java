@@ -26,6 +26,7 @@ public class ServletLogin extends HttpServlet {
 
     protected void operations(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession userSession = request.getSession();
+
         if (request.getParameter("login") != null) {
             LoginUserDto loginUserDto = new LoginUserDto(request.getParameter("login"), request.getParameter("password"));
             UserService userService = new UserService();
@@ -33,7 +34,7 @@ public class ServletLogin extends HttpServlet {
                 userSession.removeAttribute("user");
                 UserDto user = userService.validateUser(loginUserDto);
                 userSession.setAttribute("user", user);
-                request.getRequestDispatcher("home.jsp").forward(request, response);
+                request.getRequestDispatcher("accueil.jsp").forward(request, response);
             } catch (ServiceException e) {
                 request.setAttribute("error", e.getMessage());
                 request.getRequestDispatcher("login.jsp").forward(request, response);

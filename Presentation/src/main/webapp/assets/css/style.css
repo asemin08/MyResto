@@ -207,6 +207,11 @@ button:focus{
 	background: #d65106;
 	color: #ffffff;
 }
+
+#logo{
+	border-radius: 10px 20px 20px 20px;
+	margin: 0px;
+}
 .navbar-light .navbar-toggler:hover{
 	background: #d65106;
 }
@@ -616,8 +621,12 @@ button:focus{
 -------------------------------------------------------------------*/
 
 .footer-area{
-	padding-top: 50px;
+	padding-top:50px;
 	padding-bottom: 0px;
+
+	position:absolute;
+	bottom:0;
+
 }
 .bg-f{
 	background-image: url("../images/footer-bg.jpg");
