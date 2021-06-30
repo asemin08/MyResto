@@ -11,15 +11,18 @@ import java.io.IOException;
 public class ServletLogOut extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getSession().getAttribute("user") != null)
-            request.getSession().removeAttribute("user");
-        this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request,response);
+        logOut(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        logOut(request,response);
+    }
+
+    protected void logOut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("user") != null)
-            request.getSession().removeAttribute("user");
+            request.getSession().invalidate();
         this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request,response);
     }
+
 }

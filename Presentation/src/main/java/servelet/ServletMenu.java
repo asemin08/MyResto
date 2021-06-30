@@ -59,7 +59,6 @@ public class ServletMenu extends HttpServlet {
             userSession.setAttribute("listPlat", listPlat);
             userSession.setAttribute("listProducts", productService.getAllProducts());
             this.getServletContext().getRequestDispatcher("/menu.jsp").forward(request, response);
-
         } catch (ServiceException e) {
             userSession.setAttribute("error", e.getMessageViewForUser());
             this.getServletContext().getRequestDispatcher("/500.jsp").forward(request, response);
