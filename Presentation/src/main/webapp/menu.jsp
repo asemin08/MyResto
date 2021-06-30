@@ -12,17 +12,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="header.jsp" %>
 <div class="wrapper">
-    <div class="menu-box">
+    <div class="main-container">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="heading-title text-center">
-                        <h2>Special Menu</h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
-                    </div>
-                </div>
-            </div>
-
             <div class="row inner-menu-box">
                 <div class="col-3">
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
