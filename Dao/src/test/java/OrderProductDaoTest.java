@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.notNullValue;
 
 class OrderProductDaoTest {
 
@@ -32,9 +33,8 @@ class OrderProductDaoTest {
     void getAllOrderProductsForOneUserTest() {
         try {
             var result = orderProductDao.getAllOrderProductsForOneUser(100);
-            for (var res : result) {
-                System.out.println(res);
-            }
+            MatcherAssert.assertThat(result.size(), equalTo(1));
+
         } catch (DaoException e) {
             //TODO
         }
@@ -43,7 +43,8 @@ class OrderProductDaoTest {
     @Test
     void deleteOrderProductTest() {
         try {
-            orderProductDao.deleteOrderProduct(49);
+           var result =  orderProductDao.deleteOrderProduct(49);
+            MatcherAssert.assertThat(result, equalTo(0));
         } catch (DaoException e) {
             //TODO
         }
@@ -53,15 +54,15 @@ class OrderProductDaoTest {
     void getOneOrderProductTest() {
         try {
             var result = orderProductDao.getOneOrderProduct(91);
-            System.out.println(result);
+            MatcherAssert.assertThat(result, notNullValue());
         } catch (DaoException e) {
             //TODO
         }
     }
 
-    @Test
-    void updateOrderProductTest() {
-    }
+//    @Test
+//    void updateOrderProductTest() {
+//    }
 
 
 }

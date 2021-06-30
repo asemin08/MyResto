@@ -7,9 +7,9 @@ import java.util.List;
 public interface ICategoryService {
     List<CategoryDto> getAll() throws ServiceException;
 
-    CategoryDto get(int idCategory) throws ServiceException;
+    CategoryDto getById(int idCategory) throws ServiceException;
 
-    CategoryDto get(String nameCategory) throws ServiceException;
+    CategoryDto getByName(String nameCategory) throws ServiceException;
 
     int create(CategoryDto category) throws ServiceException;
 

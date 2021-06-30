@@ -1,6 +1,8 @@
 package eu.ensup.myresto;
 
-public class UserDto {
+import java.io.Serializable;
+
+public class UserDto implements Serializable {
 
     private int id;
 

@@ -1,7 +1,9 @@
 package eu.ensup.myresto;
 
 
-public class ProductDto  {
+import java.io.Serializable;
+
+public class ProductDto implements Serializable {
     private int id;
     private String name ;
     private float price;
