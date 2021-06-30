@@ -2,7 +2,9 @@
 <%@ page import="java.util.Set" %>
 <%@ page import="eu.ensup.myresto.OrderProductDto" %>
 <%@ page import="java.util.List" %>
-<%@ page import="eu.ensup.myresto.ProductService" %><%--
+<%@ page import="eu.ensup.myresto.ProductService" %>
+<%@ page import="java.text.DateFormat" %>
+<%@ page import="java.time.format.DateTimeFormatter" %><%--
   Created by IntelliJ IDEA.
   User: A
   Date: 29/06/2021
@@ -34,6 +36,7 @@
             <ul class="list-group shadow">
                 <%
                     int i = 1;
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                     for (OrderProductDto o : (List<OrderProductDto>) session.getAttribute("listOrders")) {
                         float price = 0.0f;
 
@@ -45,7 +48,7 @@
                         <div class="media-body order-2 order-lg-1">
                             <h5 class="mt-0 font-weight-bold mb-2">Commande n°<%= i%>
                             <h6 class="mt-0 font-weight-bold mb-2">Status  : <%= o.getStatus()%>
-                            <h6 class="mt-0 font-weight-bold mb-2">Date de la commande  : <%= o.getDateCreated()%>
+                            <h6 class="mt-0 font-weight-bold mb-2">Date de la commande  : <%= o.getDateCreated().toLocalDate().format(formatter)%>
                             </h6>
                             <%
                                 for (Integer p : (List<Integer>) o.getIdProduct()) {
