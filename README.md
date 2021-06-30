@@ -70,7 +70,7 @@ Vous pouvez retrouver les logs dans les différents sous-dossers de MyResto dans
 Les logs sont ranger dans des dossiers en fonction du jour ou ils ont été générer.
 
 
-## Spésificité fonctionelle
+## Spécificité fonctionnelle
 * S'inscrire
 * Se connecter
 * Visualiser le profile
