@@ -32,12 +32,12 @@ public class OrderProductServiceTest {
 
     @Test
     public void createOrderProductTest() {
-        try{
+        try {
             List<Integer> tabIdsProducts = new ArrayList<>();
             tabIdsProducts.add(1);
             tabIdsProducts.add(1);
 
-            OrderProductDto productDto = new OrderProductDto(1,100, tabIdsProducts, null, OrderProduct.Status.NEW.toString());
+            OrderProductDto productDto = new OrderProductDto(1, 100, tabIdsProducts, null, OrderProduct.Status.NEW.toString());
             when(OrderproductDao.createOrderProduct(any(OrderProduct.class))).thenReturn(0);
             MatcherAssert.assertThat(OrderproductService.createOrderProduct(productDto), equalTo(0));
             verify(OrderproductDao).createOrderProduct(any(OrderProduct.class));
@@ -50,8 +50,8 @@ public class OrderProductServiceTest {
     public void getAllOrderProductsForOneUser() {
         try {
             Set<OrderProduct> products = new HashSet<>();
-            for(int i =0; i<3;i++)
-                products.add(new OrderProduct(1,100,null,null,OrderProduct.Status.NEW.toString()));
+            for (int i = 0; i < 3; i++)
+                products.add(new OrderProduct(1, 100, null, null, OrderProduct.Status.NEW.toString()));
 
             when(OrderproductDao.getAllOrderProductsForOneUser(100)).thenReturn(products);
             MatcherAssert.assertThat(OrderproductService.getAllOrderProductsForOneUser(100).size(), equalTo(3));
@@ -68,7 +68,7 @@ public class OrderProductServiceTest {
 
     @Test
     public void deleteOrderProduct() {
-        try{
+        try {
             when(OrderproductDao.deleteOrderProduct(1)).thenReturn(1);
             MatcherAssert.assertThat(OrderproductService.deleteOrderProduct(1), equalTo(1));
             verify(OrderproductDao).deleteOrderProduct(1);
@@ -79,8 +79,8 @@ public class OrderProductServiceTest {
 
     @Test
     public void getOneOrderProduct() {
-        try{
-            var orderNotMock = new OrderProduct(1,100,null,null,OrderProduct.Status.NEW.toString());
+        try {
+            var orderNotMock = new OrderProduct(1, 100, null, null, OrderProduct.Status.NEW.toString());
             when(OrderproductDao.getOneOrderProduct(1)).thenReturn(orderNotMock);
             var orderMock = OrderproductService.getOneOrderProduct(1);
             MatcherAssert.assertThat(orderNotMock.getId(), equalTo(orderMock.getId()));

@@ -37,7 +37,7 @@ public class ProductService implements IProductService {
     public Set<ProductDto> getAllProducts() throws ServiceException {
         try {
             Set<ProductDto> productDtoSet = new HashSet<>();
-            for (var product:productDao.getAllProducts()) {
+            for (var product : productDao.getAllProducts()) {
                 productDtoSet.add(convertProductToProductDto(product));
             }
             return productDtoSet;
@@ -78,13 +78,13 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public ProductDto convertProductToProductDto(Product Product) {
-        return new ProductDto(Product.getId(), Product.getName(), Product.getPrice(),  Product.getDescription(),Product.getPicture(),Product.getIdCategory());
+    public ProductDto convertProductToProductDto(Product product) {
+        return new ProductDto(product.getId(), product.getName(), product.getPrice(), product.getDescription(), product.getPicture(), product.getIdCategory());
     }
 
     @Override
-    public Product convertProductDtoToProduct(ProductDto ProductDto) {
-        return new Product(ProductDto.getId(), ProductDto.getName(), ProductDto.getPrice(),  ProductDto.getDescription(),ProductDto.getPicture(),ProductDto.getIdCategory());
+    public Product convertProductDtoToProduct(ProductDto productDto) {
+        return new Product(productDto.getId(), productDto.getName(), productDto.getPrice(), productDto.getDescription(), productDto.getPicture(), productDto.getIdCategory());
 
     }
 }

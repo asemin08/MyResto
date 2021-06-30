@@ -68,13 +68,13 @@ public class OrderProductService implements IOrderProductService {
     }
 
     @Override
-    public OrderProductDto convertOrderProductToOrderProductDto(OrderProduct Product) {
-        return new OrderProductDto(Product.getId(), Product.getIdUser(), Product.getIdProduct(), Product.getDateCreated(), Product.getStatus());
+    public OrderProductDto convertOrderProductToOrderProductDto(OrderProduct product) {
+        return new OrderProductDto(product.getId(), product.getIdUser(), product.getIdProduct(), product.getDateCreated(), product.getStatus());
     }
 
     @Override
-    public OrderProduct convertOrderProductDtoToOrderProduct(OrderProductDto ProductDto) {
-        return new OrderProduct(ProductDto.getId(), ProductDto.getIdUser(), ProductDto.getIdProduct(), ProductDto.getDateCreated(), ProductDto.getStatus());
+    public OrderProduct convertOrderProductDtoToOrderProduct(OrderProductDto productDto) {
+        return new OrderProduct(productDto.getId(), productDto.getIdUser(), productDto.getIdProduct(), productDto.getDateCreated(), productDto.getStatus());
 
     }
 }

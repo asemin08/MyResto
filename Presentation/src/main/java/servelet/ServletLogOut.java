@@ -12,25 +12,20 @@ import java.io.IOException;
 public class ServletLogOut extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession userSession = request.getSession();
-        try {
-            operations(request, response,userSession);
-        } catch (ServletException | IOException e) {
-            userSession.setAttribute("error", e.getMessage());
-        }
+        doPost(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         HttpSession userSession = request.getSession();
         try {
-            operations(request, response,userSession);
+            operations(request, response);
         } catch (ServletException | IOException e) {
             userSession.setAttribute("error", e.getMessage());
         }
     }
 
-    protected void operations(HttpServletRequest request, HttpServletResponse response, HttpSession userSession) throws ServletException, IOException {
+    protected void operations(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("user") != null)
             request.getSession().invalidate();
         this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);

@@ -1,12 +1,11 @@
 package eu.ensup.myresto;
 
-import java.sql.*;
-import java.util.ResourceBundle;
-
-import com.google.protobuf.ServiceException;
 import eu.ensup.myresto.exceptions.DaoException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.sql.*;
+import java.util.ResourceBundle;
 
 public class BaseDao {
 

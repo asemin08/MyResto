@@ -23,12 +23,13 @@ public class UserService implements IUserService {
     public UserService() {
         this.userDao = new UserDao();
     }
-    private static final String algo = "SHA-256";
+
+    private static final String ALGO = "SHA-256";
 
     @Override
     public int create(RegisterUserDto userDto) throws ServiceException {
         try {
-            User user = UserMapper.convertDtoDomaine(userDto);
+            var user = UserMapper.convertDtoDomaine(userDto);
             byte[] salt = createSalt();
             user.setPassword(generateHashPassword(userDto.getPassword(), salt));
             user.setSalt(Base64.getEncoder().encodeToString(salt));
@@ -82,7 +83,7 @@ public class UserService implements IUserService {
     @Override
     public UserDto validateUser(LoginUserDto loginUserDto) throws ServiceException {
         try {
-            User user = userDao.getByLogin(loginUserDto.getLogin());
+            var user = userDao.getByLogin(loginUserDto.getLogin());
             byte[] salt = Base64.getDecoder().decode(user.getSalt());
             String hash = generateHashPassword(loginUserDto.getPassword(), salt);
             if (hash.equals(user.getPassword()))
@@ -99,7 +100,7 @@ public class UserService implements IUserService {
     public String generateHashPassword(String password, byte[] salt) throws ServiceException {
         MessageDigest digest = null;
         try {
-            digest = MessageDigest.getInstance(algo);
+            digest = MessageDigest.getInstance(ALGO);
             digest.reset();
             digest.update(salt);
             return Base64.getEncoder().encodeToString(digest.digest(password.getBytes()));
@@ -112,8 +113,8 @@ public class UserService implements IUserService {
 
     @Override
     public byte[] createSalt() {
-        byte[] bytes = new byte[20];
-        SecureRandom random = new SecureRandom();
+        var bytes = new byte[20];
+        var random = new SecureRandom();
         random.nextBytes(bytes);
         return bytes;
     }
