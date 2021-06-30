@@ -40,8 +40,8 @@ public class ServletMenu extends HttpServlet {
             List<ProductDto> listEntree = new LinkedList<>();
             List<ProductDto> listPlat = new LinkedList<>();
             List<ProductDto> listDessert = new LinkedList<>();
-            List<ProductDto> products = productService.getAllProducts().stream().collect(Collectors.toList());
-            Collections.sort(products, Comparator.comparing(ProductDto::getName));
+            List<ProductDto> products = new ArrayList<>(productService.getAllProducts());
+            products.sort(Comparator.comparing(ProductDto::getName));
             for (var produc : products) {
                 switch (new CategoryService().getById(produc.getIdCategory()).getName()) {
                     case ("boisson"):
