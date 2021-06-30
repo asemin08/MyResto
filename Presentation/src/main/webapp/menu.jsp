@@ -1,7 +1,8 @@
 <%@ page import="eu.ensup.myresto.Product" %>
 <%@ page import="java.util.Set" %>
 <%@ page import="eu.ensup.myresto.ProductDto" %>
-<%@ page import="eu.ensup.myresto.CategoryService" %><%--
+<%@ page import="eu.ensup.myresto.CategoryService" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   eu.ensup.myresto.User: A
   Date: 28/06/2021
@@ -9,7 +10,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="header.jsp"%>
+<%@include file="header.jsp" %>
 <div class="menu-box">
     <div class="container">
         <div class="row">
@@ -44,12 +45,13 @@
                          aria-labelledby="v-pills-All-tab">
                         <div class="row">
                             <%
-                                for (ProductDto p : (Set<ProductDto>) session.getAttribute("listProducts")) {
+                                for (ProductDto p : (List<ProductDto>) session.getAttribute("listProducts")) {
 
                             %>
                             <div class="col-lg-4 col-md-6 special-grid " <%=new CategoryService().get(p.getIdCategory()).getName()%>>
                                 <div class="gallery-single fix img-container">
-                                    <img src="assets/images/<%=p.getPicture()%>" class="img-container-img" alt="<%= p.getName()%>" height="200">
+                                    <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
+                                         alt="<%= p.getName()%>" height="200">
                                     <div class="why-text">
                                         <h4><%= p.getName()%>
                                         </h4>
@@ -57,12 +59,19 @@
                                         </p>
                                         <h5>
                                             <div class="float-left"><%= p.getPrice()%>€</div>
-                                            <div class="float-right">
-                                                <a href="#" class="badge badge-info badge-md p-2 ">
-                                                    <span class="fa fa-shopping-cart"></span>
-                                                    <strong> Ajouter </strong>
-                                                </a>
-                                            </div>
+                                            <% if (request.getSession().getAttribute("user") != null) {%>
+                                                <div class="float-right">
+                                                    <form method="post" action="addToOrder">
+                                                        <input type="hidden" id="productId" name="productId"
+                                                               value="<%= p.getId() %>">
+                                                        <button class="badge badge-info badge-md p-2" type="submit"
+                                                                formmethod="post">
+                                                            <span class="fa fa-shopping-cart"></span> Ajouter
+                                                        </button>
+
+                                                    </form>
+                                                </div>
+                                            <% }%>
                                         </h5>
                                     </div>
                                 </div>
@@ -77,26 +86,34 @@
                          aria-labelledby="v-pills-boisson-tab">
                         <div class="row">
                             <%
-                                for (ProductDto p : (Set<ProductDto>) session.getAttribute("listBoisson")) {
+                                for (ProductDto p : (List<ProductDto>) session.getAttribute("listBoisson")) {
                             %>
-                                        <div class="col-lg-4 col-md-6 special-grid <%=new CategoryService().get(p.getIdCategory()).getName()%>">
-                                            <div class="gallery-single fix img-container">
-                                                <img src="assets/images/<%=p.getPicture()%>" class="img-container-img" alt="<%=p.getName()%>" height="200">
-                                                <div class="why-text">
-                                                    <h4><%= p.getName()%></h4>
-                                                    <p><%= p.getDescription()%></p>
-                                                    <h5>
-                                                        <div class="float-left"><%= p.getPrice()%>€</div>
-                                                        <div class="float-right">
-                                                            <a href="#" class="badge badge-info badge-md p-2 ">
-                                                                <span class="fa fa-shopping-cart"></span>
-                                                                <strong> Ajouter </strong>
-                                                            </a>
-                                                        </div>
-                                                    </h5>
-                                                </div>
+
+                            <div class="col-lg-4 col-md-6 special-grid <%=new CategoryService().get(p.getIdCategory()).getName()%>">
+                                <div class="gallery-single fix img-container">
+                                    <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
+                                         alt="<%=p.getName()%>" height="200">
+                                    <div class="why-text">
+                                        <h4><%= p.getName()%>
+                                        </h4>
+                                        <p><%= p.getDescription()%>
+                                        </p>
+                                        <h5>
+                                            <div class="float-left"><%= p.getPrice()%>€</div>
+                                            <div class="float-right">
+                                                <form method="post" action="addToOrder">
+                                                    <input type="hidden" id="productId" name="productId"
+                                                           value="<%= p.getId() %>">
+                                                    <div class="badge badge-info badge-md p-2">
+                                                        <span class="fa fa-shopping-cart"></span>
+                                                        <input type="submit" formmethod="post" value="Ajouter">
+                                                    </div>
+                                                </form>
                                             </div>
-                                        </div>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
                             <%
                                 }
                             %>
@@ -108,11 +125,12 @@
                          aria-labelledby="v-pills-entrees-tab">
                         <div class="row">
                             <%
-                                for (ProductDto p : (Set<ProductDto>) session.getAttribute("listEntree")) {
+                                for (ProductDto p : (List<ProductDto>) session.getAttribute("listEntree")) {
                             %>
                             <div class="col-lg-4 col-md-6 special-grid "<%=new CategoryService().get(p.getIdCategory()).getName()%>>
                                 <div class="gallery-single fix img-container">
-                                    <img src="assets/images/<%=p.getPicture()%>" class="img-container-img" alt="<%= p.getName()%>" height="200">
+                                    <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
+                                         alt="<%= p.getName()%>" height="200">
                                     <div class="why-text">
                                         <h4><%= p.getName()%>
                                         </h4>
@@ -140,11 +158,12 @@
                          aria-labelledby="v-pills-plats-tab">
                         <div class="row">
                             <%
-                                for (ProductDto p : (Set<ProductDto>) session.getAttribute("listPlat")) {
+                                for (ProductDto p : (List<ProductDto>) session.getAttribute("listPlat")) {
                             %>
                             <div class="col-lg-4 col-md-6 special-grid img-container"<%=new CategoryService().get(p.getIdCategory()).getName()%>>
                                 <div class="gallery-single fix">
-                                    <img src="assets/images/<%=p.getPicture()%>" class="img-container-img" alt="<%= p.getName()%>" height="200">
+                                    <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
+                                         alt="<%= p.getName()%>" height="200">
                                     <div class="why-text">
                                         <h4><%= p.getName()%>
                                         </h4>
@@ -172,11 +191,12 @@
                          aria-labelledby="v-pills-desserts-tab">
                         <div class="row">
                             <%
-                                for (ProductDto p : (Set<ProductDto>) session.getAttribute("listDessert")) {
+                                for (ProductDto p : (List<ProductDto>) session.getAttribute("listDessert")) {
                             %>
                             <div class="col-lg-4 col-md-6 special-grid "<%=new CategoryService().get(p.getIdCategory()).getName()%>>
                                 <div class="gallery-single fix img-container">
-                                    <img src="assets/images/<%=p.getPicture()%>" class="img-container-img" alt="<%= p.getName()%>" height="200">
+                                    <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
+                                         alt="<%= p.getName()%>" height="200">
                                     <div class="why-text">
                                         <h4><%= p.getName()%>
                                         </h4>
