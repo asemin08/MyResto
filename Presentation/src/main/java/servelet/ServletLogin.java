@@ -1,50 +1,50 @@
 package servelet;
 
 import eu.ensup.myresto.LoginUserDto;
-import eu.ensup.myresto.User;
 import eu.ensup.myresto.UserDto;
 import eu.ensup.myresto.UserService;
 import eu.ensup.myresto.exceptions.ServiceException;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "ServletLogin", value = "/login")
 public class ServletLogin extends HttpServlet {
+
+    private static final String ERROR_ATTR = "error";
+
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession userSession = request.getSession();
-        try {
-            operations(request, response,userSession);
-        } catch (ServletException | IOException e) {
-            userSession.setAttribute("error", e.getMessage());
-        }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)  {
+      doPost(request,response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession userSession = request.getSession();
         try {
             operations(request, response,userSession);
         } catch (ServletException | IOException e) {
-            userSession.setAttribute("error", e.getMessage());
+            userSession.setAttribute(ERROR_ATTR, e.getMessage());
         }
     }
 
     protected void operations(HttpServletRequest request, HttpServletResponse response,HttpSession userSession) throws ServletException, IOException {
         if (request.getParameter("login") != null) {
-            LoginUserDto loginUserDto = new LoginUserDto(request.getParameter("login"), request.getParameter("password"));
-            UserService userService = new UserService();
+            var loginUserDto = new LoginUserDto(request.getParameter("login"), request.getParameter("password"));
+            var userService = new UserService();
             try {
                 userSession.removeAttribute("user");
                 UserDto user = userService.validateUser(loginUserDto);
                 userSession.setAttribute("user", user);
                 request.getRequestDispatcher("accueil.jsp").forward(request, response);
             } catch (ServiceException e) {
-                request.setAttribute("error", e.getMessageViewForUser());
+                request.setAttribute(ERROR_ATTR, e.getMessageViewForUser());
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
         } else {

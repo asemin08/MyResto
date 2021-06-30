@@ -2,7 +2,6 @@ package servelet;
 
 import eu.ensup.myresto.ProductDto;
 import eu.ensup.myresto.ProductService;
-import eu.ensup.myresto.UserService;
 import eu.ensup.myresto.exceptions.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,16 +16,11 @@ import java.util.*;
 @WebServlet(name = "ServletPanier", value = "/panier")
 public class ServletCart extends HttpServlet {
 
-    private static final Logger log = LogManager.getLogger(UserService.class);
+    private static final Logger log = LogManager.getLogger(ServletCart.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)  {
-        HttpSession userSession = request.getSession();
-        try {
-            operations(request, response,userSession);
-        } catch (ServletException | IOException e) {
-            userSession.setAttribute("error", e.getMessage());
-        }
+       doPost(request,response);
     }
 
     @Override
@@ -40,16 +34,16 @@ public class ServletCart extends HttpServlet {
     }
 
     protected void operations(HttpServletRequest request, HttpServletResponse response,HttpSession userSession) throws ServletException, IOException {
-        ProductService productService = new ProductService();
+        var productService = new ProductService();
         Map<Integer, Integer> productsIds = (Map<Integer, Integer>) userSession.getAttribute("order");
-        float total = 0.0f;
+        var total = 0.0f;
         Set<ProductDto> productDtos = new HashSet<>();
         request.setAttribute("totalPrice",total);
         userSession.setAttribute("productSet",productDtos);
         if (productsIds != null)
             for (Map.Entry<Integer, Integer> entry : productsIds.entrySet()) {
                 try {
-                    ProductDto productDto = productService.getOneProduct(entry.getKey());
+                    var productDto = productService.getOneProduct(entry.getKey());
                     total += productDto.getPrice() * entry.getValue();
                     productDtos.add(productDto);
                 } catch (ServiceException e) {
