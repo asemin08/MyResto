@@ -43,8 +43,8 @@ Container web Tomcat : version 9.0
 
 ## Utiliser l'application
 
-**Generer le war:** <br>
-`mvn tomcat:run`
+**Generer le war:**
+> mvn tomcat:run
 
 **Lancer l'application:**
 * Allez dans le dossier MyResto/Presentation/target
