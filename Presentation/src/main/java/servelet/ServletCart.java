@@ -2,7 +2,10 @@ package servelet;
 
 import eu.ensup.myresto.ProductDto;
 import eu.ensup.myresto.ProductService;
+import eu.ensup.myresto.UserService;
 import eu.ensup.myresto.exceptions.ServiceException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,60 +16,22 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.*;
 
+
 @WebServlet(name = "ServletPanier", value = "/panier")
 public class ServletCart extends HttpServlet {
+
+    private static final Logger log = LogManager.getLogger(UserService.class);
+
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession userSession = request.getSession();
-
-        try {
-            try {
-                String action = request.getServletPath();
-                switch (action) {
-                    case "/delete":
-                        deleteProduct(request, response);
-
-                        break;
-                    case "/panier":
-                        operations(request, response,userSession);
-                        break;
-                    default:
-                        break;
-                }
-            } catch (ServiceException e) {
-                request.getRequestDispatcher("404.jsp").forward(request, response);
-                e.printStackTrace();
-            }
-        } catch (ServletException | IOException e) {
-            userSession.setAttribute("error", e.getMessage());
-        }
+        operations(request, response,userSession);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession userSession = request.getSession();
-
-        try {
-            try {
-                String action = request.getServletPath();
-                switch (action) {
-                    case "/delete":
-                        deleteProduct(request, response);
-
-                        break;
-                    case "/panier":
-                        operations(request, response,userSession);
-                        break;
-                    default:
-                        break;
-                }
-            } catch (ServiceException e) {
-                request.getRequestDispatcher("404.jsp").forward(request, response);
-                e.printStackTrace();
-            }
-        } catch (ServletException | IOException e) {
-            userSession.setAttribute("error", e.getMessage());
-        }
+        operations(request, response,userSession);
     }
 
     protected void operations(HttpServletRequest request, HttpServletResponse response,HttpSession userSession) throws ServletException, IOException, ServiceException {
@@ -74,26 +39,15 @@ public class ServletCart extends HttpServlet {
         Map<Integer, Integer> productCount = new HashMap<>();
         List<Integer> productsOrder = (List<Integer>) userSession.getAttribute("order");
         Set<ProductDto> productDtos = new HashSet<>();
-        if (productsOrder != null)
-            for (int productId : productsOrder) {
-                if (productCount.get(productId) != null) {
-                    productCount.put(productId, productCount.get(productId) + 1);
-                } else {
-                    productCount.put(productId, 1);
-                    productDtos.add(productService.getOneProduct(productId));
+            for(Map.Entry<Integer,Integer> entry : productsIds.entrySet()){
+                try {
+                    productDtos.add(productService.getOneProduct(entry.getKey()));
+                } catch (ServiceException e) {
+                    log.error(e.getMessage());
                 }
             }
-        userSession.setAttribute("productSet", productDtos);
-        userSession.setAttribute("productCount", productCount);
+        userSession.setAttribute("productSet",productDtos);
         request.getRequestDispatcher("panier.jsp").forward(request, response);
-
-    }
-
-    private void deleteProduct(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException, ServiceException {
-        ProductService productService = new ProductService();
-        int id = Integer.parseInt(req.getParameter("id"));
-        productService.deleteProduct(id);
-        req.getRequestDispatcher("panier.jsp").forward(req, resp);
 
     }
 
