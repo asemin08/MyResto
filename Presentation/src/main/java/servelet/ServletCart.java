@@ -23,29 +23,40 @@ public class ServletCart extends HttpServlet {
     private static final Logger log = LogManager.getLogger(UserService.class);
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)  {
         HttpSession userSession = request.getSession();
-        operations(request, response,userSession);
+        try {
+            operations(request, response,userSession);
+        } catch (ServletException | IOException e) {
+            userSession.setAttribute("error", e.getMessage());
+        }
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)  {
         HttpSession userSession = request.getSession();
-        operations(request, response,userSession);
+        try {
+            operations(request, response,userSession);
+        } catch (ServletException | IOException e) {
+            userSession.setAttribute("error", e.getMessage());
+        }
     }
 
-    protected void operations(HttpServletRequest request, HttpServletResponse response,HttpSession userSession) throws ServletException, IOException, ServiceException {
+    protected void operations(HttpServletRequest request, HttpServletResponse response,HttpSession userSession) throws ServletException, IOException {
         ProductService productService = new ProductService();
-        Map<Integer, Integer> productCount = new HashMap<>();
-        List<Integer> productsOrder = (List<Integer>) userSession.getAttribute("order");
+        Map<Integer, Integer> productsIds = (Map<Integer, Integer>) userSession.getAttribute("order");
+        float total = 0.0f;
         Set<ProductDto> productDtos = new HashSet<>();
-            for(Map.Entry<Integer,Integer> entry : productsIds.entrySet()){
-                try {
-                    productDtos.add(productService.getOneProduct(entry.getKey()));
-                } catch (ServiceException e) {
-                    log.error(e.getMessage());
-                }
+        for(Map.Entry<Integer,Integer> entry : productsIds.entrySet()){
+            try {
+                ProductDto productDto = productService.getOneProduct(entry.getKey());
+                total += productDto.getPrice() * entry.getValue();
+                productDtos.add(productDto);
+            } catch (ServiceException e) {
+                log.error(e.getMessage());
             }
+        }
+        request.setAttribute("totalPrice",total);
         userSession.setAttribute("productSet",productDtos);
         request.getRequestDispatcher("panier.jsp").forward(request, response);
 
