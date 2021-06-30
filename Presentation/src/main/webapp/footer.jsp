@@ -8,7 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!-- Start Footer -->
-<footer class="footer-area-custom bg-f-custom">
+<footer class="footer">
+    <div class="footer-area-custom bg-f-custom">
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-6">
@@ -40,7 +41,7 @@
             </div>
         </div>
     </div>
-
+    </div>
 </footer>
 <!-- End Footer -->
 

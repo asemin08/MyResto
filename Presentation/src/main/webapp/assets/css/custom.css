@@ -18,12 +18,10 @@
 
 
 .footer-area-custom{
+    padding-top: 25px;
     position: absolute;
     left: 0 ;
     right: 0;
-    bottom: 0;
-    height: 250px;
-    padding-top: 20px;
 }
 .bg-f-custom{
     background-image: url("../images/footer-bg.jpg");
@@ -87,16 +85,18 @@
     color: #d65106;
 }
 
-.head{
+.head, .body {
     height: 100%;
+    margin: 0;
+}
+.wrapper {
+    min-height: 100%;
+    margin-bottom: -305px;
 }
 
-.body{
-    min-height:100%;
-    position:relative;
-    padding-bottom: 250px;
+.footer, .push {
+    height: 300px;
 }
-
 
 #cart{
     margin-top: 50px;
