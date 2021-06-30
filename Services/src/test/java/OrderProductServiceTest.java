@@ -62,9 +62,9 @@ public class OrderProductServiceTest {
         }
     }
 
-    @Test
-    public void updateOrderProduct() {
-    }
+//    @Test
+//    public void updateOrderProduct() {
+//    }
 
     @Test
     public void deleteOrderProduct() {
