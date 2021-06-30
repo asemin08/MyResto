@@ -58,10 +58,15 @@
                                         <h5>
                                             <div class="float-left"><%= p.getPrice()%>€</div>
                                             <div class="float-right">
-                                                <a href="#" class="badge badge-info badge-md p-2 ">
-                                                    <span class="fa fa-shopping-cart"></span>
-                                                    <b> Ajouter </b>
-                                                </a>
+                                                <form method="post" action="addToOrder">
+                                                    <input type="hidden" id="productId" name="productId" value="<%= p.getId() %>">
+
+
+                                                        <button class="badge badge-info badge-md p-2" type="submit" formmethod="post">
+                                                            <span class="fa fa-shopping-cart"></span> Ajouter
+                                                        </button>
+
+                                                </form>
                                             </div>
                                         </h5>
                                     </div>
@@ -88,10 +93,13 @@
                                                     <h5>
                                                         <div class="float-left"><%= p.getPrice()%>€</div>
                                                         <div class="float-right">
-                                                            <a href="#" class="badge badge-info badge-md p-2 ">
-                                                                <span class="fa fa-shopping-cart"></span>
-                                                                <b> Ajouter </b>
-                                                            </a>
+                                                            <form method="post" action="addToOrder">
+                                                                <input type="hidden" id="productId" name="productId" value="<%= p.getId() %>">
+                                                                <div class="badge badge-info badge-md p-2">
+                                                                    <span class="fa fa-shopping-cart"></span>
+                                                                    <input type="submit" formmethod="post" value="Ajouter">
+                                                                </div>
+                                                            </form>
                                                         </div>
                                                     </h5>
                                                 </div>
