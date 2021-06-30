@@ -65,9 +65,9 @@
                 <% if (request.getSession().getAttribute("user") != null) {%>
                     <li class="nav-item"><a class="nav-link" href="panier">Panier</a></li>
                     <li class="nav-item"><a class="nav-link" href="orders">Commandes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="disconnect">Déconnection</a></li>
+                    <li class="nav-item"><a class="nav-link" href="disconnect">Déconnexion</a></li>
                 <% }else { %>
-                    <li class="nav-item "><a class="nav-link" href="login">Login</a></li>
+                    <li class="nav-item "><a class="nav-link" href="login">Connexion</a></li>
                 <% }  %>
             </ul>
         </div>

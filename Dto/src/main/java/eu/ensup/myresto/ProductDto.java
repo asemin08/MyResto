@@ -25,6 +25,10 @@ public class ProductDto {
         this.idCategory = idCategory;
     }
 
+    public ProductDto() {
+
+    }
+
     public int getId() {
         return id;
     }
