@@ -10,7 +10,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="header.jsp"%>
+<%@include file="header.jsp" %>
 <div class="menu-box">
     <div class="container">
         <div class="row">
@@ -50,7 +50,8 @@
                             %>
                             <div class="col-lg-4 col-md-6 special-grid " <%=new CategoryService().get(p.getIdCategory()).getName()%>>
                                 <div class="gallery-single fix img-container">
-                                    <img src="assets/images/<%=p.getPicture()%>" class="img-container-img" alt="<%= p.getName()%>" height="200">
+                                    <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
+                                         alt="<%= p.getName()%>" height="200">
                                     <div class="why-text">
                                         <h4><%= p.getName()%>
                                         </h4>
@@ -58,17 +59,19 @@
                                         </p>
                                         <h5>
                                             <div class="float-left"><%= p.getPrice()%>€</div>
-                                            <div class="float-right">
-                                                <form method="post" action="addToOrder">
-                                                    <input type="hidden" id="productId" name="productId" value="<%= p.getId() %>">
-
-
-                                                        <button class="badge badge-info badge-md p-2" type="submit" formmethod="post">
+                                            <% if (request.getSession().getAttribute("user") != null) {%>
+                                                <div class="float-right">
+                                                    <form method="post" action="addToOrder">
+                                                        <input type="hidden" id="productId" name="productId"
+                                                               value="<%= p.getId() %>">
+                                                        <button class="badge badge-info badge-md p-2" type="submit"
+                                                                formmethod="post">
                                                             <span class="fa fa-shopping-cart"></span> Ajouter
                                                         </button>
 
-                                                </form>
-                                            </div>
+                                                    </form>
+                                                </div>
+                                            <% }%>
                                         </h5>
                                     </div>
                                 </div>
@@ -85,27 +88,31 @@
                             <%
                                 for (ProductDto p : (List<ProductDto>) session.getAttribute("listBoisson")) {
                             %>
-                                        <div class="col-lg-4 col-md-6 special-grid <%=new CategoryService().get(p.getIdCategory()).getName()%>">
-                                            <div class="gallery-single fix img-container">
-                                                <img src="assets/images/<%=p.getPicture()%>" class="img-container-img" alt="<%=p.getName()%>" height="200">
-                                                <div class="why-text">
-                                                    <h4><%= p.getName()%></h4>
-                                                    <p><%= p.getDescription()%></p>
-                                                    <h5>
-                                                        <div class="float-left"><%= p.getPrice()%>€</div>
-                                                        <div class="float-right">
-                                                            <form method="post" action="addToOrder">
-                                                                <input type="hidden" id="productId" name="productId" value="<%= p.getId() %>">
-                                                                <div class="badge badge-info badge-md p-2">
-                                                                    <span class="fa fa-shopping-cart"></span>
-                                                                    <input type="submit" formmethod="post" value="Ajouter">
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </h5>
-                                                </div>
+                            <div class="col-lg-4 col-md-6 special-grid <%=new CategoryService().get(p.getIdCategory()).getName()%>">
+                                <div class="gallery-single fix img-container">
+                                    <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
+                                         alt="<%=p.getName()%>" height="200">
+                                    <div class="why-text">
+                                        <h4><%= p.getName()%>
+                                        </h4>
+                                        <p><%= p.getDescription()%>
+                                        </p>
+                                        <h5>
+                                            <div class="float-left"><%= p.getPrice()%>€</div>
+                                            <div class="float-right">
+                                                <form method="post" action="addToOrder">
+                                                    <input type="hidden" id="productId" name="productId"
+                                                           value="<%= p.getId() %>">
+                                                    <div class="badge badge-info badge-md p-2">
+                                                        <span class="fa fa-shopping-cart"></span>
+                                                        <input type="submit" formmethod="post" value="Ajouter">
+                                                    </div>
+                                                </form>
                                             </div>
-                                        </div>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
                             <%
                                 }
                             %>
@@ -121,7 +128,8 @@
                             %>
                             <div class="col-lg-4 col-md-6 special-grid "<%=new CategoryService().get(p.getIdCategory()).getName()%>>
                                 <div class="gallery-single fix img-container">
-                                    <img src="assets/images/<%=p.getPicture()%>" class="img-container-img" alt="<%= p.getName()%>" height="200">
+                                    <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
+                                         alt="<%= p.getName()%>" height="200">
                                     <div class="why-text">
                                         <h4><%= p.getName()%>
                                         </h4>
@@ -153,7 +161,8 @@
                             %>
                             <div class="col-lg-4 col-md-6 special-grid img-container"<%=new CategoryService().get(p.getIdCategory()).getName()%>>
                                 <div class="gallery-single fix">
-                                    <img src="assets/images/<%=p.getPicture()%>" class="img-container-img" alt="<%= p.getName()%>" height="200">
+                                    <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
+                                         alt="<%= p.getName()%>" height="200">
                                     <div class="why-text">
                                         <h4><%= p.getName()%>
                                         </h4>
@@ -185,7 +194,8 @@
                             %>
                             <div class="col-lg-4 col-md-6 special-grid "<%=new CategoryService().get(p.getIdCategory()).getName()%>>
                                 <div class="gallery-single fix img-container">
-                                    <img src="assets/images/<%=p.getPicture()%>" class="img-container-img" alt="<%= p.getName()%>" height="200">
+                                    <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
+                                         alt="<%= p.getName()%>" height="200">
                                     <div class="why-text">
                                         <h4><%= p.getName()%>
                                         </h4>
