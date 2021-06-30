@@ -15,6 +15,7 @@ public class DaoException extends Exception {
         this.messageViewForUser = messageViewForUser;
     }
 
+
     public String getClassWhereError() {
         return classWhereError;
     }
