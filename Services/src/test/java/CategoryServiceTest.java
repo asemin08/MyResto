@@ -17,8 +17,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CategoryServiceTest
-{
+public class CategoryServiceTest {
     private static final Logger log = LogManager.getLogger(CategoryServiceTest.class);
 
     @Mock
@@ -29,60 +28,52 @@ public class CategoryServiceTest
 
     @Test
     @DisplayName("Test get")
-    public void getTest()
-    {
+    public void getTest() {
         CategoryDto category = new CategoryDto(1, "Entrée", null);
-        try{
-            when(categoryDao.get(1)).thenReturn(CategoryMapper.convertDtoDomaine(category));
-            MatcherAssert.assertThat(categoryService.get(1).toString(), equalTo(category.toString()));
-            verify(categoryDao).get(1);
-        }
-        catch (DaoException | ServiceException e) {
+        try {
+            when(categoryDao.getById(1)).thenReturn(CategoryMapper.convertDtoDomaine(category));
+            MatcherAssert.assertThat(categoryService.getById(1).toString(), equalTo(category.toString()));
+            verify(categoryDao).getById(1);
+        } catch (DaoException | ServiceException e) {
             log.info(e.getMessage());
         }
     }
 
     @Test
     @DisplayName("Test create")
-    public void createTest()
-    {
+    public void createTest() {
         CategoryDto categoryDto = new CategoryDto(1, "Entrée", null);
-        try{
+        try {
             when(categoryDao.create(any(Category.class))).thenReturn(1);
             MatcherAssert.assertThat(categoryService.create(categoryDto), equalTo(1));
             verify(categoryDao).create(any(Category.class));
-        }
-        catch (ServiceException | DaoException e) {
+        } catch (ServiceException | DaoException e) {
             log.info(e.getMessage());
         }
     }
 
     @Test
     @DisplayName("Test update")
-    public void updateTest()
-    {
+    public void updateTest() {
         CategoryDto categoryDto = new CategoryDto(1, "Entrée", "image.png");
-        try{
+        try {
             when(categoryDao.update(any(Category.class))).thenReturn(1);
             MatcherAssert.assertThat(categoryService.update(categoryDto), equalTo(1));
             verify(categoryDao).update(any(Category.class));
-        }
-        catch (ServiceException | DaoException e) {
+        } catch (ServiceException | DaoException e) {
             log.info(e.getMessage());
         }
     }
 
     @Test
     @DisplayName("Test delete")
-    public void deleteTest()
-    {
+    public void deleteTest() {
         CategoryDto categoryDto = new CategoryDto(1, "Entrée", "image.png");
-        try{
+        try {
             when(categoryDao.delete(any(Category.class))).thenReturn(1);
             MatcherAssert.assertThat(categoryService.delete(categoryDto), equalTo(1));
             verify(categoryDao).delete(any(Category.class));
-        }
-        catch (ServiceException | DaoException e) {
+        } catch (ServiceException | DaoException e) {
             log.info(e.getMessage());
         }
     }

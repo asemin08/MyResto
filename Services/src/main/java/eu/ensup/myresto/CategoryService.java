@@ -38,9 +38,9 @@ public class CategoryService implements ICategoryService {
     }
 
     @Override
-    public CategoryDto get(int idCategory) throws ServiceException {
+    public CategoryDto getById(int idCategory) throws ServiceException {
         try {
-            return CategoryMapper.convertDomaineDto(dao.get(idCategory));
+            return CategoryMapper.convertDomaineDto(dao.getById(idCategory));
         } catch (DaoException e) {
             log.error(e.getMessage());
             throw new ServiceException(ProductDao.class.getName(), "get", e.getMessage(), "Une erreur s'est produite lors de la récupération d'une categorie");
@@ -48,9 +48,9 @@ public class CategoryService implements ICategoryService {
     }
 
     @Override
-    public CategoryDto get(String nameCategory) throws ServiceException {
+    public CategoryDto getByName(String nameCategory) throws ServiceException {
         try {
-            return CategoryMapper.convertDomaineDto(dao.get(nameCategory));
+            return CategoryMapper.convertDomaineDto(dao.getByName(nameCategory));
         } catch (DaoException e) {
             log.error(e.getMessage());
             throw new ServiceException(ProductDao.class.getName(), "get", e.getMessage(), "Une erreur s'est produite lors de la récupération d'une categorie");
