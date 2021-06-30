@@ -12,8 +12,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@include file="header.jsp" %>
-<div class="wrapper">
-    <div class="reservation-box">
+<%--<div class="wrapper">
+    <div class="main-container">
         <div class="panel-body table-responsive" id="panelcart">
             <%
                 Map<Integer, Integer> productIds = (Map<Integer, Integer>) session.getAttribute("order");
@@ -68,6 +68,72 @@
         </div>
     </div>
     <div class="push"></div>
+</div>--%>
+<div class="wrapper">
+    <div class="main-container">
+        <div class="container mb-4">
+            <div class="row justify-content-center text-center align-middle">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <%
+                            Map<Integer, Integer> productIds = (Map<Integer, Integer>) session.getAttribute("order");
+                            if (productIds != null && !productIds.isEmpty()) {
+
+                        %>
+                        <table class="table panel-body" id="panelcart">
+                            <tbody>
+                            <%
+                                for (ProductDto p : (Set<ProductDto>) session.getAttribute("productSet")) {
+                            %>
+                            <tr>
+                                <th scope="col" class="tdifno"><%= p.getName()%></th>
+                            </tr>
+                            <tr>
+                                <td><img src="assets/images/<%= p.getPicture()%>" alt="image du produit"/></td>
+                                <td><%= p.getDescription()%></td>
+                                <td><%= productIds.get(p.getId()) %></td>
+                                <td>
+                                    <a href="removeproductcart?id=<%=p.getId()%>">
+                                        <i class="fa fa-minus" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="addproductcart?id=<%=p.getId()%>">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr id="finproduct">
+                                <td class="tdifno"><%=p.getPrice() %> €</td>
+                            </tr>
+                            <%
+                                }
+                            %>
+                            <tr>
+                                <td><strong>Total</strong></td>
+                                <td colspan="3">${totalPrice} €</td>
+                                <td colspan="2"><a href="ordercart" class="">Commander</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <% } else { %>
+                            <div class="alert alert-light">
+                                <h3 class="alert-heading"> Aucun éléments dans le panier </h3>
+                                <a href="menu" class="alert-link">Ajouter un produit</a>
+                            </div>
+
+                        <% } %>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="push"></div>
+
 </div>
+
 <!-- End Panier -->
 <%@include file="footer.jsp" %>
