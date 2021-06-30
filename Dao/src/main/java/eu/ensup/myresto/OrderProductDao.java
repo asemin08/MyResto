@@ -17,7 +17,7 @@ public class OrderProductDao extends BaseDao implements IOrderProductDao {
             setPs(getCn().prepareStatement(sql));
             getPs().setLong(1, idOrder);
             getPs().setInt(2,orderProduct.getIdUser());
-            getPs().setDate(3, new Date(2021,1,12));
+            getPs().setDate(3, orderProduct.getDateCreated());
             getPs().setString(4,orderProduct.getStatus());
             setResult(getPs().executeUpdate());
             
@@ -28,7 +28,6 @@ public class OrderProductDao extends BaseDao implements IOrderProductDao {
                 getPs().setInt(2,idOrder);
                 setResult(getPs().executeUpdate());
             }
-            setResult(getPs().executeUpdate());
         } catch (SQLException e) {
             throw new DaoException(OrderProductDao.class.getName(), "createOrderProduct", e.getMessage(), "Une erreur s'est produite lors de la création de la commande");
         }

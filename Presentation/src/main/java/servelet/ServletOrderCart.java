@@ -43,6 +43,7 @@ public class ServletOrderCart extends HttpServlet {
                 idList.add(entry.getKey());
             }
         }
+        System.out.println(idList);
         UserDto userDto = (UserDto) userSession.getAttribute("user");
         OrderProductDto orderProductDto = new OrderProductDto(userDto.getId(),idList, new Date(System.currentTimeMillis()));
         try {
