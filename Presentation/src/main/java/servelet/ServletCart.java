@@ -10,10 +10,10 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Set;
+import java.util.*;
 
 @WebServlet(name = "ServletPanier", value = "/panier")
-public class ServletPanier extends HttpServlet {
+public class ServletCart extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -60,9 +60,20 @@ public class ServletPanier extends HttpServlet {
     protected void operations(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServiceException {
         ProductService productService = new ProductService();
         HttpSession userSession = request.getSession();
-
-        Set<ProductDto> List = productService.getAllProducts();
-        userSession.setAttribute("listProduct", List);
+        Map<Integer, Integer> productCount = new HashMap<>();
+        List<Integer> productsOrder = (List<Integer>) userSession.getAttribute("order");
+        Set<ProductDto> productDtos = new HashSet<>();
+        if (productsOrder != null)
+            for (int productId : productsOrder) {
+                if (productCount.get(productId) != null) {
+                    productCount.put(productId, productCount.get(productId) + 1);
+                } else {
+                    productCount.put(productId, 1);
+                    productDtos.add(productService.getOneProduct(productId));
+                }
+            }
+        userSession.setAttribute("productSet", productDtos);
+        userSession.setAttribute("productCount", productCount);
         request.getRequestDispatcher("panier.jsp").forward(request, response);
 
     }
