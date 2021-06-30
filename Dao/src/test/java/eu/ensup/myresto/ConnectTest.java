@@ -1,4 +1,5 @@
-import eu.ensup.myresto.BaseDao;
+package eu.ensup.myresto;
+
 import eu.ensup.myresto.exceptions.DaoException;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;

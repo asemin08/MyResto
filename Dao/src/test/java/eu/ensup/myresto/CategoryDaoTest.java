@@ -1,22 +1,12 @@
+package eu.ensup.myresto;
+
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import eu.ensup.myresto.BaseDao;
-import eu.ensup.myresto.Category;
-import eu.ensup.myresto.CategoryDao;
-import eu.ensup.myresto.exceptions.DaoException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 public class CategoryDaoTest
 {

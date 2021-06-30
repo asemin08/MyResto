@@ -1,5 +1,5 @@
-import eu.ensup.myresto.OrderProduct;
-import eu.ensup.myresto.OrderProductDao;
+package eu.ensup.myresto;
+
 import eu.ensup.myresto.exceptions.DaoException;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ class OrderProductDaoTest {
     private OrderProductDao orderProductDao = new OrderProductDao();
 
     @Test
-    void createOrderProductTest() {
+    void createOrderProduct() {
         try {
             List<Integer> tabIdsProducts = new ArrayList<>();
             tabIdsProducts.add(2);
@@ -30,7 +30,7 @@ class OrderProductDaoTest {
     }
 
     @Test
-    void getAllOrderProductsForOneUserTest() {
+    void getAllOrderProductsForOneUser() {
         try {
             var result = orderProductDao.getAllOrderProductsForOneUser(100);
             MatcherAssert.assertThat(result.size(), equalTo(1));
@@ -41,7 +41,7 @@ class OrderProductDaoTest {
     }
 
     @Test
-    void deleteOrderProductTest() {
+    void deleteOrderProduct() {
         try {
            var result =  orderProductDao.deleteOrderProduct(49);
             MatcherAssert.assertThat(result, equalTo(0));
@@ -51,7 +51,7 @@ class OrderProductDaoTest {
     }
 
     @Test
-    void getOneOrderProductTest() {
+    void getOneOrderProduct() {
         try {
             var result = orderProductDao.getOneOrderProduct(91);
             MatcherAssert.assertThat(result, notNullValue());

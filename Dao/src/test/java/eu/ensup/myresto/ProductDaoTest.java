@@ -1,5 +1,5 @@
-import eu.ensup.myresto.Product;
-import eu.ensup.myresto.ProductDao;
+package eu.ensup.myresto;
+
 import eu.ensup.myresto.exceptions.DaoException;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Order;
@@ -16,7 +16,7 @@ import static org.hamcrest.Matchers.equalTo;
 
     @Test
     @Order(1)
-      void ProductCreateTest() {
+      void ProductCreate() {
         try {
             var result = productDao.createProduct(new Product("Coca", 3.5f, "", "C'est du coca",0));
             MatcherAssert.assertThat(result, equalTo(1));
@@ -27,7 +27,7 @@ import static org.hamcrest.Matchers.equalTo;
 
     @Test
     @Order(5)
-      void ProductgetAllTest() {
+      void ProductgetAll() {
         try {
             var result = productDao.getAllProducts();
             MatcherAssert.assertThat(result.size(), equalTo(1));
@@ -38,7 +38,7 @@ import static org.hamcrest.Matchers.equalTo;
 
     @Test
     @Order(2)
-      void ProductDeleteTest() {
+      void ProductDelete() {
         try {
             var result = productDao.deleteProduct(1);
             MatcherAssert.assertThat(result, equalTo(1));
@@ -49,7 +49,7 @@ import static org.hamcrest.Matchers.equalTo;
 
     @Test
     @Order(3)
-      void ProductGetOneTest() {
+      void ProductGetOne() {
         Product result;
         try {
             result = productDao.getOneProduct(1);
@@ -62,7 +62,7 @@ import static org.hamcrest.Matchers.equalTo;
 
     @Test
     @Order(4)
-      void ProductUpdateTest() {
+      void ProductUpdate() {
         try {
             int result = productDao.updateProduct(new Product(1, "Coca", 3.5f, "", "C'est du coca haha",0));
             MatcherAssert.assertThat(result, equalTo(1));

@@ -1,5 +1,5 @@
-import eu.ensup.myresto.User;
-import eu.ensup.myresto.UserDao;
+package eu.ensup.myresto;
+
 import eu.ensup.myresto.exceptions.DaoException;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Order;
@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
     @Test
     @Order(1)
-    void createUserTest() {
+    void createUser() {
         User user = new User(0, "mdazin", "maxime", "Dazin", "14 rue des boustiffailes 45000 Orléans", "client", "abcd", "12345", "c://");
         try {
             int result = userDao.create(user);
@@ -32,7 +32,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
     @Test
     @Order(2)
-    void updateUserTest() {
+    void updateUser() {
         //TODO Implémentation de la récupération automatique de l'id créé
         User user = new User(100, "mdazin", "maxime", "Dazin", "NON RENSEIGNÉ", "client", "abcd", "12345", "c://");
         try {
@@ -46,7 +46,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
     @Test
     @Order(3)
-    void getUserByIdTest() {
+    void getUserById() {
         try {
             User user = userDao.getById(100);
             MatcherAssert.assertThat(user.getLastName(), equalTo("Dazin"));
@@ -60,7 +60,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
     @Test
     @Order(4)
-    void getUserByLoginTest() {
+    void getUserByLogin() {
         try {
             User user = userDao.getByLogin("d");
             MatcherAssert.assertThat(user.getLastName(), equalTo("test"));
@@ -73,7 +73,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
     @Test
     @Order(5)
-    void deleteUserTest() {
+    void deleteUser() {
         try {
             int result = userDao.delete(100);
             MatcherAssert.assertThat(result, equalTo(1));
