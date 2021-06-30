@@ -60,7 +60,7 @@
                                             <div class="float-right">
                                                 <a href="#" class="badge badge-info badge-md p-2 ">
                                                     <span class="fa fa-shopping-cart"></span>
-                                                    <b> Ajouter </b>
+                                                    <strong> Ajouter </strong>
                                                 </a>
                                             </div>
                                         </h5>
@@ -90,7 +90,7 @@
                                                         <div class="float-right">
                                                             <a href="#" class="badge badge-info badge-md p-2 ">
                                                                 <span class="fa fa-shopping-cart"></span>
-                                                                <b> Ajouter </b>
+                                                                <strong> Ajouter </strong>
                                                             </a>
                                                         </div>
                                                     </h5>
@@ -123,7 +123,7 @@
                                             <div class="float-right">
                                                 <a href="#" class="badge badge-info badge-md p-2 ">
                                                     <span class="fa fa-shopping-cart"></span>
-                                                    <b> Ajouter </b>
+                                                    <strong> Ajouter </strong>
                                                 </a>
                                             </div>
                                         </h5>
@@ -155,7 +155,7 @@
                                             <div class="float-right">
                                                 <a href="#" class="badge badge-info badge-md p-2 ">
                                                     <span class="fa fa-shopping-cart"></span>
-                                                    <b> Ajouter </b>
+                                                    <strong> Ajouter </strong>
                                                 </a>
                                             </div>
                                         </h5>
@@ -187,7 +187,7 @@
                                             <div class="float-right">
                                                 <a href="#" class="badge badge-info badge-md p-2 ">
                                                     <span class="fa fa-shopping-cart"></span>
-                                                    <b> Ajouter </b>
+                                                    <strong> Ajouter </strong>
                                                 </a>
                                             </div>
                                         </h5>
