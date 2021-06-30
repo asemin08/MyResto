@@ -23,9 +23,9 @@
             <div class="col-lg-12 col-sm-12 col-xs-12 ">
                 <div class="contact-block">
                     <form id="contactForm" method="post" action="register">
-                        <div class="row">
+                        <div class="row justify-content-center">
                             <div class="col-md-6">
-                                <h3>Entrez vos Informations</h3>
+                                <h3 class="text-center">Entrez vos Informations</h3>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <input type="text" class="form-control" id="login" name="login"
