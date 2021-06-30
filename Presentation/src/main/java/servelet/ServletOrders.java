@@ -1,8 +1,6 @@
 package servelet;
 
-import eu.ensup.myresto.OrderProductService;
-import eu.ensup.myresto.User;
-import eu.ensup.myresto.UserDto;
+import eu.ensup.myresto.*;
 import eu.ensup.myresto.exceptions.ServiceException;
 
 import javax.servlet.ServletException;
@@ -12,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 @WebServlet(name = "ServletOrder", value = "/orders")
 public class ServletOrders extends HttpServlet {
@@ -40,7 +41,8 @@ public class ServletOrders extends HttpServlet {
         try {
             if (request.getSession().getAttribute("user") != null)
             {
-                var orders = orderProductService.getAllOrderProductsForOneUser(((UserDto)request.getSession().getAttribute("user")).getId());
+                var orders = orderProductService.getAllOrderProductsForOneUser(((UserDto)request.getSession().getAttribute("user")).getId()).stream().collect(Collectors.toList());;
+                Collections.sort(orders, Comparator.comparing(OrderProductDto::getId));
                 userSession.setAttribute("listOrders", orders);
                 this.getServletContext().getRequestDispatcher("/orders.jsp").forward(request, response);
             }else
