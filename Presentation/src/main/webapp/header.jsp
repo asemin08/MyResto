@@ -14,7 +14,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <!DOCTYPE html>
-<html lang="en"><!-- Basic -->
+<html class="head" lang="en"><!-- Basic -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -46,7 +46,7 @@
     <link href="assets/css/style.css" rel="stylesheet" type="text/css">
     <link href="assets/css/superslides.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body class="body">
 
 <!-- Start header -->
 <header class="top-navbar">
