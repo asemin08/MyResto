@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!-- Start Footer -->
-<footer class="footer-area bg-f">
+<footer class="footer-area-custom bg-f-custom">
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-6">
@@ -35,7 +35,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <p class="company-name">All Rights Reserved. &copy; 2021 <a href="#">Le restaurant MyResto</a>
+                    <p class="company-name">All Rights Reserved. &copy; 2021 <a href="accueil">Le restaurant MyResto</a>
                 </div>
             </div>
         </div>

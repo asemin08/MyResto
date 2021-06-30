@@ -15,3 +15,84 @@
 .bg-transparent{
     background-color: transparent;
 }
+
+
+.footer-area-custom{
+    position: absolute;
+    left: 0 ;
+    right: 0;
+    bottom: 0;
+    height: 250px;
+    padding-top: 20px;
+}
+.bg-f-custom{
+    background-image: url("../images/footer-bg.jpg");
+    background-attachment: scroll;
+    background-clip: initial;
+    background-color: rgba(0, 0, 0, 0);
+    background-origin: initial;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.bg-f-custom::before {
+    background: #010101;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    opacity: 0.8;
+}
+
+
+.footer-area-custom .container{
+    position: relative;
+    z-index: 1;
+}
+.footer-area-custom h3{
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 500;
+    border-bottom: 2px solid rgba(207, 166, 113, 0.5);
+    margin-bottom: 10px;
+}
+.footer-area-custom p{
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    padding-bottom: 10px;
+}
+
+.footer-area-custom p.lead{
+    font-size: 19px;
+    color: #ffffff;
+    margin-bottom: 0px;
+}
+.footer-area-custom p.lead a{
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+.footer-area-custom p.lead a:hover{
+    color: #d65106;
+}
+.footer-area-custom p a{
+    font-size: 18px;
+    color: #ffffff;
+}
+.footer-area-custom p a:hover{
+    color: #d65106;
+}
+
+.head{
+    height: 100%;
+}
+
+.body{
+    min-height:100%;
+    position:relative;
+    padding-bottom: 250px;
+}
