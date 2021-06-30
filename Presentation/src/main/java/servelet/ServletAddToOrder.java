@@ -16,12 +16,22 @@ public class ServletAddToOrder extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        operations(request, response);
+        HttpSession userSession = request.getSession();
+        try {
+            operations(request, response,userSession);
+        } catch (ServletException | IOException e) {
+            userSession.setAttribute("error", e.getMessage());
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        operations(request, response);
+        HttpSession userSession = request.getSession();
+        try {
+            operations(request, response,userSession);
+        } catch (ServletException | IOException e) {
+            userSession.setAttribute("error", e.getMessage());
+        }
     }
 
     protected void operations(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,6 +39,7 @@ public class ServletAddToOrder extends HttpServlet {
         HttpSession userSession = request.getSession();
         HashMap<Integer,Integer> productMap = new HashMap<>();
         int productId = Integer.parseInt(request.getParameter("productId"));
+
         if (userSession.getAttribute("order") == null) {
             productMap.put(productId,1);
         } else {

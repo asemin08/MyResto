@@ -1,6 +1,5 @@
 package servelet;
 
-import eu.ensup.myresto.Product;
 import eu.ensup.myresto.ProductDto;
 import eu.ensup.myresto.ProductService;
 import eu.ensup.myresto.UserService;
@@ -8,11 +7,13 @@ import eu.ensup.myresto.exceptions.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 
@@ -23,19 +24,20 @@ public class ServletCart extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        operations(request, response);
-
+        HttpSession userSession = request.getSession();
+        operations(request, response,userSession);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        operations(request, response);
+        HttpSession userSession = request.getSession();
+        operations(request, response,userSession);
     }
 
-    protected void operations(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void operations(HttpServletRequest request, HttpServletResponse response,HttpSession userSession) throws ServletException, IOException, ServiceException {
         ProductService productService = new ProductService();
-        HttpSession userSession = request.getSession();
-        Map<Integer, Integer> productsIds = (Map<Integer, Integer>) userSession.getAttribute("order");
+        Map<Integer, Integer> productCount = new HashMap<>();
+        List<Integer> productsOrder = (List<Integer>) userSession.getAttribute("order");
         Set<ProductDto> productDtos = new HashSet<>();
             for(Map.Entry<Integer,Integer> entry : productsIds.entrySet()){
                 try {
