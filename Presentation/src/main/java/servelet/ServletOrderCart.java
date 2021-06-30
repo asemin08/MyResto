@@ -1,0 +1,60 @@
+package servelet;
+
+import eu.ensup.myresto.*;
+import eu.ensup.myresto.exceptions.ServiceException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+@WebServlet(name = "ServletOrderCart", value = "/ordercart")
+
+public class ServletOrderCart extends HttpServlet {
+    private static final Logger log = LogManager.getLogger(UserService.class);
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        orderCart(request, response);
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        orderCart(request, response);
+    }
+
+    protected void orderCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        OrderProductService orderProductService = new OrderProductService();
+        HttpSession userSession = request.getSession();
+        Map<Integer, Integer> productsIds = (Map<Integer, Integer>) userSession.getAttribute("order");
+        List<Integer> idList = new ArrayList<>();
+        for(Map.Entry<Integer,Integer> entry : productsIds.entrySet()){
+            for (var i = 0; i < entry.getValue(); i++){
+                idList.add(entry.getKey());
+            }
+        }
+        UserDto userDto = (UserDto) userSession.getAttribute("user");
+        OrderProductDto orderProductDto = new OrderProductDto(userDto.getId(),idList, new Date(System.currentTimeMillis()));
+        try {
+            orderProductService.createOrderProduct(orderProductDto);
+            userSession.removeAttribute("order");
+            response.sendRedirect(request.getContextPath() + "/orders");
+        } catch (ServiceException e) {
+            request.setAttribute("error",e.getMessageViewForUser());
+            log.error(e.getMessage());
+            request.getRequestDispatcher("panier.jsp").forward(request, response);
+        }
+
+    }
+
+}
