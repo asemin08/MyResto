@@ -42,8 +42,8 @@ Container web Tomcat : version 9.0
 `mvn tomcat:run`
 
 **Lancer l'application:**
-* Copier/Coller le fichier `GestionEtablissement.war` dans le répertoire 'webapps' de votre container web. Vous devez avoir une instance de tomcat en fonctionnement.
-* Ouvrir la page web http://localhost:8080/GestionEtablissement dans votre navigateur
+* Copier/Coller le fichier `Presentation-1.0-SNAPSHOT.war` dans le répertoire 'webapps' de votre container web. Vous devez avoir une instance de tomcat en fonctionnement.
+* Ouvrir la page web http://localhost:8080/Presentation dans votre navigateur
 
 
 ## Tests unitaires
