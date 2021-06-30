@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @WebServlet(name = "ServletMenu", value = "/menu")
 public class ServletMenu extends HttpServlet {
@@ -33,11 +33,13 @@ public class ServletMenu extends HttpServlet {
         ProductService productService = new ProductService();
         HttpSession userSession = request.getSession();
         try {
-            Set<ProductDto> listBoisson = new HashSet<>();
-            Set<ProductDto> listEntree = new HashSet<>();
-            Set<ProductDto> listPlat = new HashSet<>();
-            Set<ProductDto> listDessert = new HashSet<>();
-            for (var produc : productService.getAllProducts()) {
+            List<ProductDto> listBoisson = new LinkedList<>();
+            List<ProductDto> listEntree = new LinkedList<>();
+            List<ProductDto> listPlat = new LinkedList<>();
+            List<ProductDto> listDessert = new LinkedList<>();
+            List<ProductDto> products = productService.getAllProducts().stream().collect(Collectors.toList());
+            Collections.sort(products, Comparator.comparing(ProductDto::getName));
+            for (var produc : products) {
                 switch (new CategoryService().get(produc.getIdCategory()).getName()) {
                     case ("boisson"):
                         listBoisson.add(produc);
@@ -57,7 +59,7 @@ public class ServletMenu extends HttpServlet {
             userSession.setAttribute("listEntree", listEntree);
             userSession.setAttribute("listDessert", listDessert);
             userSession.setAttribute("listPlat", listPlat);
-            userSession.setAttribute("listProducts", productService.getAllProducts());
+            userSession.setAttribute("listProducts", products);
             this.getServletContext().getRequestDispatcher("/menu.jsp").forward(request, response);
 
         } catch (ServiceException e) {
