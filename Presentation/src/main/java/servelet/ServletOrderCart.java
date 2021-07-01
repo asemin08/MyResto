@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The type Servlet order cart.
+ */
 @WebServlet(name = "ServletOrderCart", value = "/ordercart")
 
 public class ServletOrderCart extends HttpServlet {
@@ -39,6 +42,14 @@ public class ServletOrderCart extends HttpServlet {
         }
     }
 
+    /**
+     * Order cart.
+     *
+     * @param request  the request
+     * @param response the response
+     * @throws ServletException the servlet exception
+     * @throws IOException      the io exception
+     */
     protected void orderCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         var orderProductService = new OrderProductService();
         HttpSession userSession = request.getSession();

@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * The type Servlet register.
+ */
 @WebServlet(name = "ServletRegister", value = "/register")
 public class ServletRegister extends HttpServlet {
     private static final String ERROR_ARG = "error";
@@ -33,6 +36,14 @@ public class ServletRegister extends HttpServlet {
 
     }
 
+    /**
+     * Operations.
+     *
+     * @param request  the request
+     * @param response the response
+     * @throws ServletException the servlet exception
+     * @throws IOException      the io exception
+     */
     public void operations(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         var userService = new UserService();
         if (request.getParameter("login") != null) {

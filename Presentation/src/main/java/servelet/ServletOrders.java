@@ -14,6 +14,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
+/**
+ * The type Servlet orders.
+ */
 @WebServlet(name = "ServletOrder", value = "/orders")
 public class ServletOrders extends HttpServlet {
     @Override
@@ -31,6 +34,15 @@ public class ServletOrders extends HttpServlet {
         }
     }
 
+    /**
+     * Operations.
+     *
+     * @param request     the request
+     * @param response    the response
+     * @param userSession the user session
+     * @throws ServletException the servlet exception
+     * @throws IOException      the io exception
+     */
     protected void operations(HttpServletRequest request, HttpServletResponse response, HttpSession userSession) throws ServletException, IOException {
         var orderProductService = new OrderProductService();
         try {

@@ -53,7 +53,7 @@
                                     for (ProductDto p : (List<ProductDto>) session.getAttribute("listProducts")) {
 
                                 %>
-                                <div class="col-lg-4 col-md-6 special-grid " <%=new CategoryService().get(p.getIdCategory()).getName()%>>
+                                <div class="col-lg-4 col-md-6 special-grid " <%=new CategoryService().getById(p.getIdCategory()).getName()%>>
                                     <div class="gallery-single fix img-container">
                                         <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
                                              alt="<%= p.getName()%>" height="200">
@@ -94,7 +94,7 @@
                                     for (ProductDto p : (List<ProductDto>) session.getAttribute("listBoisson")) {
                                 %>
 
-                                <div class="col-lg-4 col-md-6 special-grid <%=new CategoryService().get(p.getIdCategory()).getName()%>">
+                                <div class="col-lg-4 col-md-6 special-grid <%=new CategoryService().getById(p.getIdCategory()).getName()%>">
                                     <div class="gallery-single fix img-container">
                                         <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
                                              alt="<%=p.getName()%>" height="200">
@@ -135,7 +135,7 @@
                                 <%
                                     for (ProductDto p : (List<ProductDto>) session.getAttribute("listEntree")) {
                                 %>
-                                <div class="col-lg-4 col-md-6 special-grid "<%=new CategoryService().get(p.getIdCategory()).getName()%>>
+                                <div class="col-lg-4 col-md-6 special-grid "<%=new CategoryService().getById(p.getIdCategory()).getName()%>>
                                     <div class="gallery-single fix img-container">
                                         <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
                                              alt="<%= p.getName()%>" height="200">
@@ -175,7 +175,7 @@
                                 <%
                                     for (ProductDto p : (List<ProductDto>) session.getAttribute("listPlat")) {
                                 %>
-                                <div class="col-lg-4 col-md-6 special-grid img-container"<%=new CategoryService().get(p.getIdCategory()).getName()%>>
+                                <div class="col-lg-4 col-md-6 special-grid img-container"<%=new CategoryService().getById(p.getIdCategory()).getName()%>>
                                     <div class="gallery-single fix">
                                         <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
                                              alt="<%= p.getName()%>" height="200">
@@ -215,7 +215,7 @@
                                 <%
                                     for (ProductDto p : (List<ProductDto>) session.getAttribute("listDessert")) {
                                 %>
-                                <div class="col-lg-4 col-md-6 special-grid "<%=new CategoryService().get(p.getIdCategory()).getName()%>>
+                                <div class="col-lg-4 col-md-6 special-grid "<%=new CategoryService().getById(p.getIdCategory()).getName()%>>
                                     <div class="gallery-single fix img-container">
                                         <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
                                              alt="<%= p.getName()%>" height="200">

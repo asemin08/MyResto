@@ -9,6 +9,9 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * The type Category dao.
+ */
 public class CategoryDao extends BaseDao implements ICategoryDao {
     private static final Logger log = LogManager.getLogger(CategoryDao.class);
 

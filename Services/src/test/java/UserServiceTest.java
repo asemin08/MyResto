@@ -18,17 +18,29 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 
+/**
+ * The type User service test.
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceTest {
 
     private static final Logger log = LogManager.getLogger(UserServiceTest.class);
 
+    /**
+     * The User dao.
+     */
     @Mock
     IUserDao userDao;
 
+    /**
+     * The User service.
+     */
     @InjectMocks
     UserService userService;
 
+    /**
+     * Create user test.
+     */
     @Test
     public void createUserTest() {
         try {
@@ -41,6 +53,9 @@ public class UserServiceTest {
         }
     }
 
+    /**
+     * Update user test.
+     */
     @Test
     public void updateUserTest() {
         try {
@@ -55,6 +70,9 @@ public class UserServiceTest {
     }
 
 
+    /**
+     * Gets by id test.
+     */
     @Test
     public void getByIdTest() {
         try {
@@ -67,6 +85,9 @@ public class UserServiceTest {
         }
     }
 
+    /**
+     * Gets by login test.
+     */
     @Test
     public void getByLoginTest() {
         try {
@@ -80,6 +101,9 @@ public class UserServiceTest {
         }
     }
 
+    /**
+     * Delete test.
+     */
     @Test
     public void deleteTest(){
         try {
@@ -91,6 +115,9 @@ public class UserServiceTest {
         }
     }
 
+    /**
+     * Validate user test.
+     */
     @Test
     public void validateUserTest(){
         try {

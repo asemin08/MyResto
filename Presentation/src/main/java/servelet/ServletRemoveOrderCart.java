@@ -1,5 +1,8 @@
 package servelet;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,12 +12,15 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * The type Servlet log out.
+ * The type Servlet order cart.
  */
-@WebServlet(name = "ServletLogOut", value = "/disconnect")
-public class ServletLogOut extends HttpServlet {
+@WebServlet(name = "ServletRemoveOrderCart", value = "/removeordercart")
+
+public class ServletRemoveOrderCart extends HttpServlet {
+    private static final Logger log = LogManager.getLogger(ServletRemoveOrderCart.class);
+
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
 
@@ -22,24 +28,28 @@ public class ServletLogOut extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         HttpSession userSession = request.getSession();
         try {
-            operations(request, response);
+            orderCart(request, response);
         } catch (ServletException | IOException e) {
             userSession.setAttribute("error", e.getMessage());
         }
     }
 
     /**
-     * Operations.
+     * Order cart.
      *
      * @param request  the request
      * @param response the response
      * @throws ServletException the servlet exception
      * @throws IOException      the io exception
      */
-    protected void operations(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getSession().getAttribute("user") != null)
-            request.getSession().invalidate();
+    protected void orderCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession userSession = request.getSession();
+
+        if (userSession.getAttribute("productSet") != null)
+            userSession.removeAttribute("productSet");
+
         this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
 
     }
+
 }

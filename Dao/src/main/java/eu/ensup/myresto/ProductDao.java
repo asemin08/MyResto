@@ -9,6 +9,9 @@ import java.util.Set;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * The type Product dao.
+ */
 public class ProductDao extends BaseDao implements IProductDao {
 
     private static final Logger log = LogManager.getLogger(ProductDao.class);

@@ -8,6 +8,9 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 
+/**
+ * The type Servlet add to order.
+ */
 @WebServlet(name = "ServletAddToOrder", value = "/addToOrder")
 public class ServletAddToOrder extends HttpServlet {
 
@@ -28,6 +31,14 @@ public class ServletAddToOrder extends HttpServlet {
         }
     }
 
+    /**
+     * Operations.
+     *
+     * @param request     the request
+     * @param response    the response
+     * @param userSession the user session
+     * @throws IOException the io exception
+     */
     protected void operations(HttpServletRequest request, HttpServletResponse response, HttpSession userSession) throws IOException {
 
         HashMap<Integer, Integer> productMap = new HashMap<>();
