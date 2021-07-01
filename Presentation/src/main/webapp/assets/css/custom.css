@@ -133,3 +133,9 @@ table tr td{
 .main-container{
     padding-top: 170px;
 }
+
+.m5-custom{
+    margin-bottom: 5%;
+    margin-let: 5%;
+    margin-right: 5%;
+}

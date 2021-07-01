@@ -69,8 +69,89 @@
     </div>
     <div class="push"></div>
 </div>--%>
+
 <div class="wrapper">
     <div class="main-container">
+        <div class="row d-flex justify-content-center align-items-center h-100 m5-custom bg-white">
+            <div class="col">
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="h5"><strong>Panier</strong></th>
+                            <th scope="col">Produit</th>
+                            <th scope="col">Quantité</th>
+                            <th scope="col">Prix</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://i.imgur.com/2DsA49b.jpg" class="img-fluid rounded-3" style="width: 120px;" alt="Book">
+                                    <div class="flex-column m-4">
+                                        <p class="mb-2">Thinking, Fast and Slow</p>
+                                        <p class="mb-0">Daniel Kahneman</p>
+                                    </div>
+                                </div>
+                            </th>
+                            <td class="align-middle">
+                                <p class="mb-0" style="font-weight: 500;">Digital</p>
+                            </td>
+                            <td class="align-middle">
+                                <div class="d-flex flex-row">
+                                    <button class="btn btn-link px-2"
+                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+
+                                    <input id="form1" min="0" name="quantity" value="2" type="number"
+                                           class="form-control form-control-sm" style="width: 50px;" />
+
+                                    <button class="btn btn-link px-2"
+                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </td>
+                            <td class="align-middle">
+                                <p class="mb-0" style="font-weight: 500;">$9.99</p>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card shadow-2-strong mb-5 mb-lg-0" style="border-radius: 16px;">
+                    <div class="card-body p-4">
+
+                        <div class="row">
+                            <div class="col-6"></div>
+                            <div class="col-6">
+
+                                <hr class="my-4">
+
+                                <div class="d-flex justify-content-between mb-4" style="font-weight: 500;">
+                                    <p class="mb-2">Total</p>
+                                    <p class="mb-2">$26.48</p>
+                                </div>
+
+                                <button type="button" class="btn btn-primary btn-block btn-lg">
+                                    <div class="d-flex justify-content-between">
+                                        <span>Commander</span>
+                                    </div>
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <%--
         <div class="container mb-4">
             <div class="row justify-content-center text-center align-middle">
                 <div class="col-12">
@@ -129,11 +210,12 @@
                 </div>
 
             </div>
-        </div>
+        </div>--%>
     </div>
     <div class="push"></div>
 
 </div>
+
 
 <!-- End Panier -->
 <%@include file="footer.jsp" %>
