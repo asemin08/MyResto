@@ -16,16 +16,28 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * The type Category service test.
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class CategoryServiceTest {
     private static final Logger log = LogManager.getLogger(CategoryServiceTest.class);
 
+    /**
+     * The Category dao.
+     */
     @Mock
     ICategoryDao categoryDao;
 
+    /**
+     * The Category service.
+     */
     @InjectMocks
     CategoryService categoryService;
 
+    /**
+     * Gets test.
+     */
     @Test
     @DisplayName("Test get")
     public void getTest() {
@@ -39,6 +51,9 @@ public class CategoryServiceTest {
         }
     }
 
+    /**
+     * Create test.
+     */
     @Test
     @DisplayName("Test create")
     public void createTest() {
@@ -52,6 +67,9 @@ public class CategoryServiceTest {
         }
     }
 
+    /**
+     * Update test.
+     */
     @Test
     @DisplayName("Test update")
     public void updateTest() {
@@ -65,6 +83,9 @@ public class CategoryServiceTest {
         }
     }
 
+    /**
+     * Delete test.
+     */
     @Test
     @DisplayName("Test delete")
     public void deleteTest() {

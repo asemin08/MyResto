@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * The type Servlet login.
+ */
 @WebServlet(name = "ServletLogin", value = "/login")
 public class ServletLogin extends HttpServlet {
 
@@ -34,6 +37,15 @@ public class ServletLogin extends HttpServlet {
         }
     }
 
+    /**
+     * Operations.
+     *
+     * @param request     the request
+     * @param response    the response
+     * @param userSession the user session
+     * @throws ServletException the servlet exception
+     * @throws IOException      the io exception
+     */
     protected void operations(HttpServletRequest request, HttpServletResponse response,HttpSession userSession) throws ServletException, IOException {
         if (request.getParameter("login") != null) {
             var loginUserDto = new LoginUserDto(request.getParameter("login"), request.getParameter("password"));

@@ -15,6 +15,9 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * The type Servlet menu.
+ */
 @WebServlet(name = "ServletMenu", value = "/menu")
 public class ServletMenu extends HttpServlet {
     @Override
@@ -32,6 +35,15 @@ public class ServletMenu extends HttpServlet {
         }
     }
 
+    /**
+     * Operations.
+     *
+     * @param request     the request
+     * @param response    the response
+     * @param userSession the user session
+     * @throws ServletException the servlet exception
+     * @throws IOException      the io exception
+     */
     protected void operations(HttpServletRequest request, HttpServletResponse response, HttpSession userSession) throws ServletException, IOException {
 
         var productService = new ProductService();

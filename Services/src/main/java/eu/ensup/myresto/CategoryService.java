@@ -8,16 +8,27 @@ import eu.ensup.myresto.exceptions.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * The type Category service.
+ */
 public class CategoryService implements ICategoryService {
 
     private static final Logger log = LogManager.getLogger(CategoryService.class);
 
     private ICategoryDao dao;
 
+    /**
+     * Instantiates a new Category service.
+     *
+     * @param dao the dao
+     */
     public CategoryService(ICategoryDao dao) {
         this.dao = dao;
     }
 
+    /**
+     * Instantiates a new Category service.
+     */
     public CategoryService() {
         this.dao = new CategoryDao();
     }

@@ -5,6 +5,9 @@ import eu.ensup.myresto.exceptions.DaoException;
 import java.sql.SQLException;
 import java.util.*;
 
+/**
+ * The type Order product dao.
+ */
 public class OrderProductDao extends BaseDao implements IOrderProductDao {
 
     @Override

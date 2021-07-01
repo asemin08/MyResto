@@ -8,6 +8,9 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Map;
 
+/**
+ * The type Servlet remove product from cart.
+ */
 @WebServlet(name = "ServlerRemoveProductCart", value = "/removeproductcart")
 public class ServletRemoveProductFromCart extends HttpServlet {
     @Override
@@ -27,6 +30,13 @@ public class ServletRemoveProductFromCart extends HttpServlet {
         }
     }
 
+    /**
+     * Remove product from cart.
+     *
+     * @param request  the request
+     * @param response the response
+     * @throws IOException the io exception
+     */
     protected void removeProductFromCart(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession userSession = request.getSession();
         Map<Integer, Integer> productsOrder = (Map<Integer, Integer>) userSession.getAttribute("order");
