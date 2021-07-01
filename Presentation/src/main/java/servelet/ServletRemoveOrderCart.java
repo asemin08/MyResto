@@ -45,8 +45,8 @@ public class ServletRemoveOrderCart extends HttpServlet {
     protected void orderCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession userSession = request.getSession();
 
-        if (userSession.getAttribute("productSet") != null)
-            userSession.removeAttribute("productSet");
+        if (userSession.getAttribute("order") != null)
+            userSession.removeAttribute("order");
 
         this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
 
