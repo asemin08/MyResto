@@ -22,6 +22,7 @@ public class BaseDao {
 
     private static int result;
     private static final Logger log = LogManager.getLogger(BaseDao.class);
+    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 
     /**
      * Instantiates a new Base dao.
@@ -35,10 +36,11 @@ public class BaseDao {
 
     public int connexion() throws DaoException {
         try {
+            Class.forName(DRIVER);
             cn = DriverManager.getConnection(this.url, login, password);
             st = cn.createStatement();
             return 0;
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             log.error(e.getMessage());
             throw new DaoException(BaseDao.class.getName(), "connexion", e.getMessage(), "Une erreur s'est produite lors de connection à la base de données");
         }
