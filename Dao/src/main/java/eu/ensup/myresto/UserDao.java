@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * The type User dao.
+ */
 public class UserDao extends BaseDao implements IUserDao {
     private static final Logger log = LogManager.getLogger(UserDao.class);
 

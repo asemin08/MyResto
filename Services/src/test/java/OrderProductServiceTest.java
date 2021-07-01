@@ -21,15 +21,27 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * The type Order product service test.
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class OrderProductServiceTest {
 
+    /**
+     * The Orderproduct dao.
+     */
     @Mock
     IOrderProductDao OrderproductDao;
 
+    /**
+     * The Orderproduct service.
+     */
     @InjectMocks
     OrderProductService OrderproductService;
 
+    /**
+     * Create order product test.
+     */
     @Test
     public void createOrderProductTest() {
         try {
@@ -46,6 +58,9 @@ public class OrderProductServiceTest {
         }
     }
 
+    /**
+     * Gets all order products for one user.
+     */
     @Test
     public void getAllOrderProductsForOneUser() {
         try {
@@ -66,6 +81,9 @@ public class OrderProductServiceTest {
 //    public void updateOrderProduct() {
 //    }
 
+    /**
+     * Delete order product.
+     */
     @Test
     public void deleteOrderProduct() {
         try {
@@ -77,6 +95,9 @@ public class OrderProductServiceTest {
         }
     }
 
+    /**
+     * Gets one order product.
+     */
     @Test
     public void getOneOrderProduct() {
         try {

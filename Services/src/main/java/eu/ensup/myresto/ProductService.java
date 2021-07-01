@@ -8,6 +8,9 @@ import eu.ensup.myresto.exceptions.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * The type Product service.
+ */
 public class ProductService implements IProductService {
 
     private static final Logger log = LogManager.getLogger(ProductService.class);
@@ -15,10 +18,18 @@ public class ProductService implements IProductService {
 
     private IProductDao productDao;
 
+    /**
+     * Instantiates a new Product service.
+     *
+     * @param productDao the product dao
+     */
     public ProductService(IProductDao productDao) {
         this.productDao = productDao;
     }
 
+    /**
+     * Instantiates a new Product service.
+     */
     public ProductService() {
         this.productDao = new ProductDao();
     }

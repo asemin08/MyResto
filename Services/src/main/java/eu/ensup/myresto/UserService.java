@@ -10,16 +10,27 @@ import eu.ensup.myresto.exceptions.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * The type User service.
+ */
 public class UserService implements IUserService {
 
     private static final Logger log = LogManager.getLogger(UserService.class);
 
     private IUserDao userDao;
 
+    /**
+     * Instantiates a new User service.
+     *
+     * @param userDao the user dao
+     */
     public UserService(IUserDao userDao) {
         this.userDao = userDao;
     }
 
+    /**
+     * Instantiates a new User service.
+     */
     public UserService() {
         this.userDao = new UserDao();
     }

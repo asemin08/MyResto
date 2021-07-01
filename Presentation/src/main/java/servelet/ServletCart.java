@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.util.*;
 
 
+/**
+ * The type Servlet cart.
+ */
 @WebServlet(name = "ServletPanier", value = "/panier")
 public class ServletCart extends HttpServlet {
 
@@ -33,6 +36,15 @@ public class ServletCart extends HttpServlet {
         }
     }
 
+    /**
+     * Operations.
+     *
+     * @param request     the request
+     * @param response    the response
+     * @param userSession the user session
+     * @throws ServletException the servlet exception
+     * @throws IOException      the io exception
+     */
     protected void operations(HttpServletRequest request, HttpServletResponse response, HttpSession userSession) throws ServletException, IOException {
         var productService = new ProductService();
         Map<Integer, Integer> productsIds = (Map<Integer, Integer>) userSession.getAttribute("order");

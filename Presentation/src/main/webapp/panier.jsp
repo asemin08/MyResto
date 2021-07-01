@@ -54,6 +54,7 @@
                 <tr>
                     <td class="font-weight-bold">TOTAL</td>
                     <td colspan="3">${totalPrice} €</td>
+                    <td colspan="2"><a href="removeordercart">Vider le panier</a></td>
                     <td colspan="2"><a href="ordercart">Commander</a></td>
                 </tr>
                 <% if (request.getParameter("error") != null) { %>

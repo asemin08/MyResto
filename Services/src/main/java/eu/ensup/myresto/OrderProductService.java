@@ -6,14 +6,25 @@ import eu.ensup.myresto.exceptions.ServiceException;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * The type Order product service.
+ */
 public class OrderProductService implements IOrderProductService {
 
     private IOrderProductDao orderProduct;
 
+    /**
+     * Instantiates a new Order product service.
+     *
+     * @param productDao the product dao
+     */
     public OrderProductService(IOrderProductDao productDao) {
         this.orderProduct = productDao;
     }
 
+    /**
+     * Instantiates a new Order product service.
+     */
     public OrderProductService() {
         this.orderProduct = new OrderProductDao();
     }

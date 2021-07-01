@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * The type Servlet log out.
+ */
 @WebServlet(name = "ServletLogOut", value = "/disconnect")
 public class ServletLogOut extends HttpServlet {
     @Override
@@ -25,6 +28,14 @@ public class ServletLogOut extends HttpServlet {
         }
     }
 
+    /**
+     * Operations.
+     *
+     * @param request  the request
+     * @param response the response
+     * @throws ServletException the servlet exception
+     * @throws IOException      the io exception
+     */
     protected void operations(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("user") != null)
             request.getSession().invalidate();
