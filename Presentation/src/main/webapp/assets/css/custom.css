@@ -140,8 +140,20 @@ table tr td{
     margin-right: 5%;
 }
 
-btn-orange{
+.text-orange{
     color: #d65106;
-    background-color: transparent;
-    background-image: none;
 }
+.btn-orange{
+    color: #d65106;
+}
+
+.btn-orange:hover{
+    color: #ffffff;
+    background-color: #333333;
+    border-color: #333333;
+}
+
+.text-lg{
+    font-size: 18px;
+}
+
