@@ -36,7 +36,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <p class="company-name">All Rights Reserved. &copy; 2021 <a href="accueil">Le restaurant MyResto</a>
+                    <p class="company-name">All Rights Reserved. &copy; 2021 <a href="home">Le restaurant MyResto</a>
                 </div>
             </div>
         </div>

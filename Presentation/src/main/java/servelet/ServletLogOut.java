@@ -39,7 +39,7 @@ public class ServletLogOut extends HttpServlet {
     protected void operations(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("user") != null)
             request.getSession().invalidate();
-        this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
 
     }
 }

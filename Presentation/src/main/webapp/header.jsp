@@ -52,7 +52,7 @@
 <header class="top-navbar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="accueil">
+            <a class="navbar-brand" href="home">
                 <img id="logo" src="assets/images/logo.png" alt="logo MyResto" height="100" width="100"/>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food"
@@ -61,14 +61,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbars-rs-food">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item "><a class="nav-link" href="accueil">Accueil</a></li>
+                    <li class="nav-item "><a class="nav-link" href="home">Accueil</a></li>
                     <li class="nav-item "><a class="nav-link" href="menu">Carte</a></li>
                     <% if (request.getSession().getAttribute("user") != null) {
                         if (((UserDto) request.getSession().getAttribute("user")).getRole().equals("ADMIN")) {
                     %>
                         <li class="nav-item"><a class="nav-link" href="summary">Récapitulatif des commandes clients</a></li>
                     <% } else { %>
-                        <li class="nav-item"><a class="nav-link" href="panier">Panier</a></li>
+                        <li class="nav-item"><a class="nav-link" href="cart">Panier</a></li>
                         <li class="nav-item"><a class="nav-link" href="orders">Commandes</a></li>
                         <% }%>
                     <li class="nav-item"><a class="nav-link" href="disconnect">Déconnexion</a></li>

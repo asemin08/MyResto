@@ -48,7 +48,7 @@ public class ServletRemoveOrderCart extends HttpServlet {
         if (userSession.getAttribute("order") != null)
             userSession.removeAttribute("order");
         userSession.setAttribute("error", "Vous avez vidé la panier");
-        this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
 
     }
 

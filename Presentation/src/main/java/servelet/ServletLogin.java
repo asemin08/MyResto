@@ -54,7 +54,7 @@ public class ServletLogin extends HttpServlet {
                 userSession.removeAttribute("user");
                 UserDto user = userService.validateUser(loginUserDto);
                 userSession.setAttribute("user", user);
-                request.getRequestDispatcher("accueil.jsp").forward(request, response);
+                request.getRequestDispatcher("home.jsp").forward(request, response);
             } catch (ServiceException e) {
                 request.setAttribute(ERROR_ATTR, e.getMessageViewForUser());
                 request.getRequestDispatcher("login.jsp").forward(request, response);

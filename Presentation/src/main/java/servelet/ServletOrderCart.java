@@ -70,7 +70,7 @@ public class ServletOrderCart extends HttpServlet {
         } catch (ServiceException e) {
             request.setAttribute("error", e.getMessageViewForUser());
             log.error(e.getMessage());
-            request.getRequestDispatcher("panier.jsp").forward(request, response);
+            request.getRequestDispatcher("cart.jsp").forward(request, response);
         }
 
     }
