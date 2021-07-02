@@ -51,7 +51,7 @@
 <!-- Start header -->
 <header class="top-navbar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
+        <div class="container-fluid">
             <a class="navbar-brand" href="accueil">
                 <img id="logo" src="assets/images/logo.png" alt="logo MyResto" height="100" width="100"/>
             </a>
