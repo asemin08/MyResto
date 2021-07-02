@@ -10,13 +10,12 @@
 
 <!-- Start Reservation -->
 <div class="wrapper">
-    <div class="reservation-box">
+    <div class="main-container m5-custom">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="heading-title text-center">
-                        <h2>Inscription</h2>
-
+                    <div class="text-center mb-4">
+                        <h2 class="titre-entente">Inscription</h2>
                     </div>
                 </div>
             </div>
