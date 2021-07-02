@@ -50,6 +50,18 @@ public class OrderProductService implements IOrderProductService {
             throw new ServiceException(OrderProductService.class.getName(), "getAllOrderProductsForOneUser", e.getMessage(), "Une erreur s'est produite lors de la récupération de tout les commandes");
         }
     }
+    @Override
+    public Set<OrderProductDto> getAllOrderProduct() throws ServiceException {
+        try {
+            Set<OrderProductDto> productDtoSet = new HashSet<>();
+            for (var product : orderProduct.getAllOrderProduct()) {
+                productDtoSet.add(convertOrderProductToOrderProductDto(product));
+            }
+            return productDtoSet;
+        } catch (DaoException e) {
+            throw new ServiceException(OrderProductService.class.getName(), "getAllOrderProductsForOneUser", e.getMessage(), "Une erreur s'est produite lors de la récupération de tout les commandes");
+        }
+    }
 
     @Override
     public int updateOrderProduct(OrderProductDto orderProductDto) throws ServiceException {
@@ -57,6 +69,14 @@ public class OrderProductService implements IOrderProductService {
             return orderProduct.updateOrderProduct(convertOrderProductDtoToOrderProduct(orderProductDto));
         } catch (DaoException e) {
             throw new ServiceException(OrderProductService.class.getName(), "updateOrderProduct", e.getMessage(), "Une erreur s'est produite lors de la mise à jour du produit");
+        }
+    }
+    @Override
+    public int updateOrderProductById(int id, String value) throws ServiceException {
+        try {
+            return orderProduct.updateOrderProductById(id,value);
+        } catch (DaoException e) {
+            throw new ServiceException(OrderProductService.class.getName(), "updateOrderProductById", e.getMessage(), "Une erreur s'est produite lors de la mise à jour du produit");
         }
     }
 

@@ -1,12 +1,9 @@
-<%@ page import="eu.ensup.myresto.ProductDto" %>
-<%@ page import="eu.ensup.myresto.OrderProductDto" %>
-<%@ page import="eu.ensup.myresto.ProductService" %>
 <%@ page import="java.util.*" %>
-<%@ page import="eu.ensup.myresto.Product" %>
 <%@ page import="java.util.List" %>
 <%@ page import="eu.ensup.myresto.ProductService" %>
 <%@ page import="java.text.DateFormat" %>
-<%@ page import="java.time.format.DateTimeFormatter" %><%--
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="eu.ensup.myresto.*" %><%--
 <%--
   Created by IntelliJ IDEA.
   User: A
@@ -39,6 +36,7 @@
                 <!-- List group-->
                 <ul class="list-group shadow">
                     <%
+                        UserDto user = ((UserDto) session.getAttribute("user"));
                         int i = 1;
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                         for (OrderProductDto o : (List<OrderProductDto>) session.getAttribute("listOrders")) {
@@ -51,6 +49,16 @@
                         <div class="media align-items-lg-center flex-column flex-lg-row p-3">
                             <div class="media-body order-2 order-lg-1">
                                 <h5 class="mt-0 font-weight-bold mb-2">Commande n°<%= i%>
+                                        <%
+                                 if (user.getRole().equals("ADMIN"))
+                                     {
+                            %>
+                                    <h6 class="mt-0 font-weight-bold mb-2">Nom du client : <%= new UserService().getById(o.getIdUser()).getFirstName() +" "+new UserService().getById(o.getIdUser()).getLastName() %>
+
+                                        <%
+                                 }
+                            %>
+
                                     <h6 class="mt-0 font-weight-bold mb-2">Status : <%= o.getStatus()%>
                                         <h6 class="mt-0 font-weight-bold mb-2">Date de la commande
                                             : <%= o.getDateCreated().toLocalDate().format(formatter)%>
@@ -85,15 +93,24 @@
                                         <p class="font-italic text-muted  small"><%= productDto.getDescription() %>
                                         </p>
 
-                                            <%
-                                }
-                            %>
+
                                         <div class="d-flex align-items-center justify-content-between mt-1">
-                                            <h6 class="font-weight-bold my-2">Prix de la commande: <%= price%>€</h6>
+                                            <h6 class="font-weight-bold my-2">Prix de la commande: <%= price%>€ </h6>
                                         </div>
+                            <% }
+                                 if (user.getRole().equals("ADMIN"))
+                                     {%>
+                                        <label for="status">Etat de la commande:</label>
+                                        <select name="drop" id="status">
+                                            <option value="" selected disabled> ---- </option>
+                                            <% for(OrderProductDto.Status e :  OrderProductDto.Status.values()){ %>
+                                                <option  value="<%= e %>,<%= o.getId()%>"><%= e %></option>
+                                            <% } %>
+                                        </select>
+                                        <a class="nav-link" href="updateOrder">Modifier la commande</a>
+                                    <% }%>
                             </div>
-                            <%--                        <img src="assets/images/slider-02.jpg" alt="Generic placeholder image" width="200"--%>
-                            <%--                             class="ml-lg-5 order-1 order-lg-2">--%>
+
                         </div>
                         <!-- End -->
                     </li>

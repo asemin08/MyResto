@@ -1,5 +1,6 @@
 package eu.ensup.myresto;
 
+import com.google.protobuf.ServiceException;
 import eu.ensup.myresto.exceptions.DaoException;
 
 import java.util.Set;
@@ -26,6 +27,8 @@ public interface IOrderProductDao {
      */
     Set<OrderProduct> getAllOrderProductsForOneUser(int idUser) throws DaoException;
 
+    Set<OrderProduct> getAllOrderProduct() throws DaoException;
+
     /**
      * Update order product int.
      *
@@ -34,6 +37,7 @@ public interface IOrderProductDao {
      * @throws DaoException the dao exception
      */
     int updateOrderProduct(OrderProduct orderProduct) throws DaoException;
+    int updateOrderProductById(int id, String value) throws DaoException;
 
     /**
      * Delete order product int.

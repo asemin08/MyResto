@@ -26,6 +26,8 @@ public interface IOrderProductService {
      */
     Set<OrderProductDto> getAllOrderProductsForOneUser(int idUser) throws ServiceException;
 
+    Set<OrderProductDto> getAllOrderProduct() throws ServiceException;
+
     /**
      * Update order product int.
      *
@@ -34,6 +36,7 @@ public interface IOrderProductService {
      * @throws ServiceException the service exception
      */
     int updateOrderProduct(OrderProductDto orderProductDto) throws ServiceException;
+    int updateOrderProductById(int id, String value) throws ServiceException;
 
     /**
      * Delete order product int.

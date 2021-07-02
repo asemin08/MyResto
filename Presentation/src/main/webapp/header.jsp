@@ -1,4 +1,4 @@
-<%--
+<%@ page import="eu.ensup.myresto.UserDto" %><%--
   Created by IntelliJ IDEA.
   eu.ensup.myresto.User: A
   Date: 28/06/2021
@@ -50,28 +50,35 @@
 
 <!-- Start header -->
 <header class="top-navbar">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-        <a class="navbar-brand" href="accueil">
-            <img id="logo" src="assets/images/logo.png" alt="logo MyResto" height="100" width="100"/>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbars-rs-food">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item "><a class="nav-link" href="accueil">Accueil</a></li>
-                <li class="nav-item "><a class="nav-link" href="menu">Carte</a></li>
-                <% if (request.getSession().getAttribute("user") != null) {%>
-                    <li class="nav-item"><a class="nav-link" href="panier">Panier</a></li>
-                    <li class="nav-item"><a class="nav-link" href="orders">Commandes</a></li>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="accueil">
+                <img id="logo" src="assets/images/logo.png" alt="logo MyResto" height="100" width="100"/>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food"
+                    aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbars-rs-food">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item "><a class="nav-link" href="accueil">Accueil</a></li>
+                    <li class="nav-item "><a class="nav-link" href="menu">Carte</a></li>
+                    <% if (request.getSession().getAttribute("user") != null) {
+                        if (((UserDto) request.getSession().getAttribute("user")).getRole().equals("ADMIN")) {
+                    %>
+                        <li class="nav-item"><a class="nav-link" href="summary">Récapitulatif des commandes clients</a></li>
+                    <% } else { %>
+                        <li class="nav-item"><a class="nav-link" href="panier">Panier</a></li>
+                        <li class="nav-item"><a class="nav-link" href="orders">Commandes</a></li>
+                        <% }%>
                     <li class="nav-item"><a class="nav-link" href="disconnect">Déconnexion</a></li>
-                <% }else { %>
+
+                    <% } else { %>
                     <li class="nav-item "><a class="nav-link" href="login">Connexion</a></li>
-                <% }  %>
-            </ul>
+                    <% } %>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 </header>
 <!-- End header -->
