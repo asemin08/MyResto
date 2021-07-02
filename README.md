@@ -77,7 +77,9 @@ Les logs sont ranger dans des dossiers en fonction du jour ou ils ont été gén
 * Voir la carte
 * Visualiser les produits
 * Ajouter au panier les produits
+* Visualiser le panier
 * Commander ce qu'il y a dans le panier
+* Gerer les commandes
 
 
 ## Robustesse
