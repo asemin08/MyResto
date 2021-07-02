@@ -54,7 +54,7 @@
                                             </p>
                                             <h5>
                                                 <div class="float-left"><%= p.getPrice()%>€</div>
-                                                <% if (request.getSession().getAttribute("user") != null) {%>
+                                                <% if (request.getSession().getAttribute("user") != null  && !((UserDto)request.getSession().getAttribute("user")).getRole().equals("ADMIN")) {%>
                                                 <div class="float-right">
                                                     <form method="post" action="addToOrder">
                                                         <input type="hidden" id="productId" name="productId"
@@ -95,7 +95,7 @@
                                             </p>
                                             <h5>
                                                 <div class="float-left"><%= p.getPrice()%>€</div>
-                                                <% if (request.getSession().getAttribute("user") != null) {%>
+                                                <% if (request.getSession().getAttribute("user") != null  && !((UserDto)request.getSession().getAttribute("user")).getRole().equals("ADMIN")) {%>
                                                 <div class="float-right">
                                                     <form method="post" action="addToOrder">
                                                         <input type="hidden" id="productId" name="productId"
@@ -136,7 +136,7 @@
                                             </p>
                                             <h5>
                                                 <div class="float-left"><%= p.getPrice()%>€</div>
-                                                <% if (request.getSession().getAttribute("user") != null) {%>
+                                                <% if (request.getSession().getAttribute("user") != null  && !((UserDto)request.getSession().getAttribute("user")).getRole().equals("ADMIN")) {%>
                                                 <div class="float-right">
                                                     <form method="post" action="addToOrder">
                                                         <input type="hidden" id="productId" name="productId"
@@ -176,7 +176,7 @@
                                             </p>
                                             <h5>
                                                 <div class="float-left"><%= p.getPrice()%>€</div>
-                                                <% if (request.getSession().getAttribute("user") != null) {%>
+                                                <% if (request.getSession().getAttribute("user") != null  && !((UserDto)request.getSession().getAttribute("user")).getRole().equals("ADMIN")) {%>
                                                 <div class="float-right">
                                                     <form method="post" action="addToOrder">
                                                         <input type="hidden" id="productId" name="productId"
@@ -216,7 +216,7 @@
                                             </p>
                                             <h5>
                                                 <div class="float-left"><%= p.getPrice()%>€</div>
-                                                <% if (request.getSession().getAttribute("user") != null) {%>
+                                                <% if (request.getSession().getAttribute("user") != null && !((UserDto)request.getSession().getAttribute("user")).getRole().equals("ADMIN")) {%>
                                                 <div class="float-right">
                                                     <form method="post" action="addToOrder">
                                                         <input type="hidden" id="productId" name="productId"
