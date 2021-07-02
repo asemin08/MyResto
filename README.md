@@ -1,13 +1,13 @@
 # MyResto
 
-## Fonctionalités
+## Objectif final
 Application web et mobile permettant :
 * Aux visiteurs de voir la carte
 * Aux clients de commander en ligne
 * Au gérant d'analyser les commandes en cours et faire un prévisionnel de commandes
 
 
-## V1
+## Objectif version 1
 Création d'une application web permettant :
 * Aux visiteurs de voir la carte
 * Aux clients de commander en ligne
@@ -39,14 +39,20 @@ Container web Tomcat : version `9.0`
     
 
 2. **La base de donnée**
-    * Allez dans le dossier `MyResto`
-    * Utiliser le fichier `myresto.sql` pour généré la base de donnée
-
+   * Allez dans le dossier `MyResto`
+   * Utiliser le fichier `myresto.sql` pour généré la base de donnée
+   * Ajouter dans le fichier .m2/settings.xml le cod ci-dessous:
+   ```
+   <db.url>jdbc:mysql://localhost:3306/myresto?serverTimezone=UTC</db.url>
+   <db.driver>com.mysql.cj.jdbc.Driver</db.driver>
+   <db.username>root</db.username>
+   <db.password/>
+   ```
 
 ## Utiliser l'application
 
 **Generer le war:**
-> mvn tomcat:run
+> mvn tomcat7:run
 
 **Lancer l'application:**
 * Allez dans le dossier `MyResto/Presentation/target`
@@ -63,3 +69,21 @@ Pour lancer les tests unitaires
 Vous pouvez retrouver les logs dans les différents sous-dossers de MyResto dans un dossier nommer logs. <br>
 Les logs sont ranger dans des dossiers en fonction du jour ou ils ont été générer.
 
+
+## Spécificité fonctionnelle
+* S'inscrire
+* Se connecter
+* Visualiser le profile
+* Voir la carte
+* Visualiser les produits
+* Ajouter au panier les produits
+* Commander ce qu'il y a dans le panier
+
+
+## Robustesse
+* La gestion des exception
+
+
+## Sécurité
+* Les tests unitaire
+* Les logs

@@ -16,6 +16,7 @@ public class CategoryDao extends BaseDao implements ICategoryDao {
     private static final Logger log = LogManager.getLogger(CategoryDao.class);
 
     private static final String IMAGE = "image";
+    private static final String ERR_ACCESS = "Une erreur s'est produite lors de la creation de la liste des categorie";
 
     @Override
     public List<Category> getAll() throws DaoException {
@@ -39,7 +40,7 @@ public class CategoryDao extends BaseDao implements ICategoryDao {
             disconnect();
         } catch (SQLException e) {
             log.error(e.getMessage());
-            throw new DaoException(UserDao.class.getName(), "getAll", e.getMessage(), "Une erreur s'est produite lors de la creation de la liste des categorie");
+            throw new DaoException(UserDao.class.getName(), "getAll", e.getMessage(), ERR_ACCESS);
         }
 
         return allCategory;
@@ -47,51 +48,44 @@ public class CategoryDao extends BaseDao implements ICategoryDao {
 
     @Override
     public Category getById(int idCategory) throws DaoException {
-        Category category = null;
         try {
             connexion();
             setPs(getCn().prepareStatement("SELECT * FROM category WHERE id = ?"));
             getPs().setInt(1, idCategory);
-            setRs(getPs().executeQuery());
-
-            ResultSet res = getRs();
-            var logInfo = String.format("La categorie %d n'est pas disponible dans la base de donnée.", idCategory);
-            if (!res.next()) {
-                log.info(logInfo);
-            } else {
-                category = new Category(res.getInt("id"), res.getString("name"), res.getString(IMAGE));
-            }
-            disconnect();
         } catch (SQLException e) {
-            log.error(e.getMessage());
-            throw new DaoException(CategoryDao.class.getName(), "getById", e.getMessage(), "Une erreur s'est produite lors de la recherche d'une categorie par id");
+            throw new DaoException(CategoryDao.class.getName(), "get", e.getMessage(), ERR_ACCESS);
         }
 
-        return category;
+        return getSubMethod();
     }
 
     @Override
     public Category getByName(String nameCategory) throws DaoException {
-        Category category = null;
-
         try {
             connexion();
             setPs(getCn().prepareStatement("SELECT * FROM category Where name = ?"));
             getPs().setString(1, nameCategory);
-            setRs(getPs().executeQuery());
+        } catch (SQLException e) {
+            throw new DaoException(CategoryDao.class.getName(), "get", e.getMessage(), ERR_ACCESS);
+        }
+        return getSubMethod();
+    }
 
+    private Category getSubMethod() throws DaoException {
+        Category category = null;
+        try {
+            setRs(getPs().executeQuery());
             ResultSet res = getRs();
-            var logInfo = String.format("La categorie %s n'est pas disponible dans la base de donnée.", nameCategory);
+            var logInfo = "La categorie  n'est pas disponible dans la base de donnée.";
             if (!res.next()) {
                 log.info(logInfo);
             } else {
                 category = new Category(res.getInt("id"), res.getString("name"), res.getString(IMAGE));
             }
-
             disconnect();
         } catch (SQLException e) {
             log.error(e.getMessage());
-            throw new DaoException(CategoryDao.class.getName(), "getByName", e.getMessage(), "Une erreur s'est produite lors de la recherche d'une categorie par nom");
+            throw new DaoException(CategoryDao.class.getName(), "get", e.getMessage(), "Une erreur s'est produite lors de la recherche d'une categorie");
         }
         return category;
     }
