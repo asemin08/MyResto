@@ -55,6 +55,7 @@ public class ServletRegister extends HttpServlet {
                 try {
                     if (userService.create(user) == 1) {
                         request.getRequestDispatcher("login.jsp").forward(request, response);
+                        request.setAttribute(ERROR_ARG, "L'inscription a pas été réalisée");
                     } else {
                         request.setAttribute(ERROR_ARG, "L'inscription n'a pas été réalisée");
                         request.getRequestDispatcher(PATH_REGISTER_ARG).forward(request, response);

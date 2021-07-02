@@ -64,6 +64,7 @@ public class ServletOrderCart extends HttpServlet {
         var orderProductDto = new OrderProductDto(userDto.getId(), idList, new Date(System.currentTimeMillis()));
         try {
             orderProductService.createOrderProduct(orderProductDto);
+            request.setAttribute("error", "La commande a été crée");
             userSession.removeAttribute("order");
             response.sendRedirect(request.getContextPath() + "/orders");
         } catch (ServiceException e) {
