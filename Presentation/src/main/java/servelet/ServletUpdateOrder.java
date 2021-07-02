@@ -65,11 +65,11 @@ public class ServletUpdateOrder extends HttpServlet {
                 userSession.setAttribute("listOrders", orders);
                 this.getServletContext().getRequestDispatcher("/orders.jsp").forward(request, response);
             } else
-                this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
+                this.getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
 
         } catch (ServiceException e) {
             userSession.setAttribute("error", e.getMessageViewForUser());
-            this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
         }
     }
 }

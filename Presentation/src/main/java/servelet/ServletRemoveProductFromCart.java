@@ -46,7 +46,7 @@ public class ServletRemoveProductFromCart extends HttpServlet {
         } else {
             productsOrder.remove(productId);
         }
-        response.sendRedirect(request.getContextPath() + "/panier");
+        response.sendRedirect(request.getContextPath() + "/cart");
 
     }
 

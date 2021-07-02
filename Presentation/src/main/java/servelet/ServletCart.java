@@ -16,7 +16,7 @@ import java.util.*;
 /**
  * The type Servlet cart.
  */
-@WebServlet(name = "ServletPanier", value = "/panier")
+@WebServlet(name = "ServletPanier", value = "/cart")
 public class ServletCart extends HttpServlet {
 
     private static final Logger log = LogManager.getLogger(ServletCart.class);
@@ -64,7 +64,7 @@ public class ServletCart extends HttpServlet {
             }
         request.setAttribute("totalPrice", total);
         userSession.setAttribute("productSet", productDtos);
-        request.getRequestDispatcher("panier.jsp").forward(request, response);
+        request.getRequestDispatcher("cart.jsp").forward(request, response);
 
     }
 

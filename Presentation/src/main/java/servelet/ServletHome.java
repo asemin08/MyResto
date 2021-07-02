@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * The type Servlet home.
  */
-@WebServlet(name = "ServletHome", value = "/accueil")
+@WebServlet(name = "ServletHome", value = "/home")
 public class ServletHome extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
@@ -22,7 +22,7 @@ public class ServletHome extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         HttpSession userSession = request.getSession();
         try {
-            this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
         } catch (ServletException | IOException e) {
             userSession.setAttribute("error", e.getMessage());
         }
