@@ -111,7 +111,7 @@ public class OrderProductDao extends BaseDao implements IOrderProductDao {
     public int updateOrderProductById(int id, String value) throws DaoException {
         try {
             connexion();
-            var sql = "UPDATE `order_product` SET `status`=?, WHERE `id`= ?";
+            var sql = "UPDATE `order_product` SET `status`=? WHERE `id`= ?";
             setPs(getCn().prepareStatement(sql));
             getPs().setString(1, value);
             getPs().setInt(2, id);

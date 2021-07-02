@@ -100,14 +100,19 @@
                             <% }
                                  if (user.getRole().equals("ADMIN"))
                                      {%>
-                                        <label for="status">Etat de la commande:</label>
-                                        <select name="drop" id="status">
-                                            <option value="" selected disabled> ---- </option>
-                                            <% for(OrderProductDto.Status e :  OrderProductDto.Status.values()){ %>
-                                                <option  value="<%= e %>,<%= o.getId()%>"><%= e %></option>
-                                            <% } %>
-                                        </select>
-                                        <a class="nav-link" href="updateOrder">Modifier la commande</a>
+                                        <form class="col-12" action="updateOrder">
+                                            <label for="status">Etat de la commande:</label>
+                                            <select name="drop" id="status">
+                                                <option value="" selected disabled> ---- </option>
+                                                <% for(OrderProductDto.Status e :  OrderProductDto.Status.values()){ %>
+                                                    <option  value="<%= e %>,<%= o.getId()%>"><%= e %></option>
+                                                <% } %>
+                                            </select>
+                                            <div class="form_input col-12 ">
+                                                <button href="updateOrder" class="btn btn-primary submit-btn" formmethod="POST" type="submit" id="button" name="button" value="">Modifier la commande</button>
+                                            </div>
+                                        </form>
+
                                     <% }%>
                             </div>
 

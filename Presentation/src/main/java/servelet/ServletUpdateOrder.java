@@ -51,7 +51,7 @@ public class ServletUpdateOrder extends HttpServlet {
             UserDto user = ((UserDto) request.getSession().getAttribute("user"));
             if (user != null && user.getRole().equals("ADMIN")) {
                 var dropPicker = request.getParameter("drop");
-                if (dropPicker != null && !dropPicker.equals("----"))
+                if (dropPicker != null && !dropPicker.split(",")[0].equals("----"))
                 {
                     var values = dropPicker.split(",");
                     orderProductService.updateOrderProductById(Integer.parseInt(values[1]),values[0]);
@@ -69,6 +69,5 @@ public class ServletUpdateOrder extends HttpServlet {
             userSession.setAttribute("error", e.getMessageViewForUser());
             this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
         }
-            var f= OrderProductDto.Status.values();
     }
 }
