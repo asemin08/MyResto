@@ -60,6 +60,8 @@ public class ServletUpdateOrder extends HttpServlet {
 
                 var orders = orderProductService.getAllOrderProduct().stream().collect(Collectors.toList());
                 Collections.sort(orders, Comparator.comparing(OrderProductDto::getId));
+                userSession.setAttribute("error", "Vous avez actualisé une commande");
+
                 userSession.setAttribute("listOrders", orders);
                 this.getServletContext().getRequestDispatcher("/orders.jsp").forward(request, response);
             } else
