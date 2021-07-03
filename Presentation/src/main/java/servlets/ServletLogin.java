@@ -1,4 +1,4 @@
-package servelet;
+package servlets;
 
 import eu.ensup.myresto.LoginUserDto;
 import eu.ensup.myresto.UserDto;

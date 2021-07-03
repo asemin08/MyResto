@@ -1,4 +1,4 @@
-package servelet;
+package servlets;
 
 import eu.ensup.myresto.ProductDto;
 import eu.ensup.myresto.ProductService;
