@@ -73,13 +73,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="error">
-                                        <% if (request.getAttribute("error") != null) {%>
-                                        <p id="form_info_text">${error}</p>
-                                        <% } %>
+                                <% if (request.getAttribute("error") != null) {%>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="text-center mb-4">
+                                            <p class="titre-entente text-danger">${error}</p>
+
+                                        </div>
                                     </div>
                                 </div>
+                                <% } %>
                             </div>
                             <div class="col-md-12">
                                 <div class="submit-button text-center">

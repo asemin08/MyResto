@@ -24,6 +24,16 @@
                     </div>
                 </div>
             </div>
+            <% if (request.getAttribute("error") != null) {%>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center mb-4">
+                        <p class="titre-entente text-danger">${error}</p>
+
+                    </div>
+                </div>
+            </div>
+            <% } %>
             <%
                 Map<Integer, Integer> productIds = (Map<Integer, Integer>) session.getAttribute("order");
                 if (productIds != null && !productIds.isEmpty()) {

@@ -17,7 +17,6 @@
 <div class="wrapper">
     <div class="main-container m5-custom">
 
-
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -28,12 +27,24 @@
                 </div>
             </div>
 
+            <% if (request.getAttribute("error") != null) {%>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center mb-4">
+                        <p class="titre-entente text-danger">${error}</p>
+
+                    </div>
+                </div>
+            </div>
+            <% } %>
+
             <%
                 UserDto user = ((UserDto) session.getAttribute("user"));
                 if (user.getRole().equals("ADMIN")) {
             %>
             <%--- Pour moi filtre pas fonctionnel ---%>
             <div class="container">
+
                 <div class="row">
                     <div class="col-lg-3"></div>
                     <div class="col-lg-6">
