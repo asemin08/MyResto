@@ -1,4 +1,4 @@
-package servelet;
+package servlets;
 
 import eu.ensup.myresto.OrderProductDto;
 import eu.ensup.myresto.OrderProductService;
@@ -19,8 +19,8 @@ import java.util.stream.Collectors;
 /**
  * The type Servlet orders.
  */
-@WebServlet(name = "ServletSummaryOrderCustomer", value = "/summary")
-public class ServletSummaryOrderCustomer extends HttpServlet {
+@WebServlet(name = "ServletupdateOrder", value = "/updateOrder")
+public class ServletUpdateOrder extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         doPost(request, response);
@@ -50,8 +50,18 @@ public class ServletSummaryOrderCustomer extends HttpServlet {
         try {
             UserDto user = ((UserDto) request.getSession().getAttribute("user"));
             if (user != null && user.getRole().equals("ADMIN")) {
+                var dropPicker = request.getParameter("drop");
+                if (dropPicker != null && !dropPicker.split(",")[0].equals("----"))
+                {
+                    var values = dropPicker.split(",");
+                    orderProductService.updateOrderProductById(Integer.parseInt(values[1]),values[0]);
+                }
+
+
                 var orders = orderProductService.getAllOrderProduct().stream().collect(Collectors.toList());
                 Collections.sort(orders, Comparator.comparing(OrderProductDto::getId));
+                userSession.setAttribute("error", "Vous avez actualisé une commande");
+
                 userSession.setAttribute("listOrders", orders);
                 this.getServletContext().getRequestDispatcher("/orders.jsp").forward(request, response);
             } else
@@ -61,6 +71,5 @@ public class ServletSummaryOrderCustomer extends HttpServlet {
             userSession.setAttribute("error", e.getMessageViewForUser());
             this.getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
         }
-            var f= OrderProductDto.Status.values();
     }
 }

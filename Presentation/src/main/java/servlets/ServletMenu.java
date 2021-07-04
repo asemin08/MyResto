@@ -1,4 +1,4 @@
-package servelet;
+package servlets;
 
 import eu.ensup.myresto.CategoryService;
 import eu.ensup.myresto.ProductDto;
@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * The type Servlet menu.

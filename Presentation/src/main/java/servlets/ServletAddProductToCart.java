@@ -1,5 +1,6 @@
-package servelet;
+package servlets;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,45 +10,38 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * The type Servlet remove product from cart.
+ * The type Servlet add product to cart.
  */
-@WebServlet(name = "ServlerRemoveProductCart", value = "/removeproductcart")
-public class ServletRemoveProductFromCart extends HttpServlet {
+@WebServlet(name = "ServletAddProductToCart", value = "/addproductcart")
+public class ServletAddProductToCart extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
-
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         HttpSession userSession = request.getSession();
         try {
-            removeProductFromCart(request, response);
+            addProductToCart(request, response);
         } catch (IOException e) {
             userSession.setAttribute("error", e.getMessage());
-
         }
     }
 
     /**
-     * Remove product from cart.
+     * Add product to cart.
      *
      * @param request  the request
      * @param response the response
      * @throws IOException the io exception
      */
-    protected void removeProductFromCart(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void addProductToCart(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession userSession = request.getSession();
         Map<Integer, Integer> productsOrder = (Map<Integer, Integer>) userSession.getAttribute("order");
         var productId = Integer.parseInt(request.getParameter("id"));
-        if (productsOrder.get(productId) > 1) {
-            productsOrder.put(productId, productsOrder.get(productId) - 1);
-        } else {
-            productsOrder.remove(productId);
-        }
+        productsOrder.put(productId, productsOrder.get(productId) + 1);
         response.sendRedirect(request.getContextPath() + "/cart");
-
     }
 
 

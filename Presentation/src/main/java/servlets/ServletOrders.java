@@ -1,4 +1,4 @@
-package servelet;
+package servlets;
 
 import eu.ensup.myresto.*;
 import eu.ensup.myresto.exceptions.ServiceException;

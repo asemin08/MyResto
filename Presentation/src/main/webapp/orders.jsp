@@ -16,6 +16,7 @@
 <%@include file="/header.jsp" %>
 <div class="wrapper">
     <div class="main-container m5-custom">
+
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -26,116 +27,173 @@
                 </div>
             </div>
 
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <!-- List group-->
-                    <ul class="list-group shadow">
+            <% if (request.getAttribute("error") != null) {%>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center mb-4">
+                        <p class="titre-entente text-danger">${error}</p>
+
+                    </div>
+                </div>
+            </div>
+            <% } %>
+
+            <%
+                UserDto user = ((UserDto) session.getAttribute("user"));
+                if (user.getRole().equals("ADMIN")) {
+            %>
+            <%--- Pour moi filtre pas fonctionnel ---%>
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6">
+                        <div class="text-center mb-4">
+                            <form method="get" action="summary" class="form-inline justify-content-start text-lg">
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" id="new" name="status" value="NEW">
+                                    <label class="form-check-label" for="new">New</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input ml-2" id="send" name="status" value="SEND">
+                                    <label class="form-check-label" for="send">Send</label>
+                                </div>
+                                <div class="form-check ml-2">
+                                    <input type="radio" class="form-check-input" id="close" name="status" value="CLOSE">
+                                    <label class="form-check-label" for="close">Close</label>
+                                </div>
+                                <input class="btn btn-common ml-2"
+                                        type="submit" id="buttonFiltre"
+                                        name="button"
+                                        value="filtre"/>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-3"></div>
+                </div>
+                <%
+                    }
+                %>
+
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6">
                         <%
-                            UserDto user = ((UserDto) session.getAttribute("user"));
                             int i = 1;
+                            String status = new String("");
+                            try {
+                                status = request.getParameter("status");
+                            } catch (Exception e) {
+                            }
                             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                             for (OrderProductDto o : (List<OrderProductDto>) session.getAttribute("listOrders")) {
                                 float price = 0.0f;
 
+                                if ((status != null && status.equals(o.getStatus())) || status == null) {
                         %>
-                        <!-- list group item-->
-                        <li class="list-group-item">
-                            <!-- Custom content-->
-                            <div class="media align-items-lg-center flex-column flex-lg-row p-3">
-                                <div class="media-body order-2 order-lg-1">
-                                    <h5 class="mt-0 font-weight-bold mb-2">Commande n°<%= i%>
-                                            <%
-                                 if (user.getRole().equals("ADMIN"))
-                                     {
-                            %>
-                                        <h6 class="mt-0 font-weight-bold mb-2">Nom du client
-                                            : <%= new UserService().getById(o.getIdUser()).getFirstName() +" "+new UserService().getById(o.getIdUser()).getLastName() %>
 
-                                                <%
-                                 }
-                            %>
 
-                                            <h6 class="mt-0 font-weight-bold mb-2">Status : <%= o.getStatus()%>
-                                                <h6 class="mt-0 font-weight-bold mb-2">Date de la commande
-                                                    : <%= o.getDateCreated().toLocalDate().format(formatter)%>
-                                                </h6>
-                                                    <%
-                              List<ProductDto> productDtos = new ArrayList<ProductDto>();
-                            Map<Integer,Integer> productList = new HashMap<Integer,Integer>();
-                                for (Integer p : (List<Integer>) o.getIdProduct()) {
-                                    ProductDto productDto = new ProductService().getOneProduct(p);
-                                    int currId = productDto.getId();
-                                    if(productList.get(currId) == null){
-                                        productList.put(currId,1);
-                                    } else {
-                                        productList.put(productDto.getId(),productList.get(currId)+1);
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="mt-0 font-weight-bold mb-2">Commande n°<%= i%>
+                                </h5>
+                                <%
+                                    if (user.getRole().equals("ADMIN")) {
+                                %>
+                                <h6 class="mt-0 font-weight-bold mb-2">Nom du client
+                                    : <%= new UserService().getById(o.getIdUser()).getFirstName() + " " + new UserService().getById(o.getIdUser()).getLastName() %>
+                                </h6>
+
+                                <%
                                     }
-                                  productDtos.add(productDto);
-                                }
-                                 for(Map.Entry<Integer,Integer> entry : productList.entrySet()){
+                                %>
 
-                                     ProductDto productDto = new ProductDto();
+                                <h6 class="mt-0 font-weight-bold mb-2">Status : <%= o.getStatus()%>
+                                </h6>
 
-                                     for(ProductDto productDto1 : productDtos){
-                                         if( productDto1.getId() == entry.getKey()) {
-                                             productDto = productDto1;
-                                         }
-                                     }
+                                <h6 class="mt-0 font-weight-bold mb-2">Date de la commande
+                                    : <%= o.getDateCreated().toLocalDate().format(formatter)%>
+                                </h6>
+                                <%
+                                    List<ProductDto> productDtos = new ArrayList<ProductDto>();
+                                    Map<Integer, Integer> productList = new HashMap<Integer, Integer>();
+                                    for (Integer p : (List<Integer>) o.getIdProduct()) {
+                                        ProductDto productDto = new ProductService().getOneProduct(p);
+                                        int currId = productDto.getId();
+                                        if (productList.get(currId) == null) {
+                                            productList.put(currId, 1);
+                                        } else {
+                                            productList.put(productDto.getId(), productList.get(currId) + 1);
+                                        }
+                                        productDtos.add(productDto);
+                                    }
+                                    float total = 0;
+                                    for (Map.Entry<Integer, Integer> entry : productList.entrySet()) {
 
-                                          price += productDto.getPrice() * entry.getValue();
-                            %>
-                                                <h5><%= entry.getValue() %>x - <%= productDto.getName() %>
-                                                </h5>
-                                                <p class="font-italic text-muted  small"><%= productDto.getDescription() %>
-                                                </p>
+                                        ProductDto productDto = new ProductDto();
 
+                                        for (ProductDto productDto1 : productDtos) {
+                                            if (productDto1.getId() == entry.getKey()) {
+                                                productDto = productDto1;
+                                            }
+                                        }
 
-                                                <div class="d-flex align-items-center justify-content-between mt-1">
-                                                    <h6 class="font-weight-bold my-2">Prix de la commande: <%= price%>
-                                                        € </h6>
-                                                </div>
-                                                    <% }
-                                 if (user.getRole().equals("ADMIN"))
-                                     {%>
-                                                <form class="col-12" action="updateOrder">
-                                                    <label for="status">Etat de la commande:</label>
-                                                    <select name="drop" id="status">
-                                                        <option value="" selected disabled> ----</option>
-                                                        <% for (OrderProductDto.Status e : OrderProductDto.Status.values()) { %>
-                                                        <option value="<%= e %>,<%= o.getId()%>"><%= e %>
-                                                        </option>
-                                                        <% } %>
-                                                    </select>
-                                                    <div class="form_input col-12 ">
-                                                        <button href="updateOrder" class="btn btn-primary submit-btn"
-                                                                formmethod="POST" type="submit" id="button"
-                                                                name="button"
-                                                                value="">Modifier la commande
-                                                        </button>
-                                                    </div>
-                                                </form>
+                                        price += productDto.getPrice() * entry.getValue();
+                                        total = total + price;
+                                %>
+                                <h5><%= entry.getValue() %>x - <%= productDto.getName() %>
+                                </h5>
 
-                                                    <% }%>
-                                </div>
+                                <p class="font-italic text-muted  small"><%= productDto.getDescription() %>
+                                </p>
+                                <h6 class="font-weight-bold my-2">Prix de la commande: <%= price%>€ </h6>
+                                <%
+                                    }
+                                %>
+                                <h6 class="font-weight-bold my-2">Total de la commande: <%= total%>€ </h6>
+                                <%
+                                    if (user.getRole().equals("ADMIN")) {
+                                %>
+                                <form action="updateOrder">
+                                    <div class="form-group">
+                                        <label for="status">Etat de la commande : </label>
+                                        <select name="drop" id="status">
+                                            <option value="" selected disabled> ----</option>
+                                            <% for (OrderProductDto.Status e : OrderProductDto.Status.values()) { %>
+                                            <option value="<%= e %>,<%= o.getId()%>"><%= e %>
+                                            </option>
+                                            <% } %>
+                                        </select>
+                                    </div>
+                                    <div class="form-group text-center">
+                                        <button href="updateOrder" class="btn btn-common "
+                                                formmethod="POST" type="submit" id="button"
+                                                name="button"
+                                                value="">Modifier la commande
+                                        </button>
+                                    </div>
+                                </form>
 
+                                <% }%>
                             </div>
-                            <!-- End -->
-                        </li>
+
+                        </div>
+
                         <%
-                                i++;
+                                    i++;
+                                }
                             }
                         %>
 
-                    </ul>
-                    <!-- End -->
+                    </div>
+                    <div class="col-lg-3"></div>
                 </div>
             </div>
         </div>
+
+        <div class="push"></div>
     </div>
 
-    <div class="push"></div>
-</div>
 
-
-<%@include file="/footer.jsp" %>
+    <%@include file="/footer.jsp" %>
 
