@@ -9,13 +9,12 @@
 <%@include file="header.jsp" %>
 <div class="wrapper">
 
-    <div class="reservation-box">
+    <div class="main-container m5-custom">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="heading-title text-center">
-                        <h2>S'authentifier</h2>
-
+                    <div class="text-center mb-4">
+                        <h2 class="titre-entente">S'authentifier</h2>
                     </div>
                 </div>
             </div>
@@ -28,7 +27,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <input type="text" placeholder="Login" id="login" class="form-control"
-                                                   name="login" required data-error="Entrez votre login">
+                                                   name="login" required data-error="Entrer votre login">
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
@@ -36,21 +35,21 @@
                                         <div class="form-group">
                                             <input type="password" placeholder="Mot de Passe" id="password"
                                                    class="form-control" name="password" required
-                                                   data-error="Entrez votre mot de Passe">
+                                                   data-error="Entrer votre mot de Passe">
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <% if (request.getAttribute("error") != null) {%>
-                                        <div class="titre-entente text-danger">
+                                        <div class="text-message text-danger">
                                             <p id="form_error_text">${error}</p>
                                         </div>
                                         <% request.removeAttribute("error");%>
 
                                         <% } %>
                                         <% if (request.getAttribute("info") != null) {%>
-                                        <div class="titre-entente text-success">
-                                            <p id="form_info_text">${error}</p>
+                                        <div class="text-message text-success">
+                                            <p id="form_info_text">${info}</p>
                                         </div>
                                         <% request.removeAttribute("info");%>
 

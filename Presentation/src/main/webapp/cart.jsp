@@ -24,16 +24,6 @@
                     </div>
                 </div>
             </div>
-            <% if (request.getAttribute("error") != null) {%>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="text-center mb-4">
-                        <p class="titre-entente text-danger">${error}</p>
-
-                    </div>
-                </div>
-            </div>
-            <% } %>
             <%
                 Map<Integer, Integer> productIds = (Map<Integer, Integer>) session.getAttribute("order");
                 if (productIds != null && !productIds.isEmpty()) {
@@ -95,9 +85,6 @@
                             <%
                                 }
                             %>
-                            <% if (request.getParameter("error") != null) { %>
-                            <td colspan="6">${error}</td>
-                            <% } %>
                             </tbody>
                         </table>
                     </div>
@@ -153,15 +140,15 @@
                     </div>
                     <div class="col-md-12">
                         <% if (request.getAttribute("error") != null) {%>
-                        <div class="titre-entente text-danger">
+                        <div class="text-message text-danger">
                             <p >${error}</p>
                         </div>
                         <% request.removeAttribute("error");%>
 
                         <% } %>
                         <% if (request.getAttribute("info") != null) {%>
-                        <div class="titre-entente text-success">
-                            <p >${error}</p>
+                        <div class="text-message text-success">
+                            <p >${info}</p>
                         </div>
                         <% request.removeAttribute("info");%>
 
@@ -183,7 +170,7 @@
                         <% } %>
                         <% if (request.getAttribute("info") != null) {%>
                         <div class="titre-entente text-success">
-                            <p id="form_info_text">${error}</p>
+                            <p id="form_info_text">${info}</p>
                         </div>
                         <% request.removeAttribute("info");%>
 

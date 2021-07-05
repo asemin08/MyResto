@@ -23,14 +23,14 @@
             </div>
             <div class="col-md-12">
                 <% if (request.getAttribute("error") != null) {%>
-                <div class="titre-entente text-danger">
+                <div class="text-message text-danger">
                     <p id="form_error_text">${request.getAttribute("error")}</p>
                 </div>
                 <% request.removeAttribute("error");%>
 
                 <% } %>
                 <% if (request.getAttribute("info") != null) {%>
-                <div class="titre-entente text-success">
+                <div class="text-message text-success">
                     <p id="form_info_text">${request.getAttribute("info")}</p>
                 </div>
                 <% request.removeAttribute("info");%>

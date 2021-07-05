@@ -75,15 +75,15 @@
                                 </div>
                                 <div class="col-md-12">
                                     <% if (request.getAttribute("error") != null) {%>
-                                    <div class="titre-entente text-danger">
+                                    <div class="text-message text-danger">
                                         <p id="form_error_text">${error}</p>
                                     </div>
                                     <% request.removeAttribute("error");%>
 
                                     <% } %>
                                     <% if (request.getAttribute("info") != null) {%>
-                                    <div class="titre-entente text-success">
-                                        <p id="form_info_text">${error}</p>
+                                    <div class="text-message text-success">
+                                        <p id="form_info_text">${info}</p>
                                     </div>
                                     <% request.removeAttribute("info");%>
 
