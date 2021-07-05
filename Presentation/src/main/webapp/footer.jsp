@@ -24,7 +24,7 @@
                 <p> info@admin.com</p>
             </div>
             <div class="col-lg-4 col-md-6">
-                <h3>Horraire d'ouvertures</h3>
+                <h3>Horraires d'ouvertures</h3>
                 <p><span class="text-color">Dimanche : </span>Fermé</p>
                 <p><span class="text-color">Lundi-Samedi :</span> 11:00H - 22:00H</p>
 

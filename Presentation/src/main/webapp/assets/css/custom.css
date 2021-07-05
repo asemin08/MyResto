@@ -197,3 +197,29 @@ table tr td{
     font-size: 28px;
     font-weight: 600;
 }
+
+
+.btn-add{
+    color: #fff;
+    background-color: #d65106;
+    font-family: 'FontAwesome',sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 10px 10px 10px 10px;
+    border-radius: 10px;
+    border-style: solid;
+
+}
+.btn-add:hover{
+    background-color: #1b1e21;
+}
+.btn-add:active{
+    background-color: #e9e8e8;
+    color:#fd7e14;
+}
+
+.bordure-img{
+    border-radius: 16px;
+    border-style: solid;
+    box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.7);
+}

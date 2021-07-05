@@ -68,7 +68,7 @@
                                     for (ProductDto p : (List<ProductDto>) session.getAttribute("listProducts")) {
                                 %>
                                 <div class="col-lg-4 col-md-6 special-grid " <%=new CategoryService().getById(p.getIdCategory()).getName()%>>
-                                    <div class="gallery-single fix img-container">
+                                    <div class="gallery-single bordure-img fix img-container">
                                         <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
                                              alt="<%= p.getName()%>" height="200">
                                         <div class="why-text">
@@ -83,7 +83,7 @@
                                                     <form method="post" action="addToOrder">
                                                         <input type="hidden" id="productId" name="productId"
                                                                value="<%= p.getId() %>">
-                                                        <button class="badge badge-info badge-md p-2" type="submit"
+                                                        <button class="btn-add" type="submit"
                                                                 formmethod="post">
                                                             <span class="fa fa-shopping-cart"></span> Ajouter
                                                         </button>
@@ -109,7 +109,7 @@
                                 %>
 
                                 <div class="col-lg-4 col-md-6 special-grid <%=new CategoryService().getById(p.getIdCategory()).getName()%>">
-                                    <div class="gallery-single fix img-container">
+                                    <div class="gallery-single bordure-img fix img-container">
                                         <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
                                              alt="<%=p.getName()%>" height="200">
                                         <div class="why-text">
@@ -124,7 +124,7 @@
                                                     <form method="post" action="addToOrder">
                                                         <input type="hidden" id="productId" name="productId"
                                                                value="<%= p.getId() %>">
-                                                        <button class="badge badge-info badge-md p-2" type="submit"
+                                                        <button class="btn-add" type="submit"
                                                                 formmethod="post">
                                                             <span class="fa fa-shopping-cart"></span> Ajouter
                                                         </button>
@@ -150,7 +150,7 @@
                                     for (ProductDto p : (List<ProductDto>) session.getAttribute("listEntree")) {
                                 %>
                                 <div class="col-lg-4 col-md-6 special-grid "<%=new CategoryService().getById(p.getIdCategory()).getName()%>>
-                                    <div class="gallery-single fix img-container">
+                                    <div class="gallery-single bordure-img fix img-container">
                                         <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
                                              alt="<%= p.getName()%>" height="200">
                                         <div class="why-text">
@@ -165,7 +165,7 @@
                                                     <form method="post" action="addToOrder">
                                                         <input type="hidden" id="productId" name="productId"
                                                                value="<%= p.getId() %>">
-                                                        <button class="badge badge-info badge-md p-2" type="submit"
+                                                        <button class="btn-add" type="submit"
                                                                 formmethod="post">
                                                             <span class="fa fa-shopping-cart"></span> Ajouter
                                                         </button>
@@ -190,7 +190,7 @@
                                     for (ProductDto p : (List<ProductDto>) session.getAttribute("listPlat")) {
                                 %>
                                 <div class="col-lg-4 col-md-6 special-grid img-container"<%=new CategoryService().getById(p.getIdCategory()).getName()%>>
-                                    <div class="gallery-single fix">
+                                    <div class="gallery-single bordure-img fix">
                                         <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
                                              alt="<%= p.getName()%>" height="200">
                                         <div class="why-text">
@@ -205,7 +205,7 @@
                                                     <form method="post" action="addToOrder">
                                                         <input type="hidden" id="productId" name="productId"
                                                                value="<%= p.getId() %>">
-                                                        <button class="badge badge-info badge-md p-2" type="submit"
+                                                        <button class="btn-add" type="submit"
                                                                 formmethod="post">
                                                             <span class="fa fa-shopping-cart"></span> Ajouter
                                                         </button>
@@ -230,7 +230,7 @@
                                     for (ProductDto p : (List<ProductDto>) session.getAttribute("listDessert")) {
                                 %>
                                 <div class="col-lg-4 col-md-6 special-grid "<%=new CategoryService().getById(p.getIdCategory()).getName()%>>
-                                    <div class="gallery-single fix img-container">
+                                    <div class="gallery-single bordure-img fix img-container">
                                         <img src="assets/images/<%=p.getPicture()%>" class="img-container-img"
                                              alt="<%= p.getName()%>" height="200">
                                         <div class="why-text">
@@ -245,7 +245,7 @@
                                                     <form method="post" action="addToOrder">
                                                         <input type="hidden" id="productId" name="productId"
                                                                value="<%= p.getId() %>">
-                                                        <button class="badge badge-info badge-md p-2" type="submit"
+                                                        <button class="btn-add" type="submit"
                                                                 formmethod="post">
                                                             <span class="fa fa-shopping-cart"></span> Ajouter
                                                         </button>

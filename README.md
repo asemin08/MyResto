@@ -93,6 +93,10 @@ Les logs sont ranger dans des dossiers en fonction du jour ou ils ont été gén
 * Voir les commandes
 * Gerer les commandes
 
+* Diagramme des cas d'utilisation : 
+
+![](https://github.com/Flav1-ann/MyResto/blob/master/imgs-readme/blob/Diagram_for_project-User_Case.png)
+
 
 ## Robustesse
 * La gestion des exception
