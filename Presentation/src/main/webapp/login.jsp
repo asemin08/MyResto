@@ -27,7 +27,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <input type="text" placeholder="Login" id="login" class="form-control"
-                                                   name="login" required data-error="Entrer votre login">
+                                                   name="login" required data-error="Entrez votre login">
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
@@ -35,7 +35,7 @@
                                         <div class="form-group">
                                             <input type="password" placeholder="Mot de Passe" id="password"
                                                    class="form-control" name="password" required
-                                                   data-error="Entrer votre mot de Passe">
+                                                   data-error="Entrez votre mot de Passe">
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>

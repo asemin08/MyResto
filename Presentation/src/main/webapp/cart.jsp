@@ -142,8 +142,7 @@
 
                                     <a href="ordercart" class="btn btn-common btn-block btn-lg">
                                         <div class="d-flex justify-content-between">
-                                            <span>Commander</span>
-                                            <span>${totalPrice} €</span>
+                                            <span>Commander ${totalPrice} €</span>
                                         </div>
                                     </a>
 
