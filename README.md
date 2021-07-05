@@ -93,9 +93,29 @@ Les logs sont ranger dans des dossiers en fonction du jour ou ils ont été gén
 * Voir les commandes
 * Gerer les commandes
 
-* Diagramme des cas d'utilisation : 
+* Diagramme des cas d'utilisations : 
 
 ![](https://github.com/Flav1-ann/MyResto/blob/master/imgs-readme/Diagram_for_project-User_Case.png)
+
+* Diagramme de classes Domaine : 
+
+![](https://github.com/Flav1-ann/MyResto/blob/master/imgs-readme/Diagram_for_project-Class_Package_Domaine.png)
+
+* Diagramme de classes Dao : 
+
+![](https://github.com/Flav1-ann/MyResto/blob/master/imgs-readme/Diagram_for_project-Class_Package_Dao.png)
+
+* Diagramme de classes Service : 
+
+![](https://github.com/Flav1-ann/MyResto/blob/master/imgs-readme/Diagram_for_project-Class_Package_Service.png)
+
+* Diagramme de classes Dto : 
+
+![](https://github.com/Flav1-ann/MyResto/blob/master/imgs-readme/Diagram_for_project-Class_Package_Dto.png)
+
+* Diagramme de classes Servlet : 
+
+![](https://github.com/Flav1-ann/MyResto/blob/master/imgs-readme/Diagram_for_project-Class_Package_Servlet.png)
 
 
 ## Robustesse
