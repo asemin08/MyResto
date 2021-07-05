@@ -41,7 +41,7 @@ Container web Tomcat : version `9.0`
 2. **La base de donnée**
    * Allez dans le dossier `MyResto`
    * Utiliser le fichier `myresto.sql` pour généré la base de donnée
-   * Ajouter dans le fichier .m2/settings.xml le cod ci-dessous:
+   * Ajouter dans le fichier .m2/settings.xml le code ci-dessous:
    ```
    <db.url>jdbc:mysql://localhost:3306/myresto?serverTimezone=UTC</db.url>
    <db.driver>com.mysql.cj.jdbc.Driver</db.driver>
@@ -52,7 +52,7 @@ Container web Tomcat : version `9.0`
 ## Utiliser l'application
 
 **Generer le war:**
-> mvn tomcat7:run
+> mvn clean package
 
 **Lancer l'application:**
 * Allez dans le dossier `MyResto/Presentation/target`
@@ -66,7 +66,7 @@ Pour lancer les tests unitaires
 
 
 ## Les logs
-Vous pouvez retrouver les logs dans les différents sous-dossers de MyResto dans un dossier nommer logs. <br>
+Vous pouvez retrouver les logs dans les différents sous-dossiers de MyResto dans un dossier nommer logs. <br>
 Les logs sont ranger dans des dossiers en fonction du jour ou ils ont été générer.
 
 
