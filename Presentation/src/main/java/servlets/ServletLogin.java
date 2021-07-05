@@ -56,7 +56,7 @@ public class ServletLogin extends HttpServlet {
                 userSession.setAttribute("user", user);
                 request.getRequestDispatcher("home.jsp").forward(request, response);
             } catch (ServiceException e) {
-                request.setAttribute(ERROR_ATTR, e.getMessageViewForUser());
+                request.setAttribute(ERROR_ATTR, e.getMessage());
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
         } else {

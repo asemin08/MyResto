@@ -100,7 +100,7 @@ public class UserService implements IUserService {
             if (hash.equals(user.getPassword()))
                 return UserMapper.convertDomaineDto(user);
             else
-                throw new ServiceException(UserService.class.getName(), "validateUser", "Login ou Mot de passe invalide", "Une erreur s'est produite lors de la vérification de mot de passe");
+                throw new ServiceException(UserService.class.getName(), "validateUser", "Mot de passe invalide", "Une erreur s'est produite lors de la vérification de mot de passe");
         } catch (DaoException e) {
             log.error(e.getMessage());
             throw new ServiceException(UserService.class.getName(), "validateUser", e.getMessage(), "Une erreur s'est produite lors de la vérification de mot de passe");

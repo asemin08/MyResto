@@ -86,7 +86,8 @@
                             } catch (Exception e) {
                             }
                             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                            for (OrderProductDto o : (List<OrderProductDto>) session.getAttribute("listOrders")) {
+                            List<OrderProductDto> orderProductDto = (List<OrderProductDto>) session.getAttribute("listOrders");
+                            for (OrderProductDto o : orderProductDto) {
                                 float price = 0.0f;
 
                                 if ((status != null && status.equals(o.getStatus())) || status == null) {
@@ -141,16 +142,16 @@
                                         price += productDto.getPrice() * entry.getValue();
                                         total = total + price;
                                 %>
-                                <h5><%= entry.getValue() %>x - <%= productDto.getName() %>
+                                <h5><%= entry.getValue() %>x - <%= productDto.getName()  %> | <%= productDto.getPrice() %> €
                                 </h5>
 
                                 <p class="font-italic text-muted  small"><%= productDto.getDescription() %>
                                 </p>
-                                <h6 class="font-weight-bold my-2">Prix de la commande: <%= price%>€ </h6>
+
                                 <%
                                     }
                                 %>
-                                <h6 class="font-weight-bold my-2">Total de la commande: <%= total%>€ </h6>
+                                <h6 class="font-weight-bold my-2">Prix de la commande: <%= price%>€ </h6>
                                 <%
                                     if (user.getRole().equals("ADMIN")) {
                                 %>
@@ -184,8 +185,13 @@
                                 }
                             }
                         %>
-
+                        <% if(orderProductDto.size() == 0){  %>
+                        <div class="alert alert-light text-center m5-custom">
+                            <h3 class="alert-heading"> Pas de commande enregistrée </h3>
+                        </div>
+                        <% } %>
                     </div>
+
                     <div class="col-lg-3"></div>
                 </div>
             </div>

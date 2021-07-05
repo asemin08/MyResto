@@ -36,14 +36,14 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <input type="text" placeholder="Prenom" id="firstname" class="form-control"
-                                                   name="firstname" required data-error="Prenom ">
+                                                   name="firstname" required data-error="Entrez votre prénom">
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <input type="text" placeholder="Nom de famille" id="lastname"
-                                                   class="form-control" name="lastname" required data-error="Nom">
+                                                   class="form-control" name="lastname" required data-error="Entrez votre nom">
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
@@ -51,7 +51,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <input type="text" placeholder="Adresse" id="address" class="form-control"
-                                                   name="address" required data-error="Votre adresse ">
+                                                   name="address" required data-error="Entrez votre adresse ">
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
@@ -60,7 +60,7 @@
 
                                             <input type="password" placeholder="Mot de Passe" id="password[1]"
                                                    class="form-control" name="password[1]" required
-                                                   data-error="Votre mot de Passe">
+                                                   data-error="Entrez votre mot de Passe">
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
@@ -68,7 +68,7 @@
                                         <div class="form-group">
                                             <input type="password" placeholder="Confirmation du mot de Passe"
                                                    id="password[2]" class="form-control" name="password[2]" required
-                                                   data-error="Vérif mot de Passe">
+                                                   data-error="Entrez votre vérififcation de mot de Passe">
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
