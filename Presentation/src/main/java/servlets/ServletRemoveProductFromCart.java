@@ -29,8 +29,9 @@ public class ServletRemoveProductFromCart extends HttpServlet {
     /**
      * Remove product from cart.
      *
-     * @param request  the request
-     * @param response the response
+     * @param request     the request
+     * @param response    the response
+     * @param userSession the user session
      * @throws IOException the io exception
      */
     protected void removeProductFromCart(HttpServletRequest request, HttpServletResponse response ,HttpSession userSession) throws IOException {

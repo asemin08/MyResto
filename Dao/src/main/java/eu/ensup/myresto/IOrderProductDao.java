@@ -27,6 +27,12 @@ public interface IOrderProductDao {
      */
     Set<OrderProduct> getAllOrderProductsForOneUser(int idUser) throws DaoException;
 
+    /**
+     * Gets all order product.
+     *
+     * @return the all order product
+     * @throws DaoException the dao exception
+     */
     Set<OrderProduct> getAllOrderProduct() throws DaoException;
 
     /**
@@ -37,6 +43,15 @@ public interface IOrderProductDao {
      * @throws DaoException the dao exception
      */
     int updateOrderProduct(OrderProduct orderProduct) throws DaoException;
+
+    /**
+     * Update order product by id int.
+     *
+     * @param id    the id
+     * @param value the value
+     * @return the int
+     * @throws DaoException the dao exception
+     */
     int updateOrderProductById(int id, String value) throws DaoException;
 
     /**
