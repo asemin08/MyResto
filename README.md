@@ -14,7 +14,7 @@ Création d'une application web permettant :
 
 
 ## Application héberger
-CLiquer sur [MyResto - Acceuil](http://vps-0c0ccce5.vps.ovh.net:8081/MyResto/)
+CLiquer sur [MyResto - Accueil](http://vps-0c0ccce5.vps.ovh.net:8081/MyResto/)
 
 
 <hr>
