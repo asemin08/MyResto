@@ -38,7 +38,7 @@ public class ServletOrderCart extends HttpServlet {
         try {
             orderCart(request, response);
         } catch (ServletException | IOException e) {
-            userSession.setAttribute("error", e.getMessage());
+            request.setAttribute("error", e.getMessage());
         }
     }
 
@@ -64,11 +64,11 @@ public class ServletOrderCart extends HttpServlet {
         var orderProductDto = new OrderProductDto(userDto.getId(), idList, new Date(System.currentTimeMillis()));
         try {
             orderProductService.createOrderProduct(orderProductDto);
-            request.setAttribute("error", "La commande a été crée");
+            request.setAttribute("info", "La commande a été crée");
             userSession.removeAttribute("order");
             response.sendRedirect(request.getContextPath() + "/orders");
         } catch (ServiceException e) {
-            request.setAttribute("error", e.getMessageViewForUser());
+            userSession.setAttribute("error", e.getMessageViewForUser());
             log.error(e.getMessage());
             request.getRequestDispatcher("cart.jsp").forward(request, response);
         }

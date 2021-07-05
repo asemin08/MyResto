@@ -22,18 +22,15 @@ import java.util.stream.Collectors;
 @WebServlet(name = "ServletSummaryOrderCustomer", value = "/summary")
 public class ServletSummaryOrderCustomer extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         doPost(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         HttpSession userSession = request.getSession();
-        try {
             operations(request, response, userSession);
-        } catch (ServletException | IOException e) {
-            userSession.setAttribute("error", e.getMessage());
-        }
+
     }
 
     /**

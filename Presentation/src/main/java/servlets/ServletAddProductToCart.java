@@ -25,7 +25,7 @@ public class ServletAddProductToCart extends HttpServlet {
         try {
             addProductToCart(request, response);
         } catch (IOException e) {
-            userSession.setAttribute("error", e.getMessage());
+            request.setAttribute("error", e.getMessage());
         }
     }
 

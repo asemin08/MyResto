@@ -18,20 +18,25 @@
                 <div class="col-lg-12">
                     <div class="text-center mb-4">
                         <h2 class="titre-entente">Notre carte</h2>
-
                     </div>
                 </div>
             </div>
-            <% if (request.getAttribute("error") != null) {%>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="text-center mb-4">
-                        <p class="titre-entente text-danger">${error}</p>
-
-                    </div>
+            <div class="col-md-12">
+                <% if (request.getAttribute("error") != null) {%>
+                <div class="titre-entente text-danger">
+                    <p id="form_error_text">${request.getAttribute("error")}</p>
                 </div>
+                <% request.removeAttribute("error");%>
+
+                <% } %>
+                <% if (request.getAttribute("info") != null) {%>
+                <div class="titre-entente text-success">
+                    <p id="form_info_text">${request.getAttribute("info")}</p>
+                </div>
+                <% request.removeAttribute("info");%>
+
+                <% } %>
             </div>
-            <% } %>
 
             <div class="row inner-menu-box">
                 <div class="col-3">

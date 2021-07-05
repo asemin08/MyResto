@@ -25,13 +25,10 @@ public class ServletMenu extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         HttpSession userSession = request.getSession();
-        try {
             operations(request, response, userSession);
-        } catch (ServletException | IOException e) {
-            userSession.setAttribute("error", e.getMessage());
-        }
+
     }
 
     /**
@@ -79,7 +76,7 @@ public class ServletMenu extends HttpServlet {
             this.getServletContext().getRequestDispatcher("/menu.jsp").forward(request, response);
         } catch (ServiceException e) {
             userSession.setAttribute("error", e.getMessageViewForUser());
-            this.getServletContext().getRequestDispatcher("/menu.jsp").forward(request, response);
+            request.getRequestDispatcher("menu.jsp").forward(request, response);
         }
     }
 }

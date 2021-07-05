@@ -14,20 +14,16 @@ import java.util.Map;
 @WebServlet(name = "ServlerRemoveProductCart", value = "/removeproductcart")
 public class ServletRemoveProductFromCart extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         doPost(request, response);
 
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession userSession = request.getSession();
-        try {
-            removeProductFromCart(request, response);
-        } catch (IOException e) {
-            userSession.setAttribute("error", e.getMessage());
+        removeProductFromCart(request, response,userSession);
 
-        }
     }
 
     /**
@@ -37,8 +33,7 @@ public class ServletRemoveProductFromCart extends HttpServlet {
      * @param response the response
      * @throws IOException the io exception
      */
-    protected void removeProductFromCart(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        HttpSession userSession = request.getSession();
+    protected void removeProductFromCart(HttpServletRequest request, HttpServletResponse response ,HttpSession userSession) throws IOException {
         Map<Integer, Integer> productsOrder = (Map<Integer, Integer>) userSession.getAttribute("order");
         var productId = Integer.parseInt(request.getParameter("id"));
         if (productsOrder.get(productId) > 1) {
