@@ -8,7 +8,7 @@
                     <div class="col-md-8 ml-auto mr-auto text-center">
                         <p class="lead ">
                             Il y a eu un problème dans le serveur.
-                            <% if (request.getAttribute("error") != null) {%>
+                            <% if (session.getAttribute("error") != null) {%>
                             Erreur : <%=session.getAttribute("error")%>
                             <% session.removeAttribute("error"); %>
                             <% } %>
