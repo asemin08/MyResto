@@ -43,10 +43,10 @@ Container web Tomcat : version `9.0`
    * Utiliser le fichier `myresto.sql` pour généré la base de donnée
    * Ajouter dans le fichier .m2/settings.xml le code ci-dessous:
    ```
-   <db.url>jdbc:mysql://localhost:3306/myresto?serverTimezone=UTC</db.url>
+   <db.url>jdbc:mysql://localhost:3306/{{NOMBDD}}?serverTimezone=UTC</db.url>
    <db.driver>com.mysql.cj.jdbc.Driver</db.driver>
-   <db.username>root</db.username>
-   <db.password/>
+   <db.username>{{VOTRELOGIN}}</db.username>
+   <db.password>{{VOTREPWD}}<db.password/>
    ```
 
 ## Utiliser l'application
