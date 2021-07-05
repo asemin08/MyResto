@@ -152,10 +152,43 @@
 
                         </div>
                     </div>
+                    <div class="col-md-12">
+                        <% if (request.getAttribute("error") != null) {%>
+                        <div class="titre-entente text-danger">
+                            <p >${error}</p>
+                        </div>
+                        <% request.removeAttribute("error");%>
+
+                        <% } %>
+                        <% if (request.getAttribute("info") != null) {%>
+                        <div class="titre-entente text-success">
+                            <p >${error}</p>
+                        </div>
+                        <% request.removeAttribute("info");%>
+
+                        <% } %>
+                    </div>
                     <% } else { %>
                     <div class="alert alert-light text-center m5-custom">
                         <h3 class="alert-heading"> Aucun éléments dans le panier </h3>
                         <a href="menu" class="alert-link">Ajouter un produit</a>
+                    </div>
+
+                    <div class="col-md-12">
+                        <% if (request.getAttribute("error") != null) {%>
+                        <div class="titre-entente text-danger">
+                            <p id="form_error_text">${error}</p>
+                        </div>
+                        <% request.removeAttribute("error");%>
+
+                        <% } %>
+                        <% if (request.getAttribute("info") != null) {%>
+                        <div class="titre-entente text-success">
+                            <p id="form_info_text">${error}</p>
+                        </div>
+                        <% request.removeAttribute("info");%>
+
+                        <% } %>
                     </div>
                     <% } %>
 

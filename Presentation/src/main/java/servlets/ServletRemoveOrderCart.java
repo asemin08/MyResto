@@ -25,13 +25,10 @@ public class ServletRemoveOrderCart extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         HttpSession userSession = request.getSession();
-        try {
             orderCart(request, response);
-        } catch (ServletException | IOException e) {
-            userSession.setAttribute("error", e.getMessage());
-        }
+
     }
 
     /**

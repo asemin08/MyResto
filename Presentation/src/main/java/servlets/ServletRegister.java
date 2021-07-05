@@ -21,17 +21,17 @@ public class ServletRegister extends HttpServlet {
     private static final String PATH_REGISTER_ARG = "register.jsp";
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         doPost(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         HttpSession userSession = request.getSession();
         try {
             operations(request, response);
         } catch (ServletException | IOException e) {
-            userSession.setAttribute(ERROR_ARG, e.getMessage());
+            request.setAttribute(ERROR_ARG, e.getMessage());
         }
 
     }

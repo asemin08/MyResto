@@ -9,12 +9,13 @@
 <%@include file="header.jsp" %>
 <div class="wrapper">
 
-    <div class="main-container m5-custom">
+    <div class="reservation-box">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="text-center mb-4">
-                        <h2 class="titre-entente">S'authentifier</h2>
+                    <div class="heading-title text-center">
+                        <h2>S'authentifier</h2>
+
                     </div>
                 </div>
             </div>
@@ -39,16 +40,22 @@
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
-                                    <% if (request.getAttribute("error") != null) {%>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="text-center mb-4">
-                                                <p class="titre-entente text-danger">${error}</p>
-
-                                            </div>
+                                    <div class="col-md-12">
+                                        <% if (request.getAttribute("error") != null) {%>
+                                        <div class="titre-entente text-danger">
+                                            <p id="form_error_text">${error}</p>
                                         </div>
+                                        <% request.removeAttribute("error");%>
+
+                                        <% } %>
+                                        <% if (request.getAttribute("info") != null) {%>
+                                        <div class="titre-entente text-success">
+                                            <p id="form_info_text">${error}</p>
+                                        </div>
+                                        <% request.removeAttribute("info");%>
+
+                                        <% } %>
                                     </div>
-                                    <% } %>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="submit-button text-center">

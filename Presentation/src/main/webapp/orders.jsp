@@ -188,6 +188,22 @@
                     </div>
                     <div class="col-lg-3"></div>
                 </div>
+                <div class="row col-md-12">
+                    <% if (request.getAttribute("error") != null) {%>
+                    <div class="titre-entente text-danger">
+                        <p id="form_error_text">${error}</p>
+                    </div>
+                    <% request.removeAttribute("error");%>
+
+                    <% } %>
+                    <% if (request.getAttribute("info") != null) {%>
+                    <div class="titre-entente text-success">
+                        <p id="form_info_text">${error}</p>
+                    </div>
+                    <% request.removeAttribute("info");%>
+
+                    <% } %>
+                </div>
             </div>
         </div>
 

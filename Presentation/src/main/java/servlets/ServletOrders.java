@@ -1,6 +1,8 @@
 package servlets;
 
-import eu.ensup.myresto.*;
+import eu.ensup.myresto.OrderProductDto;
+import eu.ensup.myresto.OrderProductService;
+import eu.ensup.myresto.UserDto;
 import eu.ensup.myresto.exceptions.ServiceException;
 
 import javax.servlet.ServletException;
@@ -20,18 +22,16 @@ import java.util.stream.Collectors;
 @WebServlet(name = "ServletOrder", value = "/orders")
 public class ServletOrders extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession userSession = request.getSession();
-        try {
-            operations(request, response, userSession);
-        } catch (ServletException | IOException e) {
-            userSession.setAttribute("error", e.getMessage());
-        }
+
+        operations(request, response, userSession);
+
     }
 
     /**
