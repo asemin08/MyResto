@@ -59,7 +59,18 @@ Container web Tomcat : version `9.0`
 * Copier/Coller le fichier `Presentation-1.0-SNAPSHOT.war` dans le répertoire `webapps` de votre container web. Vous devez avoir une instance de tomcat en fonctionnement.
 * Ouvrir la page web http://localhost:8080/Presentation dans votre navigateur
 
+##Deux choix sont alors possibles.
 
+* Accéder à l'application avec le compte Gérant :
+
+  > Identifiant : gerant
+  >  <br/>Mot de passe : gerant
+
+* Accéder à l'application avec le compte utilisateur :
+
+  > Identifiant : dupont
+  >  <br/>Mot de passe : dupont
+  
 ## Tests unitaires
 Pour lancer les tests unitaires
 > mvn test
@@ -79,6 +90,7 @@ Les logs sont ranger dans des dossiers en fonction du jour ou ils ont été gén
 * Ajouter au panier les produits
 * Visualiser le panier
 * Commander ce qu'il y a dans le panier
+* Voir les commandes
 * Gerer les commandes
 
 
