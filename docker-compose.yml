@@ -9,8 +9,8 @@ services:
      environment:
        MYSQL_ROOT_PASSWORD: root
        MYSQL_DATABASE: myresto
-       MYSQL_USER: testuser
-       MYSQL_PASSWORD: root
+       MYSQL_USER: webs
+       MYSQL_PASSWORD: testPassword
      ports:
        - 3306:3306
    phpmyadmin:
@@ -30,8 +30,8 @@ services:
       - '8082:8080'
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: testdb1
-      MYSQL_USER: testuser
-      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: myresto
+      MYSQL_USER: webs
+      MYSQL_PASSWORD: testPassword
 volumes:
     db_vol:      
