@@ -53,7 +53,7 @@ public class BaseDao {
             Class.forName(DRIVER);
             //cn = DriverManager.getConnection(this.url, login, password);
 //            Connection con = DriverManager.getConnection("jdbc:mysql://db:3306/myresto","webs", "testPassword");   
-            cn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            cn = DriverManager.getConnection(URL_db, USERNAME, PASSWORD);
             st = cn.createStatement();
             return 0;
         } catch (SQLException | ClassNotFoundException e) {
