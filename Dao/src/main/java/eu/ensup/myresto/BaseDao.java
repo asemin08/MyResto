@@ -25,7 +25,8 @@ public class BaseDao {
 
     private static int result;
     private static final Logger log = LogManager.getLogger(BaseDao.class);
-    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+//     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String DRIVER = "com.mysql.jdbc.Driver";
 
     /**
      * Instantiates a new Base dao.
@@ -47,7 +48,7 @@ public class BaseDao {
         try {
             Class.forName(DRIVER);
             //cn = DriverManager.getConnection(this.url, login, password);
-            cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/myresto", "webs", "testPassword")
+            Connection con = DriverManager.getConnection("jdbc:mysql://db:3306/myresto","webs", "testPassword");            
             st = cn.createStatement();
             return 0;
         } catch (SQLException | ClassNotFoundException e) {
