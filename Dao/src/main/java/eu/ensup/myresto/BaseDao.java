@@ -25,15 +25,15 @@ public class BaseDao {
 
     private static int result;
     private static final Logger log = LogManager.getLogger(BaseDao.class);
-   
+    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+
     /**
      * Instantiates a new Base dao.
      */
     public BaseDao() {
-//         var bundle = ResourceBundle.getBundle("db");
-//         this.url = bundle.getString("db.url");
-//         this.login = bundle.getString("db.username");
-//         this.password = bundle.getString("db.password");
+        this.url = "jdbc:mysql://db:3306/myresto";
+        this.login = "webs"
+        this.password = "testPassword";
     }
 
     /**
@@ -44,10 +44,9 @@ public class BaseDao {
      */
     public int connexion() throws DaoException {
         try {
-	  Class.forName("com.mysql.jdbc.Driver");
-          Connection con = DriverManager.getConnection("jdbc:mysql://db:3306/myresto","webs", "testPassword");
-      	  Statement st = con.createStatement();
-
+            Class.forName(DRIVER);
+            cn = DriverManager.getConnection(this.url, login, password);
+            st = cn.createStatement();
             return 0;
         } catch (SQLException | ClassNotFoundException e) {
             log.error(e.getMessage());
