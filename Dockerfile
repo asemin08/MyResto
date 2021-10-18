@@ -12,7 +12,7 @@ WORKDIR MyResto
 
 RUN mvn clean package
 
-FROM tomcart:jre11 as tomcat
+FROM tomcat:jre11 as tomcat
 
 COPY --from=alp /MyResto/Presentation/target/Presentation*.war /usr/local/tomcat/webapps/Presentation.war
 
