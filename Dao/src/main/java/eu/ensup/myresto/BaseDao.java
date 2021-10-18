@@ -25,17 +25,21 @@ public class BaseDao {
 
     private static int result;
     private static final Logger log = LogManager.getLogger(BaseDao.class);
-//     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DRIVER = "com.mysql.jdbc.Driver";
+    
+	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+	private static final String URL_db = "jdbc:mysql://http://vps-0c0ccce5.vps.ovh.net/:3306/myresto";
+	private static final String USERNAME = "webs";
+	private static final String PASSWORD = "testPassword";
+
 
     /**
      * Instantiates a new Base dao.
      */
     public BaseDao() {
-        var bundle = ResourceBundle.getBundle("db");
-        this.url = bundle.getString("db.url");
-        this.login = bundle.getString("db.username");
-        this.password = bundle.getString("db.password");
+//         var bundle = ResourceBundle.getBundle("db");
+//         this.url = bundle.getString("db.url");
+//         this.login = bundle.getString("db.username");
+//         this.password = bundle.getString("db.password");
     }
 
     /**
@@ -48,7 +52,8 @@ public class BaseDao {
         try {
             Class.forName(DRIVER);
             //cn = DriverManager.getConnection(this.url, login, password);
-            Connection con = DriverManager.getConnection("jdbc:mysql://db:3306/myresto","webs", "testPassword");            
+//            Connection con = DriverManager.getConnection("jdbc:mysql://db:3306/myresto","webs", "testPassword");   
+            cn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             st = cn.createStatement();
             return 0;
         } catch (SQLException | ClassNotFoundException e) {
