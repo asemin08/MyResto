@@ -31,7 +31,7 @@ public class BaseDao {
      * Instantiates a new Base dao.
      */
     public BaseDao() {
-        this.url = "jdbc:mysql://localhost:3306/myresto";
+        this.url = "jdbc:mysql://db:3306/myresto";
         this.login = "webs"
         this.password = "testPassword";
     }
