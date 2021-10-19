@@ -1,5 +1,5 @@
 package eu.ensup.myresto;
-
+ 
 import eu.ensup.myresto.exceptions.DaoException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,7 +31,7 @@ public class BaseDao {
      * Instantiates a new Base dao.
      */
     public BaseDao() {
-        this.url = "jdbc:mysql://db:3306/myresto";
+        this.url = "jdbc:mysql://localhost:3306/myresto";
         this.login = "webs"
         this.password = "testPassword";
     }
