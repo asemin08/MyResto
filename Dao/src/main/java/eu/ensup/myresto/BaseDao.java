@@ -31,9 +31,10 @@ public class BaseDao {
      * Instantiates a new Base dao.
      */
     public BaseDao() {
-        this.url = "jdbc:mysql://db:3306/myresto";
-        this.login = "webs"
-        this.password = "testPassword";
+        var bundle = ResourceBundle.getBundle("db");
+        this.url = bundle.getString("db.url2");
+        this.login = bundle.getString("db.host");
+        this.password = bundle.getString("db.hostpassword");
     }
 
     /**
@@ -45,7 +46,7 @@ public class BaseDao {
     public int connexion() throws DaoException {
         try {
             Class.forName(DRIVER);
-            cn = DriverManager.getConnection(this.url, login, password);
+            cn = DriverManager.getConnection(this.url, this.login, this.password);
             st = cn.createStatement();
             return 0;
         } catch (SQLException | ClassNotFoundException e) {

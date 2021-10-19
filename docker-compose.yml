@@ -2,6 +2,7 @@ version: '3.3'
 services:
    db:
      image: mysql:8.0
+     container_name: mysql-database
      volumes:
        - ./mysql-data:/var/lib/mysql
        - ./mysql-init-files:/docker-entrypoint-initdb.d
@@ -29,7 +30,7 @@ services:
     ports:
       - '8082:8080'
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_LIEN: jdbc:mysql://mysql-database:3306/myresto
       MYSQL_DATABASE: myresto
       MYSQL_USER: webs
       MYSQL_PASSWORD: testPassword
