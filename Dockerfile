@@ -12,11 +12,5 @@ WORKDIR MyResto
 
 RUN mvn clean package
 
-FROM tomcat:jre11 as tomcat
 
-COPY --from=alp /MyResto/Presentation/target/Presentation*.war /usr/local/tomcat/webapps/Presentation.war
-
-EXPOSE 8080
-
-CMD [ "catalina.sh", "run" ]
-
+RUN mv /MyResto/Presentation/target/Presentation*.war /MyResto/webApp/MyResto.war
