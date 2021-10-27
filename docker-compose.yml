@@ -24,7 +24,7 @@ services:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: root
    web:
-    image: verkeur08/myresto:v2
+    image: verkeur08/myresto:latest
     depends_on:
       - db
     ports:
