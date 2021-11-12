@@ -14,7 +14,7 @@ RUN mvn clean package
 
 FROM tomcat:jre11 as tomcat
 
-COPY --from=alp /MyResto/Presentation/target/Presentation*.war /usr/local/tomcat/webapps/Presentation.war
+COPY --from=alp /MyResto/Presentation/target/Presentation*.war /usr/local/tomcat/webapps/MyResto.war
 
 EXPOSE 8080
 

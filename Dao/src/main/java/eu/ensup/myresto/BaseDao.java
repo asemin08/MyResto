@@ -27,6 +27,9 @@ public class BaseDao {
     private static final Logger log = LogManager.getLogger(BaseDao.class);
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 
+    private String urlTes="jdbc:mysql://db:3306/myresto?useTimezone=true&serverTimezone=UTC";
+    private String usernameTes="webs";
+    private String passwordTes="testPassword";
     /**
      * Instantiates a new Base dao.
      */
@@ -45,8 +48,8 @@ public class BaseDao {
      */
     public int connexion() throws DaoException {
         try {
-            Class.forName(DRIVER);
-            cn = DriverManager.getConnection(this.url, this.login, this.password);
+            Class.forName(this.DRIVER);
+            cn = DriverManager.getConnection(this.urlTes, this.usernameTes, this.passwordTes);
             st = cn.createStatement();
             return 0;
         } catch (SQLException | ClassNotFoundException e) {
