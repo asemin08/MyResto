@@ -50,6 +50,7 @@ public class BaseDao {
         try {
             Class.forName(this.DRIVER);
             cn = DriverManager.getConnection(this.urlTes, this.usernameTes, this.passwordTes);
+            System.out.println(cn);
             st = cn.createStatement();
             return 0;
         } catch (SQLException | ClassNotFoundException e) {
