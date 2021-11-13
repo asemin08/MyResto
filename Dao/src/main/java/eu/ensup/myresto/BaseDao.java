@@ -34,7 +34,7 @@ public class BaseDao {
     public BaseDao() {
         var bundle = ResourceBundle.getBundle("db");
         this.url = bundle.getString("db.url");
-        this.login = bundle.getString("db.host");
+        this.login = bundle.getString("db.login");
         this.password = bundle.getString("db.password");
     }
 
