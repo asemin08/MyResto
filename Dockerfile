@@ -1,26 +1,3 @@
-# FROM alpine:latest as alp
-
-# LABEL MAINTENER="Allan"
-
-# RUN apk update
-# RUN apk add git 
-# RUN apk add maven
-
-# RUN git clone https://github.com/asemin08/MyResto.git
-
-# WORKDIR MyResto
-
-# RUN mvn clean package
-
-# FROM tomcat:jre11 as tomcat
-
-# COPY --from=alp /MyResto/Presentation/target/Presentation*.war /usr/local/tomcat/webapps/MyResto.war
-
-# EXPOSE 8080
-
-# CMD [ "catalina.sh", "run" ]
-
-
 FROM alpine:latest
 
 LABEL MAINTENER="Allan"
@@ -28,7 +5,7 @@ LABEL MAINTENER="Allan"
 RUN apk update
 RUN apk add git 
 RUN apk add maven
-
+RUN apk add bash
 RUN git clone https://github.com/asemin08/MyResto.git
 
 WORKDIR MyResto
@@ -57,7 +34,7 @@ ENV PATH $CATALINA_HOME/bin:$PATH
 ENV TOMCAT_NATIVE_LIBDIR=$CATALINA_HOME/native-jni-lib
 ENV LD_LIBRARY_PATH=$CATALINA_HOME/native-jni-lib
 
-COPY /MyResto/Presentation/target/Presentation*.war /usr/local/tomcat/webapps/MyResto.war
+RUN cp Presentation/target/Presentation*.war /usr/local/tomcat/webapps/MyResto.war
 
 WORKDIR $CATALINA_HOME
 USER tomcat
