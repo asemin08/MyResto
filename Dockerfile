@@ -22,7 +22,7 @@ RUN apk -U upgrade --update && \
     wget -O /tmp/apache-tomcat.tar.gz https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR}/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz && \
     tar -C /opt -xvf /tmp/apache-tomcat.tar.gz && \
     ln -s /opt/apache-tomcat-${TOMCAT_VERSION}/ /usr/local/tomcat && \
-    rm -rf /usr/local/tomcat/webapps/* && \
+   # rm -rf /usr/local/tomcat/webapps/* && \
     rm -rf /tmp/apache-tomcat.tar.gz && \
     addgroup -g 2000 tomcat && \
     adduser -h /usr/local/tomcat -u 2000 -G tomcat -s /bin/sh -D tomcat && \
@@ -36,12 +36,14 @@ ENV PATH $CATALINA_HOME/bin:$PATH
 ENV TOMCAT_NATIVE_LIBDIR=$CATALINA_HOME/native-jni-lib
 ENV LD_LIBRARY_PATH=$CATALINA_HOME/native-jni-lib
 
-RUN ls
 
-RUN cp tomcat-init/conf/tomcat-users.xml /opt/tomcat/conf/tomcat-users.xml 
-RUN cp tomcat-init/manager/META-INF/context.xml /opt/tomcat/webapps/manager/META-INF/context.xml
-RUN cp tomcat-init/host-manager/META-INF/context.xml /opt/tomcat/webapps/host-manager/META-INF/context.xml
 
+RUN rm /usr/local/tomcat/conf/tomcat-users.xml && \
+    cp tomcat-init/conf/tomcat-users.xml /usr/local/tomcat/conf/tomcat-users.xml && \
+    rm /usr/local/tomcat/webapps/manager/META-INF/context.xml && \
+    cp tomcat-init/manager/META-INF/context.xml /usr/local/tomcat/webapps/manager/META-INF/context.xml && \
+    rm /usr/local/tomcat/webapps/host-manager/META-INF/context.xml && \
+    cp tomcat-init/host-manager/META-INF/context.xml /usr/local/tomcat/webapps/host-manager/META-INF/context.xml
 
 RUN cp Presentation/target/Presentation*.war /usr/local/tomcat/webapps/MyResto.war
 
