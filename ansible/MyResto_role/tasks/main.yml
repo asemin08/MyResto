@@ -1,0 +1,20 @@
+---
+- name: "Check touts les dossier"
+  ansible.builtin.shell:
+    cmd: ls -l
+- name: "Check le chemin"
+  ansible.builtin.shell:
+    cmd: pwd
+- name: "Create directory webapp"
+  file:
+    path: /home/{{ ansible_user }}/{{ site_name }}
+    state: directory
+- name: "Download data from git repo"
+  git:
+    repo: 'https://github.com/asemin08/myresto.git'
+    dest: /home/{{ ansible_user }}/{{ site_name }}
+- name: "launch docker container"
+  docker_compose:
+    project_src: /home/{{ ansible_user }}/{{ site_name }}
+    files:
+    - docker-compose.yml

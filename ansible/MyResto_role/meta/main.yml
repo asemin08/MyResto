@@ -1,0 +1,6 @@
+---
+galaxy_info:
+  role_name: myresto_role
+  author: Allan
+  description: Ansible myresto app 
+  company: ALLAN

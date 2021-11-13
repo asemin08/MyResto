@@ -1,0 +1,16 @@
+---
+namespace: community
+name: webapp_static_role
+version: 1.0.0
+readme: README.md
+authors:
+  - Allan semin
+description: MyResto app
+license_file: COPYING
+tags:
+  - v1
+repository: https://github.com/asemin08/MyResto.git
+documentation: https://github.com/asemin08/MyResto.git
+homepage: https://github.com/asemin08/MyResto.git
+issues: https://github.com/asemin08/MyResto.git
+ 

@@ -1,0 +1,8 @@
+---
+administrator: Allan
+ansible_user: admin
+
+site_name: myresto
+
+tomcat_var:
+  port: 8080
