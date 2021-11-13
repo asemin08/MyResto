@@ -27,17 +27,15 @@ public class BaseDao {
     private static final Logger log = LogManager.getLogger(BaseDao.class);
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 
-    private String urlTes="jdbc:mysql://db:3306/myresto?useTimezone=true&serverTimezone=UTC";
-    private String usernameTes="webs";
-    private String passwordTes="testPassword";
+
     /**
      * Instantiates a new Base dao.
      */
     public BaseDao() {
         var bundle = ResourceBundle.getBundle("db");
-        this.url = bundle.getString("db.url2");
+        this.url = bundle.getString("db.url");
         this.login = bundle.getString("db.host");
-        this.password = bundle.getString("db.hostpassword");
+        this.password = bundle.getString("db.password");
     }
 
     /**
@@ -49,7 +47,7 @@ public class BaseDao {
     public int connexion() throws DaoException {
         try {
             Class.forName(this.DRIVER);
-            cn = DriverManager.getConnection(this.urlTes, this.usernameTes, this.passwordTes);
+            cn = DriverManager.getConnection(this.url, this.login, this.password);
             System.out.println(cn);
             st = cn.createStatement();
             return 0;
