@@ -1,6 +1,6 @@
 version: '3.3'
 services:
-   db:
+   mysql-database:
      image: mysql:8.0
      container_name: mysql-database
      volumes:
@@ -11,21 +11,21 @@ services:
        MYSQL_ROOT_PASSWORD: root
        MYSQL_DATABASE: myresto
        MYSQL_USER: webs
-       MYSQL_PASSWORD: testPassword
+       MYSQL_PASSWORD: test
      ports:
        - 3306:3306
    phpmyadmin:
     depends_on:
-      - db
+      - mysql-database
     image: phpmyadmin/phpmyadmin
     ports:
       - '8081:80'
     environment:
-      PMA_HOST: db
+      PMA_HOST: mysql-database
       MYSQL_ROOT_PASSWORD: root
    web:
     image: verkeur08/myresto:latest
     depends_on:
-      - db
+      - mysql-database
     ports:
       - '8082:8080'
