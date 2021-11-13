@@ -25,9 +25,6 @@ RUN apk -U upgrade --update && \
     rm /usr/local/tomcat/conf/tomcat-users.xml && \
     rm /usr/local/tomcat/webapps/manager/META-INF/context.xml && \
     rm /usr/local/tomcat/webapps/host-manager/META-INF/context.xml && \
-    cp tomcat-init/conf/tomcat-users.xml /usr/local/tomcat/conf/ && \
-    cp tomcat-init/manager/META-INF/context.xml /usr/local/tomcat/webapps/manager/META-INF/ && \
-    cp tomcat-init/host-manager/META-INF/context.xml /usr/local/tomcat/webapps/host-manager/META-INF/ && \
    # rm -rf /usr/local/tomcat/webapps/* && \
     rm -rf /tmp/apache-tomcat.tar.gz && \
     addgroup -g 2000 tomcat && \
@@ -42,6 +39,9 @@ ENV PATH $CATALINA_HOME/bin:$PATH
 ENV TOMCAT_NATIVE_LIBDIR=$CATALINA_HOME/native-jni-lib
 ENV LD_LIBRARY_PATH=$CATALINA_HOME/native-jni-lib
 
+COPY tomcat-init/conf/tomcat-users.xml /usr/local/tomcat/conf/
+COPY tomcat-init/manager/META-INF/context.xml /usr/local/tomcat/webapps/manager/META-INF/ 
+COPY tomcat-init/host-manager/META-INF/context.xml /usr/local/tomcat/webapps/host-manager/META-INF/
 
 RUN cp Presentation/target/Presentation*.war /usr/local/tomcat/webapps/MyResto.war
 
