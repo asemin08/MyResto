@@ -2,10 +2,12 @@ FROM alpine:latest
 
 LABEL MAINTENER="Allan"
 
-RUN apk update
-RUN apk add git 
-RUN apk add maven
-RUN apk add bash
+RUN apk update && \
+    apk upgrade && \
+    apk add git && \
+    apk add maven && \
+    apk add bash
+
 RUN git clone https://github.com/asemin08/MyResto.git
 
 WORKDIR MyResto
@@ -33,6 +35,13 @@ ENV CATALINA_HOME /usr/local/tomcat/
 ENV PATH $CATALINA_HOME/bin:$PATH
 ENV TOMCAT_NATIVE_LIBDIR=$CATALINA_HOME/native-jni-lib
 ENV LD_LIBRARY_PATH=$CATALINA_HOME/native-jni-lib
+
+RUN ls
+
+RUN cp tomcat-init/conf/tomcat-users.xml /opt/tomcat/conf/tomcat-users.xml 
+RUN cp tomcat-init/manager/META-INF/context.xml /opt/tomcat/webapps/manager/META-INF/context.xml
+RUN cp tomcat-init/host-manager/META-INF/context.xml /opt/tomcat/webapps/host-manager/META-INF/context.xml
+
 
 RUN cp Presentation/target/Presentation*.war /usr/local/tomcat/webapps/MyResto.war
 
