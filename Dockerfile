@@ -38,12 +38,13 @@ ENV LD_LIBRARY_PATH=$CATALINA_HOME/native-jni-lib
 
 
 
-RUN rm /usr/local/tomcat/conf/tomcat-users.xml && \
-    cp tomcat-init/conf/tomcat-users.xml /usr/local/tomcat/conf/tomcat-users.xml && \
-    rm /usr/local/tomcat/webapps/manager/META-INF/context.xml && \
-    cp tomcat-init/manager/META-INF/context.xml /usr/local/tomcat/webapps/manager/META-INF/context.xml && \
-    rm /usr/local/tomcat/webapps/host-manager/META-INF/context.xml && \
-    cp tomcat-init/host-manager/META-INF/context.xml /usr/local/tomcat/webapps/host-manager/META-INF/context.xml
+RUN rm /usr/local/tomcat/conf/tomcat-users.xml
+RUN rm /usr/local/tomcat/webapps/manager/META-INF/context.xml
+RUN rm /usr/local/tomcat/webapps/host-manager/META-INF/context.xml
+
+RUN cp tomcat-init/conf/tomcat-users.xml /usr/local/tomcat/conf/
+RUN cp tomcat-init/manager/META-INF/context.xml /usr/local/tomcat/webapps/manager/META-INF/
+RUN cp tomcat-init/host-manager/META-INF/context.xml /usr/local/tomcat/webapps/host-manager/META-INF/
 
 RUN cp Presentation/target/Presentation*.war /usr/local/tomcat/webapps/MyResto.war
 
